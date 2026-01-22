@@ -1,0 +1,311 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Chapter 4: 形式化证明——像算术一样运算思维 - 从几何到逻辑：基础教育中的逻辑提取指南</title>
+
+
+        <!-- Custom HTML head -->
+        <script>
+        window.MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\(', '\)']],
+            displayMath: [['$$', '$$'], ['\[', '\]']],
+            processEscapes: true,
+            processEnvironments: true
+          },
+          options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+          }
+        };
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script" async></script>
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "../searchindex.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">从几何到逻辑：基础教育中的逻辑提取指南</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="第四章形式化证明像算术一样运算思维"><a class="header" href="#第四章形式化证明像算术一样运算思维">第四章：形式化证明——像算术一样运算思维</a></h1>
+<p>这一章，我们将做一件有点“反常”的事情。</p>
+<p>我们要把你初中时做过的一道最简单的几何证明题，放在逻辑显微镜下，用慢动作回放。我们的目的不是复习几何，而是让你看到：当你大脑飞快地得出结论时，你其实正在进行复杂的逻辑运算。</p>
+<h2 id="41-思维的慢动作回放"><a class="header" href="#41-思维的慢动作回放">4.1 思维的“慢动作回放”</a></h2>
+<p>让我们看一道非常基础的题目：</p>
+<blockquote>
+<p><strong>已知</strong>：直线 $a \parallel b$，直线 $c$ 截 $a, b$ 于点 $A, B$。
+<strong>求证</strong>：同旁内角互补 ($\angle 1 + \angle 2 = 180^\circ$)。</p>
+</blockquote>
+<p>你的大脑可能在 0.1 秒内就完成了推理：</p>
+<blockquote>
+<p>“因为平行，所以同位角相等（设为 $\angle 3$）。因为 $\angle 2$ 和 $\angle 3$ 互补，代换一下，所以 $\angle 1$ 和 $\angle 2$ 互补。”</p>
+</blockquote>
+<p>这个过程太快了，以至于你忽略了其中发生的逻辑跳跃。让我们用上一章学到的符号，把这个过程<strong>形式化</strong>。</p>
+<h2 id="42-第一步把定理变成工具-ui"><a class="header" href="#42-第一步把定理变成工具-ui">4.2 第一步：把“定理”变成“工具” (UI)</a></h2>
+<p>即使你还没开始做题，你的脑海里已经装着很多几何定理。比如：</p>
+<blockquote>
+<p><strong>定理</strong>：对于任意两直线，若它们平行，则同位角相等。</p>
+</blockquote>
+<p>逻辑形式：
+$$ \forall x \forall y (Parallel(x, y) \to Equal(CorrespondingAngles(x, y))) $$</p>
+<p>当你看着试卷上的直线 $a$ 和 $b$ 时，你做了一个关键动作：<strong>全称特指 (Universal Instantiation, UI)</strong>。
+你心里想：</p>
+<blockquote>
+<p>“既然这就对<strong>所有</strong>直线成立，那它肯定对<strong>这两条</strong>直线 $a$ 和 $b$ 也成立。”</p>
+</blockquote>
+<p>逻辑操作：
+去掉 $\forall$，把 $x$ 换成 $a$，把 $y$ 换成 $b$。
+$$ Parallel(a, b) \to Equal(CorrespondingAngles(a, b)) $$</p>
+<h2 id="43-第二步启动推理引擎-mp"><a class="header" href="#43-第二步启动推理引擎-mp">4.3 第二步：启动推理引擎 (MP)</a></h2>
+<p>现在你有了两个东西：</p>
+<ol>
+<li><strong>规则</strong>：$Parallel(a, b) \to Equal(CorrespondingAngles(a, b))$ （刚才转化来的）</li>
+<li><strong>事实</strong>：$Parallel(a, b)$ （题目给的已知条件）</li>
+</ol>
+<p>这一步是人类理性的光辉时刻。既然规则说“若P则Q”，而事实是“P”，那么“Q”必然成立。
+这在逻辑上叫做 <strong>肯定前件 (Modus Ponens, MP)</strong>。</p>
+<p>$$ \frac{P \to Q, \quad P}{Q} $$</p>
+<p><strong>结论</strong>：$Equal(CorrespondingAngles(a, b))$ 成立。
+（翻译回人话：直线 $a, b$ 的同位角相等。）</p>
+<h2 id="44-第三步构建证据链-传递性"><a class="header" href="#44-第三步构建证据链-传递性">4.4 第三步：构建证据链 (传递性)</a></h2>
+<p>我们已经得到了一块新砖头：$\angle 1 = \angle 3$（设 $\angle 3$ 是 $\angle 2$ 的同位角）。
+接下来：</p>
+<ol>
+<li>我们知道 $\angle 3 + \angle 2 = 180^\circ$ （这是平角的定义，公理）。</li>
+<li>利用 <strong>等量代换 (Substitution)</strong>：既然 $\angle 1 = \angle 3$，那么我们可以用 $\angle 1$ 替换掉算式里的 $\angle 3$。</li>
+<li>得到：$\angle 1 + \angle 2 = 180^\circ$。</li>
+</ol>
+<h2 id="45-为什么要把简单的东西搞复杂"><a class="header" href="#45-为什么要把简单的东西搞复杂">4.5 为什么要把简单的东西搞复杂？</a></h2>
+<p>你可能会问：“我一眼就能看出来的东西，为什么要拆成 UI、MP、Substitution 这么多步骤？”</p>
+<p>因为<strong>直觉是会骗人的，但逻辑不会</strong>。
+几何学的历史，就是人类试图把“直觉”关进“逻辑笼子”的历史。</p>
+<ul>
+<li><strong>UI (全称特指)</strong> 保证了我们可以把书本上的死知识，合法地应用到具体的活题目上。</li>
+<li><strong>MP (肯定前件)</strong> 保证了我们的推理是向前推进的，每一步都坚实可靠。</li>
+<li><strong>构造性证明</strong>（比如作辅助线）本质上是在逻辑空间里利用 $\exists$ 规则“声明”一个对象的存在。</li>
+</ul>
+<p>通过这种“慢动作回放”，你现在应该明白：你不是在“做几何题”，你是在运行一套精密的形式逻辑系统。你早就学会了逻辑，只是没人告诉你这些操作的名字。</p>
+<hr />
+<p><strong>小结</strong>
+这一章我们拆解了证明的原子动作：</p>
+<ol>
+<li><strong>UI</strong>：从一般到特殊。</li>
+<li><strong>MP</strong>：推理的引擎。</li>
+<li><strong>Substitution</strong>：关系的传递。</li>
+</ol>
+<p>下一章，我们将完成最后的拼图：<strong>如何用这套新语言，去理解那个古老的“三段论”</strong>？</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../chapters/03_first_order_logic.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../chapters/05_classical_logic.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../chapters/03_first_order_logic.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../chapters/05_classical_logic.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

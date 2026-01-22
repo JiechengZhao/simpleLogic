@@ -1,0 +1,9 @@
+[book]
+authors = ["Jiecheng"]
+language = "zh-CN"
+multilingual = false
+src = "src_md"
+title = "从几何到逻辑：基础教育中的逻辑提取指南"
+
+[output.html]
+mathjax-support = true

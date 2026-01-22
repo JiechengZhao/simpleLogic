@@ -1,0 +1,475 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Geometry Mapping - 从几何到逻辑：基础教育中的逻辑提取指南</title>
+
+
+        <!-- Custom HTML head -->
+        <script>
+        window.MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\(', '\)']],
+            displayMath: [['$$', '$$'], ['\[', '\]']],
+            processEscapes: true,
+            processEnvironments: true
+          },
+          options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+          }
+        };
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script" async></script>
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "../searchindex.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">从几何到逻辑：基础教育中的逻辑提取指南</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="几何与逻辑映射素材表"><a class="header" href="#几何与逻辑映射素材表">几何与逻辑映射素材表</a></h1>
+<h2 id="1-命题逻辑-propositional-logic"><a class="header" href="#1-命题逻辑-propositional-logic">1. 命题逻辑 (Propositional Logic)</a></h2>
+<p><em>注：本部分尽量避免使用真值表，而是强调“条件关系”和“命题变换”。</em></p>
+<h3 id="11-蕴涵-implication-p-to-q"><a class="header" href="#11-蕴涵-implication-p-to-q">1.1 蕴涵 (Implication, $P \to Q$)</a></h3>
+<ul>
+<li><strong>几何原型</strong>：判定定理与性质定理。</li>
+<li><strong>教材实例</strong>：平行线的判定与性质。
+<ul>
+<li>$P$: 两直线平行</li>
+<li>$Q$: 同位角相等</li>
+<li><strong>定理</strong>：若两直线平行，则同位角相等 ($P \to Q$)。</li>
+</ul>
+</li>
+<li><strong>逻辑点</strong>：
+<ul>
+<li>充分条件：只要 $P$ 成立，$Q$ 一定成立。</li>
+<li>不可逆性：仅凭 $P \to Q$ 不能推出 $Q \to P$（虽然在此例中恰好互逆，但在逻辑上需区分）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="12-命题的逆否逆否"><a class="header" href="#12-命题的逆否逆否">1.2 命题的逆、否、逆否</a></h3>
+<ul>
+<li><strong>几何原型</strong>：等腰三角形的性质。
+<ul>
+<li>原命题 ($P \to Q$)：若一个三角形是等腰三角形 ($P$)，则它的两个底角相等 ($Q$)。</li>
+<li>逆命题 ($Q \to P$)：若一个三角形有两个角相等 ($Q$)，则它是等腰三角形 ($P$)。（<strong>判定定理</strong>）</li>
+<li>否命题 ($\neg P \to \neg Q$)：若一个三角形不是等腰三角形，则它的两个底角不相等。</li>
+<li>逆否命题 ($\neg Q \to \neg P$)：若一个三角形两个底角不相等，则它不是等腰三角形。</li>
+</ul>
+</li>
+<li><strong>逻辑点</strong>：
+<ul>
+<li>原命题 $\iff$ 逆否命题（证明等价性）。</li>
+<li>原命题与逆命题的独立性（如：对顶角相等是对的，但相等的角是对顶角是错的）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="13-联结词且-land"><a class="header" href="#13-联结词且-land">1.3 联结词：且 ($\land$)</a></h3>
+<ul>
+<li><strong>几何原型</strong>：复合定义。</li>
+<li><strong>教材实例</strong>：
+<ul>
+<li><strong>等腰直角三角形</strong>：是一个三角形，<strong>且</strong>它是等腰的，<strong>且</strong>它有一个角是直角。</li>
+<li><strong>角平分线</strong>：一条射线，<strong>且</strong>经过角的顶点，<strong>且</strong>将该角分成两个相等的角。</li>
+<li><strong>全等三角形判定 SAS</strong>：两边对应相等 <strong>且</strong> 夹角对应相等。</li>
+</ul>
+</li>
+<li><strong>逻辑点</strong>：必须所有条件同时满足，结论才成立。</li>
+</ul>
+<h3 id="14-联结词或-lor"><a class="header" href="#14-联结词或-lor">1.4 联结词：或 ($\lor$)</a></h3>
+<ul>
+<li><strong>几何原型</strong>：分类讨论。</li>
+<li><strong>教材实例</strong>：
+<ul>
+<li><strong>两直线位置关系</strong>：在同一平面内，两直线平行 <strong>或</strong> 相交。</li>
+<li><strong>等腰三角形顶角的平分线</strong>：垂直于底边 <strong>或</strong> 平分底边（实际上是“且”，但在证明过程中常出现“若 A 或 B 成立，则...”的情况，此处需精选例子，或许“点在直线 $l$ 上 或 点在直线 $l$ 外”更纯粹）。</li>
+<li><strong>点的轨迹</strong>：到线段两端距离相等的点，在线段的垂直平分线“上” <strong>或</strong> “下”（通过对称性覆盖全平面）。</li>
+</ul>
+</li>
+<li><strong>逻辑点</strong>：至少有一个成立。</li>
+</ul>
+<h3 id="15-联结词非-neg"><a class="header" href="#15-联结词非-neg">1.5 联结词：非 ($\neg$)</a></h3>
+<ul>
+<li><strong>几何原型</strong>：反证法 (Reductio ad Absurdum)。</li>
+<li><strong>教材实例</strong>：
+<ul>
+<li><strong>求证</strong>：过直线外一点有且只有一条直线与已知直线平行。</li>
+<li><strong>假设</strong>：过直线外一点<strong>不只</strong>有一条直线（即至少有两条）与已知直线平行。</li>
+</ul>
+</li>
+<li><strong>逻辑点</strong>：否定结论，导出矛盾。$\neg (P \land Q) \iff \neg P \lor \neg Q$。</li>
+</ul>
+<hr />
+<h2 id="2-一阶逻辑-first-order-logic"><a class="header" href="#2-一阶逻辑-first-order-logic">2. 一阶逻辑 (First-Order Logic)</a></h2>
+<p><em>注：引入对象、属性、关系和量词。</em></p>
+<h3 id="21-谓词-predicates-与-个体-individuals"><a class="header" href="#21-谓词-predicates-与-个体-individuals">2.1 谓词 (Predicates) 与 个体 (Individuals)</a></h3>
+<ul>
+<li><strong>个体</strong>：点 $A, B$, 直线 $l, m$, 三角形 $\triangle ABC$。</li>
+<li><strong>一元谓词 (属性)</strong>：
+<ul>
+<li>$IsRightTriangle(x)$: $x$ 是直角三角形。</li>
+<li>$IsAcute(x)$: $x$ 是锐角。</li>
+</ul>
+</li>
+<li><strong>多元谓词 (关系)</strong>：这是欧氏几何的核心。
+<ul>
+<li>$On(P, l)$: 点 $P$ 在直线 $l$ 上。</li>
+<li>$Parallel(l, m)$: 直线 $l$ 平行于 $m$。</li>
+<li>$Perpendicular(l, m)$: 直线 $l$ 垂直于 $m$。</li>
+<li>$Congruent(\triangle ABC, \triangle DEF)$: 两个三角形全等。</li>
+<li>$Between(A, B, C)$: 点 $B$ 在点 $A$ 和 $C$ 之间（公理化几何的基础关系）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="22-全称量词-forall"><a class="header" href="#22-全称量词-forall">2.2 全称量词 ($\forall$)</a></h3>
+<ul>
+<li><strong>几何原型</strong>：所有、任意、凡是。</li>
+<li><strong>教材实例</strong>：
+<ul>
+<li>“<strong>任意</strong>三角形的内角和都等于 180 度”。</li>
+<li>形式化：$\forall x (Triangle(x) \to AngleSum(x) = 180)$。</li>
+<li>“<strong>所有</strong>直角都相等”。</li>
+<li>形式化：$\forall x \forall y (RightAngle(x) \land RightAngle(y) \to Equal(x, y))$。</li>
+</ul>
+</li>
+</ul>
+<h3 id="23-存在量词-exists"><a class="header" href="#23-存在量词-exists">2.3 存在量词 ($\exists$)</a></h3>
+<ul>
+<li><strong>几何原型</strong>：作图、交点。</li>
+<li><strong>教材实例</strong>：
+<ul>
+<li>“线段垂直平分线上<strong>存在</strong>一点，到两端点距离相等”。</li>
+<li>“过直线外一点，<strong>存在</strong>一条直线与已知直线平行”。</li>
+<li>形式化：$\forall l \forall P (\neg On(P, l) \to \exists m (On(P, m) \land Parallel(m, l)))$。</li>
+</ul>
+</li>
+<li><strong>逻辑点</strong>：Constructive Proof (构造性证明) 往往对应存在量词。</li>
+</ul>
+<h3 id="24-唯一性-exists"><a class="header" href="#24-唯一性-exists">2.4 唯一性 ($\exists!$)</a></h3>
+<ul>
+<li><strong>几何原型</strong>：有且只有。</li>
+<li><strong>教材实例</strong>：
+<ul>
+<li>“过两点<strong>有且只有</strong>一条直线”。</li>
+<li>逻辑拆解：
+<ol>
+<li><strong>存在性</strong>：至少有一条。</li>
+<li><strong>唯一性</strong>：若有两条，则它们重合。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="3-推理规则-inference-rules"><a class="header" href="#3-推理规则-inference-rules">3. 推理规则 (Inference Rules)</a></h2>
+<p><em>注：展示如何将几何证明步骤映射为逻辑推演。</em></p>
+<h3 id="31-肯定前件-modus-ponens-mp"><a class="header" href="#31-肯定前件-modus-ponens-mp">3.1 肯定前件 (Modus Ponens, MP)</a></h3>
+<ul>
+<li><strong>逻辑形式</strong>：$P \to Q, P \vdash Q$</li>
+<li><strong>几何实例</strong>：
+<ul>
+<li><strong>大前提</strong>：若两直线平行，则内错角相等 ($P \to Q$, 定理)。</li>
+<li><strong>小前提</strong>：已知直线 $a \parallel b$ ($P$, 已知条件)。</li>
+<li><strong>结论</strong>：所以 $\angle 1 = \angle 2$ ($Q$)。</li>
+</ul>
+</li>
+</ul>
+<h3 id="32-全称特指-universal-instantiation-ui"><a class="header" href="#32-全称特指-universal-instantiation-ui">3.2 全称特指 (Universal Instantiation, UI)</a></h3>
+<ul>
+<li><strong>逻辑形式</strong>：$\forall x P(x) \vdash P(c)$</li>
+<li><strong>几何实例</strong>：
+<ul>
+<li><strong>大前提</strong>：所有直角三角形的两个锐角互余 ($\forall x (RT(x) \to Complementary(AcuteAngles(x)))$)。</li>
+<li><strong>小前提</strong>：$\triangle ABC$ 是一个直角三角形 (个体 $c$ 是集合成员)。</li>
+<li><strong>结论</strong>：$\triangle ABC$ 的两个锐角互余。</li>
+</ul>
+</li>
+<li><strong>应用场景</strong>：这解释了为什么我们可以直接把书本上的“定理”套用到练习题里那个具体的“图形”上。</li>
+</ul>
+<h3 id="33-传递性-transitivity"><a class="header" href="#33-传递性-transitivity">3.3 传递性 (Transitivity)</a></h3>
+<ul>
+<li><strong>逻辑形式</strong>：$Relation(a, b) \land Relation(b, c) \to Relation(a, c)$</li>
+<li><strong>几何实例</strong>：
+<ul>
+<li><strong>平行线</strong>：$a \parallel b$ 且 $b \parallel c \implies a \parallel c$。</li>
+<li><strong>全等</strong>：$\triangle 1 \cong \triangle 2$ 且 $\triangle 2 \cong \triangle 3 \implies \triangle 1 \cong \triangle 3$。</li>
+<li><strong>逻辑实质</strong>：这是<strong>等价关系 (Equivalence Relation)</strong> 的特征之一。</li>
+</ul>
+</li>
+</ul>
+<h3 id="34-反证法-proof-by-contradiction"><a class="header" href="#34-反证法-proof-by-contradiction">3.4 反证法 (Proof by Contradiction)</a></h3>
+<ul>
+<li><strong>逻辑形式</strong>：$(\neg P \to (Q \land \neg Q)) \to P$</li>
+<li><strong>几何实例</strong>：
+<ul>
+<li><strong>求证</strong>：$l_1 \parallel l_2$。</li>
+<li><strong>假设</strong>：$l_1$ 不平行于 $l_2$ ($\neg P$)。</li>
+<li><strong>推导</strong>：
+<ol>
+<li>若不平行，则它们相交于点 $A$。</li>
+<li>根据某定理，三角形内角和为 180 度。</li>
+<li>但根据推导，得出了内角和大于 180 度（构造矛盾 $Q \land \neg Q$）。</li>
+</ol>
+</li>
+<li><strong>结论</strong>：假设不成立，故 $l_1 \parallel l_2$ 成立。</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="4-核心公理与重言式-axioms--tautologies"><a class="header" href="#4-核心公理与重言式-axioms--tautologies">4. 核心公理与重言式 (Axioms &amp; Tautologies)</a></h2>
+<p><em>注：明确我们使用的是经典逻辑系统。</em></p>
+<h3 id="41-排中律-law-of-excluded-middle-lem"><a class="header" href="#41-排中律-law-of-excluded-middle-lem">4.1 排中律 (Law of Excluded Middle, LEM)</a></h3>
+<ul>
+<li><strong>逻辑形式</strong>：$P \lor \neg P$</li>
+<li><strong>几何直观</strong>：
+<ul>
+<li>几何世界是“二值”的，不存在第三种状态。</li>
+<li>例：点 $A$ 要么在圆 $O$ 内，要么不在圆 $O$ 内（包括圆上和圆外）。</li>
+<li>例：$\triangle ABC$ 要么是直角三角形，要么不是。</li>
+</ul>
+</li>
+<li><strong>作用</strong>：它是反证法 ($(\neg P \to \bot) \to P$) 和双重否定消除 ($\neg\neg P \to P$) 的基础。</li>
+</ul>
+<h3 id="42-实质蕴涵-material-implication"><a class="header" href="#42-实质蕴涵-material-implication">4.2 实质蕴涵 (Material Implication)</a></h3>
+<ul>
+<li><strong>逻辑形式</strong>：$(P \to Q) \iff (\neg P \lor Q)$</li>
+<li><strong>如何理解</strong>：
+<ul>
+<li>这对初学者很难理解（“若他是人，则他要吃饭” 等价于 “他不是人，或者他要吃饭”？）。</li>
+<li><strong>几何解释策略</strong>：利用排中律分类讨论。
+<ul>
+<li>我们要保证 $P \to Q$ 不被“打破”（即不出现 $P$ 真 $Q$ 假）。</li>
+<li>根据排中律，世界只分两半：$P$ 成立的世界，和 $P$ 不成立的世界。</li>
+<li>在 $P$ 不成立的世界 ($\neg P$)：前提没满足，承诺无需兑现（空真，Vacuously True）。</li>
+<li>在 $P$ 成立的世界 ($P$)：必须满足 $Q$。</li>
+<li>合起来就是：$\neg P \lor Q$。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="43-矛盾律-law-of-non-contradiction"><a class="header" href="#43-矛盾律-law-of-non-contradiction">4.3 矛盾律 (Law of Non-Contradiction)</a></h3>
+<ul>
+<li><strong>逻辑形式</strong>：$\neg (P \land \neg P)$</li>
+<li><strong>几何直观</strong>：
+<ul>
+<li>$l_1$ 不可能既平行于 $l_2$，又不平行于 $l_2$。</li>
+<li>这是所有逻辑推理的底线。</li>
+</ul>
+</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../chapters/06_conclusion.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../materials/logic_concepts.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../chapters/06_conclusion.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../materials/logic_concepts.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>
