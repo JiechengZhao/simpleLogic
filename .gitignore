@@ -1,1 +1,9 @@
-/target
+# Rust artifacts
+target/
+Cargo.lock
+
+# mdBook output
+book/
+
+# OS files
+.DS_Store
