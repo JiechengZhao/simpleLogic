@@ -6,6 +6,7 @@
 {{#include 01_propositional_logic/01_04_conjunction.md}}
 {{#include 01_propositional_logic/01_05_disjunction.md}}
 {{#include 01_propositional_logic/01_06_negation.md}}
-{{#include 01_propositional_logic/01_07_rules.md}}
-{{#include 01_propositional_logic/01_08_theorems.md}}
-{{#include 01_propositional_logic/01_09_laws.md}}
+{{#include 01_propositional_logic/01_07_classical_logic.md}}
+{{#include 01_propositional_logic/01_08_rules.md}}
+{{#include 01_propositional_logic/01_09_theorems.md}}
+{{#include 01_propositional_logic/01_10_laws.md}}
