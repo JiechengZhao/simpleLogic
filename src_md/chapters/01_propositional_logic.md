@@ -1,4 +1,4 @@
-# 第1章：推导的物理学——命题集与长横线
+# 第1章：从初中几何到命题逻辑
 
 {{#include 01_propositional_logic/01_01_context.md}}
 {{#include 01_propositional_logic/01_02_inference_line.md}}
