@@ -60,7 +60,7 @@ $$ \frac{\Gamma \vdash P \land Q}{\Gamma \vdash P} \text{ ($\land$-Elim}_1\text{
 $$ \frac{\displaystyle \frac{P \land Q}{Q} \text{($\land$-Elim$_2$)} \quad \displaystyle \frac{P \land Q}{P} \text{($\land$-Elim$_1$)}} {Q \land P} \text{($\land$-Intro)} $$
 
 ### 定理 1.4.2：结合律（Associativity）
-**命题**：$(P \land Q) \land R \dashv\vdash P \land (Q \land R)$
+**命题**：$\vdash ((P \land Q) \land R) \leftrightarrow (P \land (Q \land R))$
 
 结合律告诉我们，当多个命题通过合取连接时，括号的位置并不重要。无论你是先将 $P$ 和 $Q$ 打包，还是先将 $Q$ 和 $R$ 打包，最终表达的都是这三个事实同时成立。在复杂的几何背景中，这意味着你可以根据证明的需要，自由地重新组合已知条件的“分组方式”。（其形式化证明请见本节习题。）
 
