@@ -61,17 +61,51 @@ $$ \frac{P_1 \lor P_2 \lor P_3 \quad P_1 \to S \quad P_2 \to S \quad P_3 \to S}{
 
 ## 3. 析取的性质：交换律与结合律
 
+利用引入和消去规则，我们可以推导出析取的核心性质。
+
 **定理 1.5.1：交换律 (Commutativity)**
 $$ \vdash (P \lor Q) \leftrightarrow (Q \lor P) $$
+（证明思路与合取交换律类似，请读者作为习题完成。）
 
 **定理 1.5.2：结合律 (Associativity)**
 $$ \vdash ((P \lor Q) \lor R) \leftrightarrow (P \lor (Q \lor R)) $$
 
-结合律的证明涉及到了**嵌套的分类讨论**。我们要对左侧的已知前提 $(P \lor Q) \lor R$ 使用析取消去规则。这意味着我们要分两个大分支讨论：
-- **分支 1**：假设 $P \lor Q$ 成立。
-- **分支 2**：假设 $R$ 成立。
 
-其中**分支 1** 自身又是一个析取式，需要再次嵌套一个分类讨论。
+为了证明这个定理，我们需要一种比标准规则更强大的工具：**三路分类讨论**。
+
+#### 引理：三路分支规则
+在证明三角形面积时，我们面对的是三种情况。逻辑上，只要我们能分别搞定每一个分支，结论就成立：
+
+$$ \frac{P \lor Q \lor R \quad P \to S \quad Q \to S \quad R \to S}{S} $$
+
+为了让大家看清底层逻辑，我们通过**嵌套**两层标准 $\lor$-Elim 来证明这个规则。用推理线展开这个“大盒套小盒”的结构如下：
+
+$$ \frac{\Gamma \vdash (P \lor Q) \lor R \quad \displaystyle \frac{\Gamma, P \lor Q \vdash P \lor Q \quad \Gamma, P \lor Q, P \vdash S \quad \Gamma, P \lor Q, Q \vdash S}{\Gamma, P \lor Q \vdash S} \text{ ($\lor$-E)} \quad \Gamma, R \vdash S}{\Gamma \vdash S} \text{ ($\lor$-E)} $$
+
+**这正是我们之前在面积证明中略过的底层逻辑。** 虽然标准的 $\lor$-Elim 只有两路，但通过这种嵌套，我们可以处理任意多个分支。这个证明中，上下文多次变动，如果用不带上下文的推理写法会很复杂，但是在我们当前的写法中清晰自然。实际上像上下文和 $\vdash$ 这样的概念出现，正是这种形式化需求所驱动的。
+
+
+#### 结合律的证明（方向 $\to$）
+
+
+现在，我们要证明 $((P \lor Q) \lor R) \vdash P \lor (Q \lor R)$。
+我们可以直接套用上面的三路规则。令结论 $S$ 为 $P \lor (Q \lor R)$，我们只需要展示三条路径是如何通往 $S$ 的：
+
+**路径 1：从 $P$ 出发**
+$$ \frac{P}{P \lor (Q \lor R)} \text{ ($\lor$-I}_1\text{)} $$
+
+**路径 2：从 $Q$ 出发**
+$$ \frac{\displaystyle \frac{Q}{Q \lor R} \text{ ($\lor$-I}_1\text{)} }{P \lor (Q \lor R)} \text{ ($\lor$-I}_2\text{)} $$
+
+**路径 3：从 $R$ 出发**
+$$ \frac{\displaystyle \frac{R}{Q \lor R} \text{ ($\lor$-I}_2\text{)} }{P \lor (Q \lor R)} \text{ ($\lor$-I}_2\text{)} $$
+
+**最终汇聚：**
+将上述三条路径（已封装为蕴涵命题）与前提结合，利用三路分类讨论：
+
+$$ \frac{(P \lor Q) \lor R \quad \displaystyle \frac{P}{S} \quad \displaystyle \frac{Q}{S} \quad \displaystyle \frac{R}{S}}{P \lor (Q \lor R)} \text{ ($\lor$-Elim)} $$
+
+通过这种方式，原本复杂的嵌套逻辑变得一目了然。这个“半例题”展示了我们如何将复杂的几何讨论（如三角形的三种形态）抽象为逻辑符号的流动。
 
 ---
 
