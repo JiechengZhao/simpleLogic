@@ -50,7 +50,7 @@ $$ \frac{P \lor Q \quad P \to R \quad Q \to R}{R} $$
 
 $$ \frac{P_1 \lor P_2 \lor P_3 \quad P_1 \to S \quad P_2 \to S \quad P_3 \to S}{S} \text{ ($\lor$-Elim)} $$
 
-（注：标准的消去规则是二元的，处理三项析取时实际上是进行了一次嵌套讨论，先处理 $P_1 \lor P_2$，再处理其结果与 $P_3$ 的组合。）
+（注：标准的消去规则是二元的，处理三项析取时实际上是进行了一次嵌套讨论，先处理 $P_1 \lor P_2$，再处理其结果与 $P_3$ 的组合。我们稍后就会补充这个证明。）
 
 通过这个案例我们可以看到：**虽然在三种不同的情况下，我们的证明方法（推导路径）完全不同，但逻辑规则确保了最终结论的一致性。** 
 
@@ -71,24 +71,24 @@ $$ \vdash (P \lor Q) \leftrightarrow (Q \lor P) $$
 $$ \vdash ((P \lor Q) \lor R) \leftrightarrow (P \lor (Q \lor R)) $$
 
 
-为了证明这个定理，我们需要一种比标准规则更强大的工具：**三路分类讨论**。
+为了证明这个定理，我们需要一种比先证明一个引理：**三路分类讨论**。
 
 #### 引理：三路分支规则
 在证明三角形面积时，我们面对的是三种情况。逻辑上，只要我们能分别搞定每一个分支，结论就成立：
 
 $$ \frac{P \lor Q \lor R \quad P \to S \quad Q \to S \quad R \to S}{S} $$
 
-为了让大家看清底层逻辑，我们通过**嵌套**两层标准 $\lor$-Elim 来证明这个规则。用推理线展开这个“大盒套小盒”的结构如下：
+为了让大家看清底层逻辑，我们通过**嵌套**两层标准 $\lor$-Elim 来证明这个规则。推理如下：
 
 $$ \frac{\Gamma \vdash (P \lor Q) \lor R \quad \displaystyle \frac{\Gamma, P \lor Q \vdash P \lor Q \quad \Gamma, P \lor Q, P \vdash S \quad \Gamma, P \lor Q, Q \vdash S}{\Gamma, P \lor Q \vdash S} \text{ ($\lor$-E)} \quad \Gamma, R \vdash S}{\Gamma \vdash S} \text{ ($\lor$-E)} $$
 
-**这正是我们之前在面积证明中略过的底层逻辑。** 虽然标准的 $\lor$-Elim 只有两路，但通过这种嵌套，我们可以处理任意多个分支。这个证明中，上下文多次变动，如果用不带上下文的推理写法会很复杂，但是在我们当前的写法中清晰自然。实际上像上下文和 $\vdash$ 这样的概念出现，正是这种形式化需求所驱动的。
+**这正是我们之前在面积证明中略过的逻辑。** 虽然标准的 $\lor$-Elim 只有两路，但通过这种嵌套，我们可以处理任意多个分支。请注意，这个证明中，上下文多次变动。如果用不带上下文的推理写法会很复杂，但是在我们当前的写法中清晰自然。实际上像上下文和 $\vdash$ 这样的概念出现，正是这种形式化需求所驱动的。
 
 
 #### 结合律的证明（方向 $\to$）
 
 
-现在，我们要证明 $((P \lor Q) \lor R) \vdash P \lor (Q \lor R)$。
+现在，我们要证明 $(P \lor Q) \lor R \vdash P \lor (Q \lor R)$。
 我们可以直接套用上面的三路规则。令结论 $S$ 为 $P \lor (Q \lor R)$，我们只需要展示三条路径是如何通往 $S$ 的：
 
 **路径 1：从 $P$ 出发**
@@ -101,11 +101,11 @@ $$ \frac{\displaystyle \frac{Q}{Q \lor R} \text{ ($\lor$-I}_1\text{)} }{P \lor (
 $$ \frac{\displaystyle \frac{R}{Q \lor R} \text{ ($\lor$-I}_2\text{)} }{P \lor (Q \lor R)} \text{ ($\lor$-I}_2\text{)} $$
 
 **最终汇聚：**
-将上述三条路径（已封装为蕴涵命题）与前提结合，利用三路分类讨论：
+将上述三条路径，封装为蕴涵命题与前提结合，利用我们刚刚证明的“三路分类讨论”引理：
 
-$$ \frac{(P \lor Q) \lor R \quad \displaystyle \frac{P}{S} \quad \displaystyle \frac{Q}{S} \quad \displaystyle \frac{R}{S}}{P \lor (Q \lor R)} \text{ ($\lor$-Elim)} $$
+$$ \frac{(P \lor Q) \lor R \quad P \to P \lor (Q \lor R) \quad Q \to P \lor (Q \lor R) \quad R \to P \lor (Q \lor R)}{P \lor (Q \lor R)} \text{ ($\lor$-Elim-3)} $$
 
-通过这种方式，原本复杂的嵌套逻辑变得一目了然。这个“半例题”展示了我们如何将复杂的几何讨论（如三角形的三种形态）抽象为逻辑符号的流动。
+由此结合律的一个方向得证。
 
 ---
 
@@ -121,10 +121,9 @@ $$ \vdash ((P \lor Q) \to R) \leftrightarrow ((P \to R) \land (Q \to R)) $$
 ---
 
 ## 习题
+**习题 1.5.1**：请证明析取的**交换律**：$P \lor Q \vdash Q \lor P$。
 
-**习题 1.5.1**：请模仿本节三角形面积公式的形式化过程，利用推理线（长横线）完整写出结合律 $(P \lor Q) \lor R \vdash P \lor (Q \lor R)$ 的嵌套证明过程（要求补齐所有引入规则的标注）。
-
-**习题 1.5.2**：请证明析取的**交换律**：$P \lor Q \vdash Q \lor P$。
+**习题 1.5.2**：请证明结合律中尚未证明的另一个方向： $P \lor (Q \lor R) \vdash (P \lor Q) \lor R$。
 
 **习题 1.5.3**：请证明定理 1.5.3 的 $\leftarrow$ 方向：
 $$ (P \to R) \land (Q \to R) \vdash (P \lor Q) \to R $$
