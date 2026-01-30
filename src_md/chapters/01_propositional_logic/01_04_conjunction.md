@@ -33,7 +33,17 @@ $$ \frac{\Gamma \vdash P \land Q}{\Gamma \vdash P} \text{ ($\land$-Elim}_1\text{
 
 ---
 
-## 3. 合取的性质：交换律与结合律
+## 3. 逻辑上的“等价”：双条件算符 ($\leftrightarrow$)
+
+有了合取和蕴涵，我们就可以定义一个新的算符：**当且仅当（if and only if）**，记作 $\leftrightarrow$。
+
+在几何中，如果我们说“$P$ 与 $Q$ 等价”，意思就是既有 $P \to Q$，又有 $Q \to P$。在逻辑学中，我们将这双向的蕴涵“打包”在一起：
+- **定义**：$P \leftrightarrow Q \equiv (P \to Q) \land (Q \to P)$
+
+这不仅是一个新算符，也是一种**等价命题**。如果你证明了 $P \leftrightarrow Q$，就意味着你可以合法地在推导中将 $P$ 替换为 $Q$，反之亦然。
+
+
+## 4. 合取的性质：交换律与结合律
 
 利用引入和消去规则，我们可以证明一些直观的逻辑性质。这些性质在复杂的几何证明中非常有用，能帮我们重新组织已知条件。
 
@@ -49,22 +59,19 @@ $$ \frac{\Gamma \vdash P \land Q}{\Gamma \vdash P} \text{ ($\land$-Elim}_1\text{
 
 $$ \frac{\displaystyle \frac{P \land Q}{Q} \text{($\land$-Elim$_2$)} \quad \displaystyle \frac{P \land Q}{P} \text{($\land$-Elim$_1$)}} {Q \land P} \text{($\land$-Intro)} $$
 
+### 定理 1.4.2：结合律（Associativity）
+**命题**：$(P \land Q) \land R \dashv\vdash P \land (Q \land R)$
+
+结合律告诉我们，当多个命题通过合取连接时，括号的位置并不重要。无论你是先将 $P$ 和 $Q$ 打包，还是先将 $Q$ 和 $R$ 打包，最终表达的都是这三个事实同时成立。在复杂的几何背景中，这意味着你可以根据证明的需要，自由地重新组合已知条件的“分组方式”。（其形式化证明请见本节习题。）
+
 ---
 
-## 5. 逻辑上的“等价”：双条件算符 ($\leftrightarrow$)
 
-有了合取和蕴涵，我们就可以定义一个新的算符：**当且仅当（if and only if）**，记作 $\leftrightarrow$。
-
-在几何中，如果我们说“$P$ 与 $Q$ 等价”，意思就是既有 $P \to Q$，又有 $Q \to P$。在逻辑学中，我们将这双向的蕴涵“打包”在一起：
-- **定义**：$P \leftrightarrow Q \equiv (P \to Q) \land (Q \to P)$
-
-这不仅是一个新算符，也是一种**等价命题**。如果你证明了 $P \leftrightarrow Q$，就意味着你可以合法地在推导中将 $P$ 替换为 $Q$，反之亦然。
-
-## 6. 进阶：蕴涵如何与合取互动？
+## 5. 合取和蕴含的分配律
 
 在第 1.3 节中，我们将蕴涵（$\to$）比作“打包”。当我们将合取加入进来时，会出现一些有趣的交互规则。
 
-### 定理 1.4.2：分配律（推导的拆分）
+### 定理 1.4.3：分配律（推导的拆分）
 **在任何上下文中合取的分配律都成立**：$\vdash (P \to (Q \land R)) \leftrightarrow ((P \to Q) \land (P \to R))$
 这说明：证明一个复合结论，等同于分别证明它的每一个部分。
 
@@ -88,7 +95,7 @@ $$ \frac{\displaystyle \frac{P \land Q}{Q} \text{($\land$-Elim$_2$)} \quad \disp
 **习题 1.4.1**：请模仿交换律的证明，证明**结合律（Associativity）**：
 $$ (P \land Q) \land R \vdash P \land (Q \land R) $$
 
-**习题 1.4.2**：请证明**分配律**的另一个方向（即定理 1.4.2 的 $\leftarrow$ 方向）：
+**习题 1.4.2**：请证明**分配律**的另一个方向（即定理 1.4.3 的 $\leftarrow$ 方向）：
 $$ (P \to Q) \land (P \to R) \vdash P \to (Q \land R) $$
 
 **习题 1.4.3（挑战）**：证明**柯里化（Currying）** 的一个方向：
