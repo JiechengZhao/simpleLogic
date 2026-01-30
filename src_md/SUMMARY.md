@@ -13,7 +13,7 @@
     - [1.4 合取](chapters/01_propositional_logic/01_04_conjunction.md)
     - [1.5 析取](chapters/01_propositional_logic/01_05_disjunction.md)
     - [1.6 否定](chapters/01_propositional_logic/01_06_negation.md)
-    - [1.7 经典逻辑](chapters/01_propositional_logic/01_07_classical_logic.md)
+    - [1.7 排中律](chapters/01_propositional_logic/01_07_classical_logic.md)
     - [1.8 逻辑定律](chapters/01_propositional_logic/01_10_laws.md)
 
 - [第2章 一阶逻辑——描述“关系”的语言](chapters/02_first_order_logic.md)
