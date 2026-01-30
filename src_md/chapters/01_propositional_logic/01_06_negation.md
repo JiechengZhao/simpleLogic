@@ -1,10 +1,10 @@
 # 1.6 否定：从排除法到矛盾
 
-在几何学中，否定（$\neg$）与我们最直观的一种思维模式紧密相连——**排除法**。
+在逻辑中，否定（$\neg$）与我们最直观的一种思维模式紧密相连——**排除法**。
 
 ## 1. 排除法：否定的直观功能
 
-我们在做几何填空或选择题时，最常用的逻辑是：如果只有两种可能性 $P$ 和 $Q$，而我们排除了 $P$，那么 $Q$ 一定成立。在逻辑学中，这被称为**选言三段论（Disjunctive Syllogism）**，简称 **DS**。
+我们在做几何题时，一个常用的逻辑是：如果只有两种可能性 $P$ 和 $Q$，而我们排除了 $P$，那么 $Q$ 一定成立。在逻辑学中，这被称为**选言三段论（Disjunctive Syllogism）**，简称 **DS**。
 
 $$ \frac{P \lor Q \quad \neg P}{Q} \text{ (排除法/DS)} $$
 ### 案例：直线的位置关系
@@ -76,9 +76,88 @@ $$
 
 ---
 
+## 5. 逆否命题
+
+利用刚才定义的 $\neg P \equiv P \to \perp$，我们可以证明一个在几何推理中极度重要的工具：**逆否命题 (Contrapositive)**。
+
+### 定理 1.6.1：逆否命题
+**命题**：$\vdash (P \to Q) \to (\neg Q \to \neg P)$
+
+在几何证明中，这对应了“如果原命题成立，则其逆否命题必成立”。由于这个命题中包含多层蕴涵（注意 $\neg$ 本身也是一种蕴涵），我们可以通过“先假设、后封装”的策略来完成证明。
+
+#### 第一步：推导
+我们先假设已经同时持有了 $P$、$\neg Q$ 以及它们之间的桥梁 $P \to Q$，矛盾就会立刻发生：
+
+$$ \frac{\displaystyle \frac{P \quad P \to Q}{Q} \text{($\to$-E)} \quad \neg Q}{\perp} \text{($\to$-E)} $$
+
+#### 第二步：三层封装
+现在，我们从最深处的上下文开始，连续使用三次 **$\to$-Intro**，将上述结果层层封装成定理：
+
+$$ \frac{\displaystyle \frac{\displaystyle \frac{P \to Q, \neg Q, P \vdash \perp}{P \to Q, \neg Q \vdash P \to \perp} \text{($\to$-I)}}{ P \to Q \vdash \neg Q \to \neg P} \text{($\to$-I)}}{ \vdash (P \to Q) \to (\neg Q \to \neg P)} \text{($\to$-I)} $$
+
+这种“先深入、再封装”的过程，生动地展示了逻辑规则是如何将一段动态的推理流程，封装成一个稳固的、可随时调用的静态定理的。
+
+---
+
+## 6. 德·摩根定律：否定如何穿透括号？
+
+在几何中，“如果一条直线不能把另一条线段平分，或者不与这条线段垂直”，那么我们可以断定“它不是这条线段的垂直平分线”。这在逻辑中时一种否定算符与合取/析取的互动，这样的关系一共有四种，被称为**德·摩根定律 (De Morgan's Laws)**。
+
+在当前条件下，德·摩根定律的四个关系中有三个是可以被严格证明的。剩下的一个将在下一节学习排中律后证明。具体如下：
+
+1. **可证**：$\neg(P \lor Q) \to (\neg P \land \neg Q)$ 
+2. **可证**：$(\neg P \land \neg Q) \to \neg(P \lor Q)$
+3. **可证**：$(\neg P \lor \neg Q) \to \neg(P \land Q)$
+4. **暂不可证**：$\neg(P \land Q) \to (\neg P \lor \neg Q)$ 
+
+我们将展示其中一个的证明。
+
+### 定理 1.6.2：德·摩根定律（方向一）
+**命题**：$\neg(P \lor Q) \vdash \neg P \land \neg Q$
+
+**证明思路**：
+我们要得到一个合取式（$\land$），根据合取引入规则，我们需要分别证明 $\neg P$ 和 $\neg Q$。
+而证明 $\neg P$，本质上是证明 $P \to \perp$。
+
+**推导过程**：
+
+1. **证明 $\neg P$**：
+   我们假设 $P$。利用 $\lor$-Intro，我们可以扩充为 $P \lor Q$。既然前提告诉我们 $\neg(P \lor Q)$（即 $(P \lor Q) \to \perp$），我们立刻撞出了矛盾 $\perp$。
+   $$ \frac{\displaystyle \frac{P}{P \lor Q} \text{($\lor$-I)} \quad \neg(P \lor Q) }{ \perp}  \text{($\to$-E)}$$
+
+2. **证明 $\neg Q$**：
+   同理，假设 $Q$，扩充为 $P \lor Q$，撞出矛盾。
+
+3. **最终汇聚**：
+   我们将上述两个独立的推演过程合并，并封装为 $\land$：
+
+$$ \frac{\displaystyle \frac{\displaystyle { \neg(P \lor Q), P \vdash \perp}}{\neg(P \lor Q) \vdash \neg P} \text{($\to$-I)} \quad \frac{\displaystyle {\neg(P \lor Q), Q \vdash \perp}}{\neg(P \lor Q) \vdash \neg Q} \text{($\to$-I)}}{ \neg(P \lor Q) \vdash \neg P \land \neg Q} \text{($\land$-I)} $$
+
+
+
+---
+
+## 习题
+
+**习题 1.6.1：无矛盾律 (Law of Non-Contradiction)**
+请证明：$\vdash \neg (P \land \neg P)$。
+
+**习题 1.6.2**：请证明：如果 $P$ 成立，那么 $\neg \neg P$ 也成立。
+
+**习题 1.6.3：德·摩根定律（方向二）**
+请证明：$\neg P \land \neg Q \vdash \neg (P \lor Q)$。
+
+**习题 1.6.4：德·摩根定律（方向三）**
+请证明：$\neg P \lor \neg Q \vdash \neg (P \land Q)$。
+（提示：对前提使用分类讨论 $\lor$-Elim。）
+
+**习题 1.6.5**：在第 1.5 节中我们学习了分类讨论。请利用 $\neg P$ 的定义，重新写出排除法（$\neg P, P \lor Q \vdash Q$）的完整推理线证明过程。
+
+**习题 1.6.6（挑战）**：证明 $(P \lor Q) \land \neg P \vdash Q$ 的过程中，哪一步最关键地使用了**爆炸原理**？请在那一步旁边标注 $\perp$-Elim。
+
 ## 总结
 
 1. **排除法**是我们在几何中使用否定的直觉起点。
 2. **爆炸原理**展示了矛盾如何导致系统失效，并引出了符号 **$\perp$**。
-3. **$\perp$ 的消去规则**允许我们从矛盾中推导任何结论。
-4. **否定**最终被定义为 **$P \to \perp$**，它完美地兼容了我们最初的排除法直觉。
+3. **$\perp$ 的消去规则**允许我们从矛盾中推导任何结论，这是逻辑系统的“安全阀”。
+4. **否定**最终被定义为 **$P \to \perp$**，它将“否定一个命题”转化为了“证明它会导致坍塌”。
