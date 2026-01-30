@@ -1,12 +1,3 @@
-# 第1章：从初中几何到命题逻辑
+# 第1章：命题逻辑——几何判定的骨架
 
-{{#include 01_propositional_logic/01_01_context.md}}
-{{#include 01_propositional_logic/01_02_inference_line.md}}
-{{#include 01_propositional_logic/01_03_implication.md}}
-{{#include 01_propositional_logic/01_04_conjunction.md}}
-{{#include 01_propositional_logic/01_05_disjunction.md}}
-{{#include 01_propositional_logic/01_06_negation.md}}
-{{#include 01_propositional_logic/01_07_classical_logic.md}}
-{{#include 01_propositional_logic/01_08_rules.md}}
-{{#include 01_propositional_logic/01_09_theorems.md}}
-{{#include 01_propositional_logic/01_10_laws.md}}
+在本章中，我们将从最基础的几何判定出发，逐步提取出命题逻辑的核心算符：蕴涵、合取、析取与否定。

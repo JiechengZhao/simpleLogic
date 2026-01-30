@@ -1,3 +1,3 @@
-{{#include 00_introduction/00_01_misconception.md}}
-{{#include 00_introduction/00_02_bridge.md}}
-{{#include 00_introduction/00_03_outline.md}}
+# 引言
+
+本章将带你反思我们大脑中习以为常的思维模式，并介绍如何通过几何这个窗口，将逻辑的骨架提取出来。
