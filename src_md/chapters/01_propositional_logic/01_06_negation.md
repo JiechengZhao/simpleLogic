@@ -136,7 +136,7 @@ $$ \frac{\displaystyle \frac{\displaystyle { \neg(P \lor Q), P \vdash \perp}}{\n
 **习题 1.6.1：无矛盾律 (Law of Non-Contradiction)**
 请证明：$\vdash \neg (P \land \neg P)$。
 
-**习题 1.6.2：双重否定的“一半”**
+**习题 1.6.2：双重否定等于肯定的“一半”**
 请证明：如果 $P$ 成立，那么 $\neg \neg P$ 也成立。
 （注：这是“双重否定等于肯定”的一个方向，即 $P \vdash \neg \neg P$。它说明肯定的事实必然是不可能被否定的。至于另一个方向 $\neg \neg P \vdash P$，我们将在下一节讨论。）
 
