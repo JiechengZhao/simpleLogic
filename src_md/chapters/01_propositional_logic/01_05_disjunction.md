@@ -93,7 +93,7 @@ $$ \frac{P \lor Q \lor R \quad P \to S \quad Q \to S \quad R \to S}{S} $$
 
 $$ \frac{\Gamma \vdash (P \lor Q) \lor R \quad \displaystyle \frac{\Gamma, P \lor Q \vdash P \lor Q \quad \Gamma, P \lor Q, P \vdash S \quad \Gamma, P \lor Q, Q \vdash S}{\Gamma, P \lor Q \vdash S} \text{ ($\lor$-E)} \quad \Gamma, R \vdash S}{\Gamma \vdash S} \text{ ($\lor$-E)} $$
 
-**这正是我们之前在面积证明中略过的逻辑。** 虽然标准的 $\lor$-Elim 只有两路，但通过这种嵌套，我们可以处理任意多个分支。请注意，这个证明中，上下文多次变动。如果用不带上下文的推理写法会很复杂，但是在我们当前的写法中清晰自然。实际上像上下文和 $\vdash$ 这样的概念出现，正是这种形式化需求所驱动的。
+**这正是我们之前在面积证明中略过的逻辑。** 虽然标准的 $\lor$-Elim 只有两路，但通过这种嵌套，我们可以处理任意多个分支。请注意，这个证明中，上下文多次变动。如果用不带上下文的推理写法会很复杂，但是在我们当前的写法中清晰自然。实际上，像上下文和 $\vdash$ 这样的概念出现，正是由这种形式化需求所驱动的。
 
 
 #### 结合律的证明（方向 $\to$）

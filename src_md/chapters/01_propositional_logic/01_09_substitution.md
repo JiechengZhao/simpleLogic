@@ -79,8 +79,12 @@ $$
 将两条路径合并即可得到结论 $A' \land B'$。结合反向推导，合取项的替换保持等价。
 
 #### 情况 2：析取式 ($S = A \lor B$)
-我们要证明 $A \lor B \leftrightarrow A' \lor B'$。根据 1.5 节“分类讨论”的逻辑：
-- **路径 1 ($A \to A' \lor B'$)**： $$ \frac{A \quad A \leftrightarrow  A'}{ \displaystyle \frac{A'}{A' \lor B'} (\lor\text{-I}) } (\leftrightarrow \text{-E}_1) $$
+
+我们要证明 $A \lor B \leftrightarrow A' \lor B'$。根据 1.5 节“分类讨论”的逻辑，我们需要展示无论从哪个分支出发，最终都能推导出相同的结论：
+
+- **路径 1 ($A \to A' \lor B'$)**：
+
+ $$ \frac{A \quad A \leftrightarrow  A'}{ \displaystyle \frac{A'}{A' \lor B'} (\lor\text{-I}) } (\leftrightarrow \text{-E}_1) $$
 - **路径 2 ($B \to A' \lor B'$)**：同理。
 
 利用 $\lor$-Elim 规则（简写形式）：
