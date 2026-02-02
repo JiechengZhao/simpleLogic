@@ -45,6 +45,8 @@ $$ \frac{\Gamma \vdash P \leftrightarrow  Q}{\Gamma \vdash S \leftrightarrow S[P
 
 我们要证明：只要 $P \leftrightarrow  Q$ 成立，那么对于任意结构的 $S$，恒有 $S \leftrightarrow  S[P \backslash Q]$。我们对 $S$ 的复杂度进行归纳。
 
+（在许多的逻辑入门教材中，只给出此定理，不给出相关的证明。觉察证明有的难度的读者可以自行跳到过本小节。）
+
 ### (1) 基础情况
 - **情况 A**：$S$ 恰好就是 $P$。此时 $S[P \backslash Q]$ 是 $Q$。结论为 $P \leftrightarrow  Q \vdash P \leftrightarrow  Q$，显然成立。
 - **情况 B**：$S$ 是一个不含 $P$ 的原子命题 $R$。此时 $S[P \backslash Q]$ 依然是 $R$。由于 $\vdash R \leftrightarrow  R$（自反性），结论成立。
