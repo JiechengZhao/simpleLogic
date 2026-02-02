@@ -99,7 +99,7 @@ $$ (P \land Q) \land R \vdash P \land (Q \land R) $$
 $$ (P \to Q) \land (P \to R) \vdash P \to (Q \land R) $$
 
 **习题 1.4.3（挑战）**：证明**柯里化（Currying）** 的等价关系：
-$$ \vdash (P \land Q) \to R \leftrightarrow P \to (Q \to R) $$
+$$ \vdash ((P \land Q) \to R) \leftrightarrow (P \to (Q \to R)) $$
 （提示：分别证明两个方向。证明 $\to$ 方向时，先假设 $(P \land Q) \to R$，再依次做两个临时假设 $P$ 和 $Q$；证明 $\leftarrow$ 方向时，先假设右侧，再假设 $P \land Q$ 并从中拆解出前提。）
 
 ## 总结

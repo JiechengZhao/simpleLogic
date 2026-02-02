@@ -14,7 +14,9 @@
     - [1.5 析取](chapters/01_propositional_logic/01_05_disjunction.md)
     - [1.6 否定](chapters/01_propositional_logic/01_06_negation.md)
     - [1.7 排中律](chapters/01_propositional_logic/01_07_classical_logic.md)
-    - [1.8 逻辑定律](chapters/01_propositional_logic/01_10_laws.md)
+    - [1.8 命题语法与优先级](chapters/01_propositional_logic/01_08_syntax.md)
+    - [1.9 等价替换定理](chapters/01_propositional_logic/01_09_substitution.md)
+    - [1.10 逻辑定律汇总](chapters/01_propositional_logic/01_10_laws.md)
 
 - [第2章 一阶逻辑——描述“关系”的语言](chapters/02_first_order_logic.md)
     - [2.1 为什么我们需要更精细的语言？](chapters/02_first_order_logic/02_01_why_fol.md)

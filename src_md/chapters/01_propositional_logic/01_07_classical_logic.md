@@ -54,7 +54,7 @@ $$ \frac{\neg \neg P}{P} \text{ (DNE)} $$
 
 在几何直觉中，这非常简单：“线段 $AB$ 不可能不等于 $AC$”等同于“$AB = AC$”。而在逻辑系统里，它是排中律与排除法共同作用的结果。
 
-结合习题1.6.2中的结论，我们可以得到定理：双重否定等于肯定：$$ \vdash P \leftrightarrow \neg \neg P $$
+结合习题1.6.2中的结论，我们可以得到定理：双重否定等于肯定：$$ \vdash P \leftrightarrow (\neg \neg P) $$
 
 ---
 
@@ -75,8 +75,8 @@ $$ \frac{\neg \neg P}{P} \text{ (DNE)} $$
 （提示：对 $P \lor \neg P$ 进行分类讨论。在 $\neg P$ 分支下，结论显然成立；在 $P$ 分支下，再对 $Q \lor \neg Q$ 进行分类讨论。）
 
 在完成这一证明后，德·摩根定律就完整地合并为我们熟悉的样子：
-- $\vdash \neg(P \lor Q) \leftrightarrow \neg P \land \neg Q$
-- $\vdash \neg(P \land Q) \leftrightarrow \neg P \lor \neg Q$
+- $\vdash \neg(P \lor Q) \leftrightarrow (\neg P \land \neg Q)$
+- $\vdash \neg(P \land Q) \leftrightarrow (\neg P \lor \neg Q)$
 
 **习题 1.7.2**：
 证明 **皮尔士定律**：$\vdash ((P \to Q) \to P) \to P$。
@@ -84,9 +84,9 @@ $$ \frac{\neg \neg P}{P} \text{ (DNE)} $$
 
 **习题 1.7.3：蕴涵等值式的另一个方向**
 
-证明：$(P \to Q) \vdash \neg P \lor Q$。
+证明：$P \to Q \vdash \neg P \lor Q$。
 
-许多逻辑教材会直接将此公式作为蕴涵的定义。但在我们这套基于规则的体系中，它是一个需要借助排中律才能证明的重要定理。结合习题 1.6.3 的证明，我们就完整建立了蕴涵与析取之间的这层转换关系： $\vdash (P \to Q) \leftrightarrow \neg P \lor Q$ 。
+许多逻辑教材会直接将此公式作为蕴涵的定义。但在我们这套基于规则的体系中，它是一个需要借助排中律才能证明的重要定理。结合习题 1.6.3 的证明，我们就完整建立了蕴涵与析取之间的这层转换关系： $\vdash (P \to Q) \leftrightarrow (\neg P \lor Q)$ 。
 
 
 **习题 1.7.4：**
