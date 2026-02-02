@@ -40,7 +40,7 @@ $$ \frac{\Gamma \vdash P \land Q}{\Gamma \vdash P} \text{ ($\land$-Elim}_1\text{
 在几何中，如果我们说“$P$ 与 $Q$ 等价”，意思就是既有 $P \to Q$，又有 $Q \to P$。在逻辑学中，我们将这双向的蕴涵“打包”在一起：
 - **定义**：$P \leftrightarrow Q \equiv (P \to Q) \land (Q \to P)$
 
-这不仅是一个新算符，也是一种**等价命题**。如果你证明了 $P \leftrightarrow Q$，就意味着你可以合法地在推导中将 $P$ 替换为 $Q$，反之亦然。
+这不仅是一个新算符，也是一种**等价命题**。如果你证明了 $P \leftrightarrow Q$，就意味着你可以合法地在推导中将 $P$ 替换为 $Q$，反之亦然(我们将在1.9节等价替换定理证明这个性质)。
 
 
 ## 4. 合取的性质：交换律与结合律
@@ -98,9 +98,9 @@ $$ (P \land Q) \land R \vdash P \land (Q \land R) $$
 **习题 1.4.2**：请证明**分配律**的另一个方向（即定理 1.4.3 的 $\leftarrow$ 方向）：
 $$ (P \to Q) \land (P \to R) \vdash P \to (Q \land R) $$
 
-**习题 1.4.3（挑战）**：证明**柯里化（Currying）** 的一个方向：
-$$ (P \land Q) \to R \vdash P \to (Q \to R) $$
-（提示：先假设 $(P \land Q) \to R$，再依次做两个临时假设 $P$ 和 $Q$。）
+**习题 1.4.3（挑战）**：证明**柯里化（Currying）** 的等价关系：
+$$ \vdash (P \land Q) \to R \leftrightarrow P \to (Q \to R) $$
+（提示：分别证明两个方向。证明 $\to$ 方向时，先假设 $(P \land Q) \to R$，再依次做两个临时假设 $P$ 和 $Q$；证明 $\leftarrow$ 方向时，先假设右侧，再假设 $P \land Q$ 并从中拆解出前提。）
 
 ## 总结
 
