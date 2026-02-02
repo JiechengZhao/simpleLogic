@@ -84,7 +84,7 @@ $$\frac{P \in \Gamma}{\Gamma \vdash P} \quad \text{或者简写为} \quad \overl
 
 取出：我们可以随时从上下文中调取任何已经存在的命题。
 
-5. 蕴含（Implication）：引入与消去
+5. 蕴涵（Implication）：引入与消去
 
 A. 消去律（Elimination）：利用已有定理
 
