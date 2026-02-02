@@ -4,6 +4,7 @@ Cargo.lock
 
 # mdBook output
 book/
+tmp/
 
 # OS files
 .DS_Store
