@@ -54,6 +54,8 @@ $$ \frac{\Gamma \vdash P \leftrightarrow  Q}{\Gamma \vdash S \leftrightarrow S[P
 - $A \leftrightarrow  A'$ （其中 $A'$ 记作 $A[P \backslash Q]$）
 - $B \leftrightarrow  B'$ （其中 $B'$ 记作 $B[P \backslash Q]$）
 
+现在我们要观察，当整体命题 $S$ 由这些子项拼装而成时，等价性是否依然保持，也就是 $S \leftrightarrow  S'$ （其中 $S'$ 就是 $S[P \backslash Q]$）是否成立 。由于等价关系具有**对称性**，证明从原命题 $S$ 推导出替换后的新命题 $S'$，与从 $S'$ 推回 $S$ 的过程是一样的。为了书写简洁，我们在下文中主要展示“从左向右”的推导路径，另一个方向则同理可知。
+
 #### 情况 1：合取式 ($S = A \land B$)
 我们要证明 $A \land B \leftrightarrow  A' \land B'$。根据 $\land $-I 和 $\leftrightarrow $-E，我们可以得到如下推导路径：
 
@@ -85,7 +87,7 @@ $$ \frac{\displaystyle \frac{\displaystyle \frac{A \leftrightarrow  A'}{A' \to A
 
 ### (3) 讨论：从“判定”到“演算”
 
-随着我们证明了所有算符情况，我们可以做出归纳结论：对于任意 $S$，只要基础部分等价，整体就等价。在数学上，这意味着逻辑系统对于等价关系具有**同余性质**（Well-defined）。
+随着我们证明了所有算符情况，我们可以做出归纳结论：对于任意 $S$，只要基础部分等价，整体就等价。（在数学上，这意味着逻辑系统对于等价关系具有**同余性质**（Well-defined）。）
 
 利用本节开头的引理，我们可以直接推导出本章最初描述的替换规则：
 
