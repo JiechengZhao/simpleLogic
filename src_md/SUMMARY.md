@@ -17,4 +17,4 @@
 
 # 路线图 (待完成)
 - [第2章 一阶逻辑——描述“关系”的语言 (待完成)](chapters/02_first_order_logic.md)
-- [第3章 回看古典逻辑——三段论的现代翻译 (待完成)](chapters/04_classical_logic.md)
+- [第3章 传统逻辑——三段论的现代翻译 (待完成)](chapters/03_classical_logic.md)
