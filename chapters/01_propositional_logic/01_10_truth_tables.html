@@ -274,7 +274,7 @@ $$ \frac{P}{P \lor Q} $$</li>
 <ol>
 <li><strong>给定前提</strong>：假设 $b(P) = 0$ 且 $b(Q) = 1$。</li>
 <li><strong>转换判定</strong>：这意味着 $\neg P$ 成立，且 $Q$ 成立。</li>
-<li><strong>证明路径</strong>：我们要确定 $P \to Q$ 的状态。在包含 $\neg P$ 的上下文中，如果我们临时假设 $P$，则会触发 <strong>爆炸原理</strong>：
+<li><strong>证明路径</strong>：我们要确定 $P \to Q$ 的状态。在包含 $\neg P$ 的上下文中，如果我们临时假设 $P$，则会触发 <strong>爆炸原理</strong>，
 $$ \frac{ \displaystyle \frac{P \quad \neg P}{\perp} (\perp\text{-Intro}) }{Q} (\perp\text{-Elim}) $$
 由于从矛盾可以推导任何结论，我们得到了 $Q$。再通过 <strong>蕴涵引入</strong> 撤销临时假设 $P$，得到 $P \to Q$：
 $$ \frac{P \vdash Q}{\vdash P \to Q} (\to\text{-Intro}) $$</li>
