@@ -6,4 +6,5 @@ src = "src_md"
 title = "易懂的形式逻辑：基础教育中的逻辑推理提取指南"
 
 [output.html]
+site-url = "/simpleLogic/"
 mathjax-support = true
