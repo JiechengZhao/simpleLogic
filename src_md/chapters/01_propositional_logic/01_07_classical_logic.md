@@ -54,7 +54,7 @@ $$ \frac{\neg \neg P}{P} \text{ (DNE)} $$
 
 在几何直觉中，这非常简单：“线段 $AB$ 不可能不等于 $AC$”等同于“$AB = AC$”。而在逻辑系统里，它是排中律与排除法共同作用的结果。
 
-结合习题1.6.2中的结论，我们可以得到定理：双重否定等于肯定：$$ \vdash P \leftrightarrow (\neg \neg P) $$
+结合习题 1.6.2 中的结论，我们可以得到定理：双重否定等于肯定： $$ \vdash P \leftrightarrow (\neg \neg P) $$
 
 ---
 

@@ -82,7 +82,7 @@ $$ \vdash (P \lor Q) \leftrightarrow (Q \lor P) $$
 $$ \vdash ((P \lor Q) \lor R) \leftrightarrow (P \lor (Q \lor R)) $$
 
 
-为了证明这个定理，我们需要一种比先证明一个引理：**三路分类讨论**。
+为了证明这个定理，我们需要先证明一个引理：**三路分类讨论**。
 
 #### 引理：三路分支规则
 在证明三角形面积时，我们面对的是三种情况。逻辑上，只要我们能分别搞定每一个分支，结论就成立：
@@ -116,7 +116,7 @@ $$ \frac{\displaystyle \frac{R}{Q \lor R} \text{ ($\lor$-I}_2\text{)} }{P \lor (
 
 $$ \frac{(P \lor Q) \lor R \quad P \to P \lor (Q \lor R) \quad Q \to P \lor (Q \lor R) \quad R \to P \lor (Q \lor R)}{P \lor (Q \lor R)} \text{ ($\lor$-Elim-3)} $$
 
-由此结合律的一个方向得证。
+由此，结合律的一个方向得证。
 
 ---
 
