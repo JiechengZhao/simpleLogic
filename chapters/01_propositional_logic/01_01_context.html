@@ -1,0 +1,338 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>1.1 命题与上下文 - 易懂的形式逻辑：基础教育中的逻辑推理提取指南</title>
+
+
+        <!-- Custom HTML head -->
+        <style>
+        /* 彻底隐藏侧边栏的数字序号 */
+        .sidebar-scrollbox li a strong {
+            display: none !important;
+        }
+        </style>
+        
+        <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            processEscapes: true
+          }
+        });
+        </script>
+        
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // 查找所有 mermaid 代码块
+                const mermaidBlocks = document.querySelectorAll('pre code.language-mermaid');
+                mermaidBlocks.forEach(function (block) {
+                    const pre = block.parentElement;
+                    const div = document.createElement('div');
+                    div.className = 'mermaid';
+                    div.textContent = block.textContent;
+                    pre.replaceWith(div);
+                });
+                
+                mermaid.initialize({
+                    startOnLoad: true,
+                    theme: 'default',
+                    flowchart: {
+                        curve: 'linear'
+                    }
+                });
+            });
+        </script>
+        
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../chapters/00_introduction.html"><strong aria-hidden="true">1.</strong> 引言</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic.html"><strong aria-hidden="true">2.</strong> 第1章 命题逻辑——几何判定的骨架</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_01_context.html" class="active"><strong aria-hidden="true">2.1.</strong> 1.1 命题与上下文</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_02_inference_line.html"><strong aria-hidden="true">2.2.</strong> 1.2 推理线</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_03_implication.html"><strong aria-hidden="true">2.3.</strong> 1.3 蕴涵</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_04_conjunction.html"><strong aria-hidden="true">2.4.</strong> 1.4 合取</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_05_disjunction.html"><strong aria-hidden="true">2.5.</strong> 1.5 析取</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_06_negation.html"><strong aria-hidden="true">2.6.</strong> 1.6 否定</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_07_classical_logic.html"><strong aria-hidden="true">2.7.</strong> 1.7 排中律</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_08_syntax.html"><strong aria-hidden="true">2.8.</strong> 1.8 命题语法与优先级</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_09_substitution.html"><strong aria-hidden="true">2.9.</strong> 1.9 等价替换定理</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_10_truth_tables.html"><strong aria-hidden="true">2.10.</strong> 1.10 真值表</a></li></ol></li><li class="chapter-item expanded "><a href="../../chapters/02_first_order_logic.html"><strong aria-hidden="true">3.</strong> 第2章 一阶逻辑——描述“关系”的语言 (待完成)</a></li><li class="chapter-item expanded "><a href="../../chapters/03_classical_logic.html"><strong aria-hidden="true">4.</strong> 第3章 传统逻辑——三段论的现代翻译 (待完成)</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">易懂的形式逻辑：基础教育中的逻辑推理提取指南</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="11-命题与上下文知识的增长过程"><a class="header" href="#11-命题与上下文知识的增长过程">1.1 命题与上下文：知识的增长过程</a></h1>
+<p>在几何证明中，结论并非凭空产生，而是被“挖掘”出来的。逻辑学通过“命题”与“上下文”这两个概念，精确地捕捉了这种从已知到未知的发现过程。</p>
+<h2 id="命题proposition"><a class="header" href="#命题proposition">命题（Proposition）</a></h2>
+<p><strong>命题</strong>是逻辑世界里的原子。它是一个陈述句，表达了一个具体的、可判定真伪的事实。</p>
+<p>在几何中，命题随处可见：</p>
+<ul>
+<li>$P_1$: 线段 $AB = AC$。</li>
+<li>$P_2$: $\triangle ABC$ 是等腰三角形。</li>
+<li>$P_3$: $\angle B = \angle C$。</li>
+</ul>
+<h3 id="上下文的概念"><a class="header" href="#上下文的概念">上下文的概念</a></h3>
+<p><strong>上下文</strong>（通常用希腊字母 $\Gamma$ (Gamma) 表示）是命题的<strong>集合</strong>。它代表了我们当前的“规则边界”与“已知事实”。</p>
+<p>我们可以把上下文想象成推导的“活动范围”。在数学中，这种限制非常常见：比如在引入复数之前，我们的上下文仅限于实数，此时“对 $-1$ 开根号”是无意义或不被允许的。这种<strong>由初始命题和规则构成的边界</strong>，就是上下文。</p>
+<p>虽然很多教材为了形象化会称之为“世界”，但在初中数学的语境下，它更像是我们做题时黑板上所有已知条件、定义和公理的总和。</p>
+<h3 id="例子-1欧几里得上下文"><a class="header" href="#例子-1欧几里得上下文">例子 1：欧几里得上下文</a></h3>
+<p>最著名的上下文莫过于欧几里得平面几何。它的基础由五条公理构成：</p>
+<ol>
+<li>从一点向另一点可以引一条直线。</li>
+<li>任意线段能无限延伸成一条直线。</li>
+<li>给定任意线段，可以以其一个端点作为圆心，该线段作为半径作一个圆。</li>
+<li>所有直角都相等。</li>
+<li>若两条直线都与第三条直线相交，并且在同一边的内角之和小于两个直角，则这两条直线在这一边必定相交。</li>
+</ol>
+<p>这五条公理本质上也是五个命题，它们共同构成了上下文 $\Gamma_{Euclid}$。</p>
+<h3 id="例子-2球面几何上下文"><a class="header" href="#例子-2球面几何上下文">例子 2：球面几何上下文</a></h3>
+<p>如果在地球仪上画三角形，我们就会发现欧几里得的规则失效了。球面几何是一个著名的例子：我们保留欧几里得的前四条公理，但把第五条（平行公理）替换掉——在球面上，不存在不相交的平行线，任何两条“直线”最终都会相碰。通过这种“替换规则”的操作，我们就从一个上下文切换到了另一个完全不同的逻辑边界。</p>
+<h3 id="例子-3初中代数上下文"><a class="header" href="#例子-3初中代数上下文">例子 3：初中代数上下文</a></h3>
+<p>我们在解代数题时，其实也身处一个特定的上下文中。这个上下文 $\Gamma_{Algebra}$ 包含了一些基本规则（比如加法交换律 $a+b=b+a$）以及数字的定义。逻辑学家皮亚诺（Peano）曾为这种算术系统整理过一套公理，规定了数字是如何从 0 开始“生长”出来的。借助这套公理系统，我们可以通过逻辑构建严格地构建我们平时使用的代数系统。但这是大学数学专业课程，这里我们不做展开。</p>
+<h2 id="判定judgment"><a class="header" href="#判定judgment">判定（Judgment）</a></h2>
+<p>为了表达一个命题在特定的上下文中是成立的，逻辑学引入了一个核心符号：$\vdash$。</p>
+<p>$$ \Gamma \vdash P $$</p>
+<p>这个表达式被称为一个<strong>判定（Judgment）</strong>。我们将它读作： <strong>“在上下文 $\Gamma$ 中，命题 $P$ 成立。”</strong></p>
+<p>判定描述的是一种<strong>知识</strong>：即在当前的规则和事实（$\Gamma$）支持下，$P$ 已经是确凿无疑的了。</p>
+<ul>
+<li>例如：$\Gamma_{Euclid} \vdash \text{三角形内角和} = 180^\circ$。</li>
+</ul>
+<h3 id="不同的上下文不同的判定"><a class="header" href="#不同的上下文不同的判定">不同的上下文，不同的判定</a></h3>
+<p>结论的成立与否取决于上下文。如果改变上下文，原本成立的判定可能就不再成立。
+例如在<strong>球面几何</strong>（非欧几何的一种）中，平行公理不成立。在这个新的上下文 $\Gamma_{Sphere}$ 中：</p>
+<ul>
+<li>$\Gamma_{Sphere} \vdash \text{三角形内角和} \ne 180^\circ$</li>
+<li>事实上，在球面上，三角形的内角和总是大于 $180^\circ$，即：$\Gamma_{Sphere} \vdash \text{三角形内角和} &gt; 180^\circ$。</li>
+</ul>
+<h2 id="案例等腰三角形证明中的事实挖掘"><a class="header" href="#案例等腰三角形证明中的事实挖掘">案例：等腰三角形证明中的事实挖掘</a></h2>
+<p>我们通过一个具体的证明题，观察我们如何在同一个 $\Gamma$ 中确认越来越多的判定。</p>
+<p><strong>目标</strong>：在上下文 $\Gamma$ 中（包含几何公理及已知条件 $AB=AC$），确认结论 $\angle B = \angle C$。</p>
+<ol>
+<li><strong>初始判定</strong>：根据题设，直接做出判定：$\Gamma \vdash AB = AC$。</li>
+<li><strong>引入新判定</strong>：作顶角平分线 $AD$。根据公理，确认新判定：$\Gamma \vdash \angle BAD = \angle CAD$。</li>
+<li><strong>确认共有属性</strong>：观察图形得到判定：$\Gamma \vdash AD = AD$。</li>
+<li><strong>触发推理规则</strong>：上述三个判定满足了 <strong>SAS (边角边) 全等判定规则</strong>。于是，我们得到了一个更强的判定：$\Gamma \vdash \triangle ABD \cong \triangle ACD$。</li>
+<li><strong>抵达最终目标</strong>：根据全等三角形的性质，确认最终判定：$\Gamma \vdash \angle B = \angle C$。</li>
+</ol>
+<h2 id="知识的累积性accumulation"><a class="header" href="#知识的累积性accumulation">知识的累积性（Accumulation）</a></h2>
+<p>在上述过程中，我们会发现一个细节：<strong>一旦某个命题在 $\Gamma$ 中成立，它就永远成立。</strong></p>
+<p>当我们进行到第四步确认全等时，第一步中关于边相等的判定并没有消失。这种性质在逻辑学中被称为<strong>累积性</strong>。它意味着我们的知识库是<strong>只增不减</strong>的。</p>
+<ul>
+<li>即使我们在证明过程中又画了更多的辅助线，之前那些已经成立的判定依然稳如泰山。</li>
+<li>在同一个 $\Gamma$ 下，每确认一个新事实，我们对当前这个逻辑空间的认知就增加一分，而旧的认知永远不会被推翻。</li>
+</ul>
+<p>这种性质对人类文明至关重要。这意味着如果我们昨天通过推理得到了一个结论，只要前提和规则（上下文）没有改变，那么这个结论在今天、明天甚至一千年后依然成立。这是人类能够基于推理和数学系统进行大规模知识传承的核心原因。在文学艺术的世界里，“一千个读者心中有一千个哈姆雷特”；但在推理的世界里，只要上下文确定，哈姆雷特永远只有一个。</p>
+<hr />
+<h2 id="习题"><a class="header" href="#习题">习题</a></h2>
+<p><strong>习题 1.1.1</strong>：</p>
+<p>考虑命题 $P$：“一元二次方程 $ax^2 + bx + c = 0$ ($a \neq 0$) 必有两个根”。</p>
+<p>请根据所学的数学知识，判断在下列不同的上下文 $\Gamma$ 中，判定 $\Gamma \vdash P$ 是否成立？</p>
+<ol>
+<li>$\Gamma_{\text{实数}}$：上下文为实数域。</li>
+<li>$\Gamma_{\text{复数}}$：上下文为复数域。</li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../chapters/01_propositional_logic.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../../chapters/01_propositional_logic/01_02_inference_line.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../chapters/01_propositional_logic.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../../chapters/01_propositional_logic/01_02_inference_line.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

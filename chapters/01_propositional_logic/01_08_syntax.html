@@ -1,0 +1,400 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>1.8 命题语法与优先级 - 易懂的形式逻辑：基础教育中的逻辑推理提取指南</title>
+
+
+        <!-- Custom HTML head -->
+        <style>
+        /* 彻底隐藏侧边栏的数字序号 */
+        .sidebar-scrollbox li a strong {
+            display: none !important;
+        }
+        </style>
+        
+        <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            processEscapes: true
+          }
+        });
+        </script>
+        
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // 查找所有 mermaid 代码块
+                const mermaidBlocks = document.querySelectorAll('pre code.language-mermaid');
+                mermaidBlocks.forEach(function (block) {
+                    const pre = block.parentElement;
+                    const div = document.createElement('div');
+                    div.className = 'mermaid';
+                    div.textContent = block.textContent;
+                    pre.replaceWith(div);
+                });
+                
+                mermaid.initialize({
+                    startOnLoad: true,
+                    theme: 'default',
+                    flowchart: {
+                        curve: 'linear'
+                    }
+                });
+            });
+        </script>
+        
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../chapters/00_introduction.html"><strong aria-hidden="true">1.</strong> 引言</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic.html"><strong aria-hidden="true">2.</strong> 第1章 命题逻辑——几何判定的骨架</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_01_context.html"><strong aria-hidden="true">2.1.</strong> 1.1 命题与上下文</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_02_inference_line.html"><strong aria-hidden="true">2.2.</strong> 1.2 推理线</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_03_implication.html"><strong aria-hidden="true">2.3.</strong> 1.3 蕴涵</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_04_conjunction.html"><strong aria-hidden="true">2.4.</strong> 1.4 合取</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_05_disjunction.html"><strong aria-hidden="true">2.5.</strong> 1.5 析取</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_06_negation.html"><strong aria-hidden="true">2.6.</strong> 1.6 否定</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_07_classical_logic.html"><strong aria-hidden="true">2.7.</strong> 1.7 排中律</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_08_syntax.html" class="active"><strong aria-hidden="true">2.8.</strong> 1.8 命题语法与优先级</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_09_substitution.html"><strong aria-hidden="true">2.9.</strong> 1.9 等价替换定理</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_10_truth_tables.html"><strong aria-hidden="true">2.10.</strong> 1.10 真值表</a></li></ol></li><li class="chapter-item expanded "><a href="../../chapters/02_first_order_logic.html"><strong aria-hidden="true">3.</strong> 第2章 一阶逻辑——描述“关系”的语言 (待完成)</a></li><li class="chapter-item expanded "><a href="../../chapters/03_classical_logic.html"><strong aria-hidden="true">4.</strong> 第3章 传统逻辑——三段论的现代翻译 (待完成)</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">易懂的形式逻辑：基础教育中的逻辑推理提取指南</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="18-命题表达式逻辑语言的组合规则"><a class="header" href="#18-命题表达式逻辑语言的组合规则">1.8 命题表达式：逻辑语言的组合规则</a></h1>
+<p>在前面的章节中，我们已经熟悉了合取、析取、蕴涵等算符。现在，我们需要像研究代数表达式一样，正式观察逻辑命题是如何组装而成的。其实我们之前已经在正文和习题中使用这些表达式了，在这里我们会进一步理解这些规则，并给它们之间的组合一个正式的规定。</p>
+<h2 id="1-命题表达式"><a class="header" href="#1-命题表达式">1. 命题表达式</a></h2>
+<p>逻辑世界里的<strong>命题表达式</strong>是按照以下简单的规则构建的：</p>
+<ol>
+<li><strong>原子命题</strong>：任何单个的命题字母（如 $P, Q, R$）都是一个最基础的表达式。</li>
+<li><strong>组合规则</strong>：如果 $A$ 和 $B$ 是合法的表达式，那么我们可以通过算符将它们组合成更复杂的表达式：
+<ul>
+<li>$\neg A$ （否定）</li>
+<li>$A \land B$ （合取）</li>
+<li>$A \lor B$ （析取）</li>
+<li>$A \to B$ （蕴涵）</li>
+<li>$A \leftrightarrow B$ （等价）</li>
+</ul>
+</li>
+<li><strong>括号</strong>：为了清楚表达运算的先后顺序，我们可以给表达式加上括号，如 $(A \to B)$。</li>
+</ol>
+<p>这就像搭积木。原子命题是最小的单块积木，算符则是连接件。无论一个逻辑表达式多么复杂，它最终都可以拆解为一小块一小块积木的有序组合。这种“由简入繁”的特性，允许我们之后通过分析简单的部分来理解复杂的整体。</p>
+<hr />
+<h2 id="2-算符优先级谁先谁后"><a class="header" href="#2-算符优先级谁先谁后">2. 算符优先级：谁先谁后？</a></h2>
+<p>在代数式中，我们知道 $2 + 3 \times 4$ 应该先算乘法。如果不规定先后顺序，逻辑表达式 $P \lor Q \land R$ 就会产生歧义：是先“或”再“且”，还是先“且”再“或”？</p>
+<p>为了尽量少写繁琐的括号，我们规定逻辑算符的计算优先级如下（从高到低）：</p>
+<ol>
+<li><strong>$\neg$</strong> （最高优先，紧跟命题）</li>
+<li><strong>$\land$</strong></li>
+<li><strong>$\lor$</strong></li>
+<li><strong>$\to$</strong></li>
+<li><strong>$\leftrightarrow$</strong> （最低优先）</li>
+</ol>
+<p><strong>示例：</strong></p>
+<ul>
+<li>$\neg P \lor Q$ ：先处理否定，再处理析取。等价于 $(\neg P) \lor Q$。</li>
+<li>$P \land Q \to R$ ：先将 $P, Q$ 结合，再看蕴涵关系。等价于 $(P \land Q) \to R$。</li>
+<li>$P \to Q \leftrightarrow \neg Q \to \neg P$ ：先处理所有的否定，再处理两边的蕴涵，最后处理中间的等价。等价于 $(P \to Q) \leftrightarrow ((\neg Q) \to (\neg P))$。</li>
+</ul>
+<hr />
+<h2 id="3-结合方向当算符连着写时"><a class="header" href="#3-结合方向当算符连着写时">3. 结合方向：当算符连着写时</a></h2>
+<p>当级别相同的算符连在一起用时，我们需要规定哪个算符是先算的。</p>
+<h3 id="左结合"><a class="header" href="#左结合">左结合</a></h3>
+<p><strong>$\land$ 和 $\lor$</strong> 默认是左结合的。</p>
+<ul>
+<li>$P \land Q \land R$ 意为 $(P \land Q) \land R$。</li>
+<li>$P \lor Q \lor R$ 意为 $(P \lor Q) \lor R$。</li>
+</ul>
+<p>由于合取和析取满足结合律，顺序对结果没有影响，但在阅读习惯上，我们默认从左向右。</p>
+<h3 id="右结合"><a class="header" href="#右结合">右结合</a></h3>
+<p><strong>蕴涵算符 $\to$</strong> 默认是<strong>右结合</strong>的。</p>
+<ul>
+<li>$P \to Q \to R$ 意为 <strong>$P \to (Q \to R)$</strong>。</li>
+</ul>
+<p>这种右结合的习惯让我们可以省略掉嵌套在右侧的括号。这和 1.4 节习题3中提到的 <strong>“柯里化（Currying）”</strong> 密切相关。有了右结合约定，$(P \land Q) \to R$ 与 $P \to Q \to R$ 是等价的。我们以后在书写多前提推导时，只需要写成 $P \to Q \to R$ 即可。这会非常方便。</p>
+<h3 id="连等约定"><a class="header" href="#连等约定">连等约定</a></h3>
+<p>在数学中，我们习惯写 $a = b = c$，其意为 $(a = b) \land (b = c)$。在逻辑推导中，为了书写连贯，我们也会使用类似的<strong>连等价</strong>简写：</p>
+<ul>
+<li>$P \leftrightarrow Q \leftrightarrow R$ 严格意为 <strong>$(P \leftrightarrow Q) \land (Q \leftrightarrow R)$</strong>。</li>
+</ul>
+<p>这种写法在进行真值演算时非常有用。它将一段长长的推导链条压缩在了一行之内。这种简写的<strong>合法性</strong>源于等价关系所具备的代数性质（如传递性），我们将在第 1.9 节中正式讨论并证明这一点。</p>
+<p><strong>注意</strong>：在逻辑表达式中，$\leftrightarrow$ 本身并没有默认的结合方向。如果想要表达非连等意义的嵌套二元等价（例如将 $P \leftrightarrow Q$ 的结果再与 $R$ 进行等价运算），<strong>必须使用括号</strong>，写成 $(P \leftrightarrow Q) \leftrightarrow R$。若无括号，一律视为连等链。</p>
+<hr />
+<h2 id="4-语法树逻辑的视觉化解构"><a class="header" href="#4-语法树逻辑的视觉化解构">4. 语法树：逻辑的视觉化解构</a></h2>
+<p>为了更直观地理解复杂命题的层次，逻辑学家经常使用<strong>语法树（Syntax Tree）</strong>。树状图能让我们一眼看出谁是“树根”，谁是“枝叶”。</p>
+<p>在语法树中，命题的组合规则被转化为了<strong>几何上的层级关系</strong>：</p>
+<ul>
+<li><strong>自下而上</strong>：它展示了复杂的思想是如何从简单的原子命题开始，通过算符层层组合出来的。</li>
+<li><strong>自上而下</strong>：它揭示了逻辑运算符的控制范围。主算符作为树根，统领着下方的所有分支。</li>
+</ul>
+<h3 id="示例p-land-q-to-r-lor-neg-s"><a class="header" href="#示例p-land-q-to-r-lor-neg-s">示例：$P \land Q \to R \lor \neg S$</a></h3>
+<p>根据优先级（$\neg &gt; \land &gt; \lor &gt; \to$），我们可以将这个命题绘制为一棵直观的语法树。</p>
+<pre><code class="language-mermaid">graph TD
+    %% 节点定义
+    Root["→"]
+    And["∧"]
+    Or["∨"]
+    Not["¬"]
+    P((P))
+    Q((Q))
+    R((R))
+    S((S))
+
+    %% 连接关系
+    Root --- And
+    Root --- Or
+    And --- P
+    And --- Q
+    Or --- R
+    Or --- Not
+    Not --- S
+
+    %% 样式定义
+    classDef operator fill:#fff,stroke:#333,stroke-width:2px;
+    classDef atomic fill:#fff,stroke:#333,stroke-width:1.5px;
+    
+    class Root,And,Or,Not operator;
+    class P,Q,R,S atomic;
+</code></pre>
+<p><strong>阅读这棵树：</strong></p>
+<ol>
+<li><strong>主算符</strong>（顶部）：树的根节点 <code>→</code>。它是整棵树的“根”，决定了这个命题是什么命题。</li>
+<li><strong>算符节点</strong>（方框）：如 <code>∧</code>、<code>∨</code>、<code>¬</code>。它们是连接分支的中间节点。</li>
+<li><strong>原子命题</strong>（圆圈）：底部的叶子节点 <code>P, Q, R, S</code>。</li>
+</ol>
+<p>语法树清晰地展示了命题的“形状”。在逻辑推导中，我们经常从“根节点”开始拆解（往往对应消去规则），或者将两棵小树合并成一棵更大的树（往往对应引入规则）。</p>
+<hr />
+<h2 id="5-语法的意义结构即功能"><a class="header" href="#5-语法的意义结构即功能">5. 语法的意义：结构即功能</a></h2>
+<p>理解了语法树后，我们会发现主算符决定了整个命题的<strong>主要属性</strong>。识别出主算符，是进行逻辑推导的第一步。</p>
+<ul>
+<li>在 $P \land Q \to R$ 中，主算符是 $\to$，因此它本质上是一个<strong>蕴涵命题</strong>。如果我们想拆解它，必须优先调用“蕴涵消去规则”。</li>
+<li>在 $(P \lor Q) \land R $ 中，由于括号提升了析取的地位，主算符变成了 $\land$，因此它是一个<strong>合取命题</strong>。</li>
+</ul>
+<p>这就像我们在解代数方程时，必须先判断它是加法结构还是乘法结构一样。当我们想要调用一个推理规则时，我们必须确保该规则对应的算符正是当前命题的<strong>主算符</strong>。识别了主算符，也就找到了逻辑链条中的“开关”。</p>
+<hr />
+<h2 id="习题"><a class="header" href="#习题">习题</a></h2>
+<p><strong>习题 1.8.1</strong>：根据优先级约定，为下列简写的表达式补全所有省略的括号：</p>
+<ol>
+<li>$P \to Q \land R$</li>
+<li>$\neg P \lor \neg Q \leftrightarrow \neg(P \land Q)$</li>
+<li>$A \to B \to C \lor D$</li>
+</ol>
+<p><strong>习题 1.8.2</strong>：观察下列表达式，指出它们的<strong>主算符</strong>是什么：</p>
+<ol>
+<li>$(P \to Q) \land (Q \to P)$</li>
+<li>$\neg (\neg P \lor Q)$</li>
+<li>$P \land Q \to R \lor S$</li>
+</ol>
+<p><strong>习题 1.8.3</strong>：请为习题 1.8.2 中的第 3 个表达式绘制一棵语法树。</p>
+<h2 id="总结"><a class="header" href="#总结">总结</a></h2>
+<ul>
+<li>逻辑语言是通过<strong>命题表达式</strong>层层组合而成的。</li>
+<li><strong>优先级</strong>约定（$\neg &gt; \land &gt; \lor &gt; \to &gt; \leftrightarrow$）帮我们看清表达式的层次。</li>
+<li><strong>语法树</strong>是逻辑结构的视觉化呈现，顶部的“根节点”即为整个命题的主算符。</li>
+<li><strong>蕴涵算符 $\to$ 是右结合的</strong>，方便我们书写连续的前提，这与柯里化（Currying）的思想完美契合。</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../chapters/01_propositional_logic/01_07_classical_logic.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../../chapters/01_propositional_logic/01_09_substitution.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../chapters/01_propositional_logic/01_07_classical_logic.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../../chapters/01_propositional_logic/01_09_substitution.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

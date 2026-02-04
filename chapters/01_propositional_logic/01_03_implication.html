@@ -1,0 +1,366 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>1.3 蕴涵 - 易懂的形式逻辑：基础教育中的逻辑推理提取指南</title>
+
+
+        <!-- Custom HTML head -->
+        <style>
+        /* 彻底隐藏侧边栏的数字序号 */
+        .sidebar-scrollbox li a strong {
+            display: none !important;
+        }
+        </style>
+        
+        <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            processEscapes: true
+          }
+        });
+        </script>
+        
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // 查找所有 mermaid 代码块
+                const mermaidBlocks = document.querySelectorAll('pre code.language-mermaid');
+                mermaidBlocks.forEach(function (block) {
+                    const pre = block.parentElement;
+                    const div = document.createElement('div');
+                    div.className = 'mermaid';
+                    div.textContent = block.textContent;
+                    pre.replaceWith(div);
+                });
+                
+                mermaid.initialize({
+                    startOnLoad: true,
+                    theme: 'default',
+                    flowchart: {
+                        curve: 'linear'
+                    }
+                });
+            });
+        </script>
+        
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../chapters/00_introduction.html"><strong aria-hidden="true">1.</strong> 引言</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic.html"><strong aria-hidden="true">2.</strong> 第1章 命题逻辑——几何判定的骨架</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_01_context.html"><strong aria-hidden="true">2.1.</strong> 1.1 命题与上下文</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_02_inference_line.html"><strong aria-hidden="true">2.2.</strong> 1.2 推理线</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_03_implication.html" class="active"><strong aria-hidden="true">2.3.</strong> 1.3 蕴涵</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_04_conjunction.html"><strong aria-hidden="true">2.4.</strong> 1.4 合取</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_05_disjunction.html"><strong aria-hidden="true">2.5.</strong> 1.5 析取</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_06_negation.html"><strong aria-hidden="true">2.6.</strong> 1.6 否定</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_07_classical_logic.html"><strong aria-hidden="true">2.7.</strong> 1.7 排中律</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_08_syntax.html"><strong aria-hidden="true">2.8.</strong> 1.8 命题语法与优先级</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_09_substitution.html"><strong aria-hidden="true">2.9.</strong> 1.9 等价替换定理</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_10_truth_tables.html"><strong aria-hidden="true">2.10.</strong> 1.10 真值表</a></li></ol></li><li class="chapter-item expanded "><a href="../../chapters/02_first_order_logic.html"><strong aria-hidden="true">3.</strong> 第2章 一阶逻辑——描述“关系”的语言 (待完成)</a></li><li class="chapter-item expanded "><a href="../../chapters/03_classical_logic.html"><strong aria-hidden="true">4.</strong> 第3章 传统逻辑——三段论的现代翻译 (待完成)</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">易懂的形式逻辑：基础教育中的逻辑推理提取指南</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="13-蕴涵定理的打包与解包"><a class="header" href="#13-蕴涵定理的打包与解包">1.3 蕴涵：定理的打包与解包</a></h1>
+<p>在几何推理中，一个核心的动作是“由已知推出未知”。这种“如果……那么……”的关系，在逻辑学中被称为<strong>蕴涵（Implication）</strong>，记作 $\to$。</p>
+<p>我们有两个命题 $P$ 和 $Q$，如果$P$ 可以推出$Q$，那么 $P \to Q$。这读作“$P$ 蕴涵 $Q$”，也会读作“如果$P$那么$Q$”、“若$P$则$Q$”、“由$P$可以推出$Q$”。它建立了一座从已知到未知的桥梁：只要前提 $P$ 成立，结论 $Q$ 就必然随之成立。</p>
+<p>在逻辑学中，我们通过两套动作来操作这种关系：<strong>消去（Elimination）<strong>与</strong>引入（Introduction）</strong>。</p>
+<h2 id="1-消费定理蕴涵消去规则to-elim"><a class="header" href="#1-消费定理蕴涵消去规则to-elim">1. 消费定理：蕴涵消去规则（$\to$-Elim）</a></h2>
+<p>当我们说“使用定理”时，我们实际上是在进行<strong>蕴涵消去</strong>（在逻辑学中也叫肯定前件，Modus Ponens）。</p>
+<p>这条规则可以通俗地理解为：如果在上下文 $\Gamma$ 中，我们已经持有了一个命题 $P \to Q$，并且我们也已经有了它的前提条件 $P$，那么它的结果 $Q$就成立。其形式化表达如下：</p>
+<p>$$ \frac{\Gamma \vdash P \to Q \quad \Gamma \vdash P}{\Gamma \vdash Q} \text{ ($\to$-Elim)}
+$$</p>
+<h3 id="几何案例对顶角相等"><a class="header" href="#几何案例对顶角相等">几何案例：对顶角相等</a></h3>
+<p>假设我们的上下文 $\Gamma$ 中已经包含了基本的几何公理。现在有两个命题：</p>
+<ul>
+<li>命题 $P$：$\angle 1$ 与 $\angle 2$ 是对顶角。</li>
+<li>命题 $Q$：$\angle 1 = \angle 2$。</li>
+</ul>
+<p>在几何课本中，我们知道一个现成的定理：“对顶角 $\to$ 相等”。此时，$P \to Q$ 作为一个已经被证明的复合命题，稳定地存在于我们的知识库中，我们把它写作：$\Gamma \vdash P \to Q$。</p>
+<p>现在，我们在处理一道具体的题目，已知该题目符合前提，两个角是对顶角：$\Gamma \vdash P$ 。利用推理线，我们将定理“消费”掉，从而挖掘出新事实，这两个角相等：$\Gamma \vdash Q$</p>
+<p><strong>直观解释</strong>：这种条件关系就像一个打包好的“逻辑包裹”：它向我们承诺了一个结果 $Q$，但它是有锁的。只有当我们提供了匹配的前提 $P$ 作为钥匙，我们才能拆开包裹，取出里面的结论 $Q$。</p>
+<h2 id="2-产生规律蕴涵引入规则to-intro"><a class="header" href="#2-产生规律蕴涵引入规则to-intro">2. 产生规律：蕴涵引入规则（$\to$-Intro）</a></h2>
+<p>除了“消费”现有的定理，逻辑推理中另一种重要工作是证明新的定理——这就是<strong>蕴涵引入</strong>。当我们把一段推导过程封装成一个定理时，我们就在使用这个规则。</p>
+<h3 id="几何案例如何证明对顶角相等"><a class="header" href="#几何案例如何证明对顶角相等">几何案例：如何证明“对顶角相等”？</a></h3>
+<p>我们如何才能在背景 $\Gamma$ 中宣告 $P \to Q$ 成立呢？</p>
+<ol>
+<li><strong>临时假设</strong>：我们先在背景 $\Gamma$ （如欧氏几何）的基础上，临时增加一个假设 $P$（假设这两角确实是对顶角）。此时我们的上下文变成了 $\Gamma, P$。</li>
+<li><strong>进行推导</strong>：在这个扩充后的上下文中，利用补角性质（$\Gamma$ 中已有的定理或公理），我们可以推导出 $Q$（它们相等）。即：$\Gamma, P \vdash Q$。</li>
+<li><strong>封装撤离</strong>：既然我们确认了“只要有 $P$ 就能得到 $Q$”，那么我们就可以撤销那个临时的假设 $P$，并将这个完整的推导链条“打包”回原背景 $\Gamma$ 中，形成一个通用的规律。</li>
+</ol>
+<p>$$ \frac{\Gamma, P \vdash Q}{\Gamma \vdash P \to Q} \text{ ($\to$-Intro)} $$</p>
+<h3 id="最基础的定理q-to-q"><a class="header" href="#最基础的定理q-to-q">最基础的定理：$Q \to Q$</a></h3>
+<p>利用这个规则，我们可以证明逻辑学中最简单的一个命题：<strong>如果 $Q$，那么 $Q$。</strong></p>
+<ol>
+<li>根据<strong>假设规则</strong>，我们知道：在包含 $Q$ 的上下文中，$Q$ 是成立的（$Q \vdash Q$）。</li>
+<li>应用<strong>蕴涵引入</strong>，我们将这个自明的推导过程打包：</li>
+</ol>
+<p>$$ \frac{Q \vdash Q}{\vdash Q \to Q} \text{ ($\to$-Intro)} $$</p>
+<p>这意味着，“$Q \to Q$” 作为一个规律，不再依赖于任何特定的前提，它是永远成立的。</p>
+<h2 id="3-书写约定省略-gamma"><a class="header" href="#3-书写约定省略-gamma">3. 书写约定：省略 $\Gamma$</a></h2>
+<p>在阅读逻辑教材或学术论文时，我们可能会发现很多推理线上并没有写出 $\Gamma \vdash$ 这一串符号，而是直接写成：</p>
+<p>$$ \frac{P \quad P \to Q}{Q} $$</p>
+<p><strong>这是一种常见的简写。</strong> 当一个推导过程中所有的判定都处在同一个上下文 $\Gamma$ 时，为了简洁，逻辑学家通常会将 $\Gamma \vdash$ 全部略去。但是当有判定在不同上下文时，如蕴涵引入规则，我们就不能省略。</p>
+<p>虽然省略了，但我们心中要清楚：<strong>上下文始终存在</strong>。所有的命题依然是扎根在那个稳定的上下文（如欧氏几何公理集）之上的。在本章后续以及之后的章节中，除非上下文发生变化，否则我们通常会采用这种更清爽的写法。</p>
+<h2 id="4-判定与命题的转换三种自由转换的表达"><a class="header" href="#4-判定与命题的转换三种自由转换的表达">4. 判定与命题的转换：三种自由转换的表达</a></h2>
+<p>细心的读者可能已经发现，$P \vdash Q$（判定）和 $P \to Q$（蕴涵命题）之间存在着一种深刻的联系。</p>
+<p>结合刚才提到的简写习惯，我们实际上有三种方式来表达“由 $P$ 推出 $Q$”：</p>
+<ol>
+<li><strong>判定（状态）</strong>：$P \vdash Q$ 。这在讨论逻辑规则时最常用，强调在特定背景下 $Q$ 成立。</li>
+<li><strong>蕴涵命题（结论）</strong>：$P \to Q$ 。这在需要将一个推理链条“打包”成一个定理以便后续调用时最常用。</li>
+<li><strong>推理线（过程）</strong>：$\displaystyle \frac{P}{Q}$ 。这在推导过程中最直观，表现了事实的流动。</li>
+</ol>
+<p><strong>从过程到命题：</strong>
+$$ \frac{P \vdash Q}{\vdash P \to Q} \text{ ($\to$-Intro)} $$</p>
+<p><strong>从命题到过程：</strong>
+$$ \frac{\displaystyle \frac{\vdash P \to Q}{P \vdash P \to Q} \text{(单调性)} \quad \displaystyle \frac{}{P \vdash P} \text{(假设规则)}}{P \vdash Q} \text{ ($\to$-Elim)}
+$$</p>
+<p>这种转换揭示了二者在功能上的等价性：如果我们拥有了定理 $P \to Q$，那么在任何包含 $P$ 的上下文中，我们都能得到 $Q$。</p>
+<p>另外，由于 $\displaystyle \frac{P}{Q}$ （也可以理解为 $\displaystyle \frac{P \vdash P}{P \vdash Q}$ ）表达了“在 $P$ 成立的前提下可以得到 $Q$”，这在判定的语境下对应的正是 $P \vdash Q$ 。所以这两种写法在表达推导关系时是完全互通的。如果我们从 $P$ 推出 $Q$，那么在包含了 $P$ 的上下文中 $Q$ 就成立，反之亦然。</p>
+<p>所以在许多逻辑和数学教材中，人们会将 $\to$、$\vdash$ 和 $\displaystyle \frac{P}{Q} $ 都读作“推出”。在本章后续的部分（如 1.5 节析取）以及之后的章节中，<strong>我们会默认这三者可以根据需要随时相互转换</strong>。</p>
+<p>当我们证明了一个推理过程 $\displaystyle \frac{P}{Q}$ 时，就意味着我们同时也拥有了判定 $P \vdash Q$ 和命题 $P \to Q$。</p>
+<h2 id="5-蕴涵的传递性证明-p-to-q-q-to-r-vdash-p-to-r"><a class="header" href="#5-蕴涵的传递性证明-p-to-q-q-to-r-vdash-p-to-r">5. 蕴涵的传递性：证明 $P \to Q, Q \to R \vdash P \to R$</a></h2>
+<p>我们可以利用刚才学到的规则，证明一个非常直观的结论：如果 $P$ 能推导出 $Q$，$Q$ 能推导出 $R$，那么 $P$ 就能直接推导出 $R$。</p>
+<p><strong>证明思路：</strong></p>
+<ol>
+<li>我们的背景上下文 $\Gamma$ 中包含了两个已知定理：$P \to Q$ 和 $Q \to R$。</li>
+<li>我们先做一个临时假设 $P$，此时上下文变为 $\Gamma, P$。</li>
+<li>利用 $\to$-Elim，由于我们在新上下文中拥有 $P$ 且能调用 $P \to Q$（单调性），我们得到 $Q$。</li>
+<li>再次利用 $\to$-Elim，由于我们有了 $Q$ 且能调用 $Q \to R$，我们得到 $R$。</li>
+<li>最后利用 $\to$-Intro，我们将这个过程打包，撤销临时假设 $P$，得到最终定理：$P \to R$。</li>
+</ol>
+<p><strong>形式化证明：</strong></p>
+<p>为了清晰起见，我们在每一步上方标注了所使用的规则。</p>
+<p>$$
+\frac{ \displaystyle \frac{\Gamma \vdash Q \to R}{\Gamma, P \vdash Q \to R} \text{(单调性)} \quad \frac{ \displaystyle \frac{\Gamma \vdash P \to Q}{\Gamma, P \vdash P \to Q} \text{(单调性)} \quad \displaystyle \frac{}{\Gamma, P \vdash P} \text{(假设)} }{ \Gamma, P \vdash Q } \text{($\to$-E)} }{\displaystyle \frac{\Gamma, P \vdash R}{\Gamma \vdash P \to R} \text{($\to$-I)} } \text{($\to$-E)}
+$$</p>
+<p>这就是为什么我们可以在几何证明中进行“连环推导”：因为逻辑规则允许我们将一个个小的蕴涵关系串联成更长的推理链。</p>
+<hr />
+<h2 id="6-定理的便携性跟着-gamma-到处走"><a class="header" href="#6-定理的便携性跟着-gamma-到处走">6. 定理的“便携性”：跟着 $\Gamma$ 到处走</a></h2>
+<p>一旦我们通过“引入规则”在 $\Gamma$ 中打包好了 $P \to Q$，它就变成了一个<strong>静态的知识点</strong>。</p>
+<p>根据我们之前讨论的<strong>累积性</strong> 和 <strong>单调性</strong>，这个打包好的定理会跟着 $\Gamma$ 进入任何新的上下文。</p>
+<ul>
+<li>无论我们是以后在证明全等三角形，还是在证明平行线，只要我们的上下文包含欧氏几何公理（$\Gamma$），我们就永远拥有这些定理（$\Gamma \vdash P \to Q$）。</li>
+<li>我们不需要每次都重新推导一遍补角关系，只需要用一次“消去规则（$\to$-Elim）”，就能瞬间从一个条件得到一个结论。</li>
+</ul>
+<h2 id="习题"><a class="header" href="#习题">习题</a></h2>
+<p><strong>习题 1.3.1：翻译练习</strong></p>
+<p>将下列日常用语翻译为使用 $\to$ 的逻辑命题，并指出哪个是前提 $P$，哪个是结论 $Q$：</p>
+<ol>
+<li><strong>“种瓜得瓜”</strong></li>
+<li><strong>“水涨船高”</strong></li>
+</ol>
+<p><strong>习题 1.3.2：基础证明</strong></p>
+<p>请参考第 2 小节中关于 $Q \to Q$ 的证明思路，使用推理线的形式证明以下命题：
+$$ \vdash P \to (Q \to P) $$
+（提示：先假设 $P$，再在包含 $P$ 的上下文中额外假设 $Q$，观察在此时的上下文中 $P$ 是否依然成立？）</p>
+<h2 id="总结"><a class="header" href="#总结">总结</a></h2>
+<ul>
+<li><strong>蕴涵引入（$\to$-Intro）</strong>：是将一段<strong>动态的推理过程</strong>（从 $P$ 到 $Q$）封装成一个<strong>静态的逻辑包裹</strong>（$P \to Q$）。这对应了“证明一个定理”。</li>
+<li><strong>蕴涵消去（$\to$-Elim）</strong>：是将一个<strong>静态的逻辑包裹</strong>拆开，将其转化为<strong>现实的知识</strong>。这对应了“应用一个定理”。</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../chapters/01_propositional_logic/01_02_inference_line.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../../chapters/01_propositional_logic/01_04_conjunction.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../chapters/01_propositional_logic/01_02_inference_line.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../../chapters/01_propositional_logic/01_04_conjunction.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

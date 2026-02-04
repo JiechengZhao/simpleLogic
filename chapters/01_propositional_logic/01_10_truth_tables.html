@@ -1,0 +1,396 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>1.10 真值表 - 易懂的形式逻辑：基础教育中的逻辑推理提取指南</title>
+
+
+        <!-- Custom HTML head -->
+        <style>
+        /* 彻底隐藏侧边栏的数字序号 */
+        .sidebar-scrollbox li a strong {
+            display: none !important;
+        }
+        </style>
+        
+        <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            processEscapes: true
+          }
+        });
+        </script>
+        
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // 查找所有 mermaid 代码块
+                const mermaidBlocks = document.querySelectorAll('pre code.language-mermaid');
+                mermaidBlocks.forEach(function (block) {
+                    const pre = block.parentElement;
+                    const div = document.createElement('div');
+                    div.className = 'mermaid';
+                    div.textContent = block.textContent;
+                    pre.replaceWith(div);
+                });
+                
+                mermaid.initialize({
+                    startOnLoad: true,
+                    theme: 'default',
+                    flowchart: {
+                        curve: 'linear'
+                    }
+                });
+            });
+        </script>
+        
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../chapters/00_introduction.html"><strong aria-hidden="true">1.</strong> 引言</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic.html"><strong aria-hidden="true">2.</strong> 第1章 命题逻辑——几何判定的骨架</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_01_context.html"><strong aria-hidden="true">2.1.</strong> 1.1 命题与上下文</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_02_inference_line.html"><strong aria-hidden="true">2.2.</strong> 1.2 推理线</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_03_implication.html"><strong aria-hidden="true">2.3.</strong> 1.3 蕴涵</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_04_conjunction.html"><strong aria-hidden="true">2.4.</strong> 1.4 合取</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_05_disjunction.html"><strong aria-hidden="true">2.5.</strong> 1.5 析取</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_06_negation.html"><strong aria-hidden="true">2.6.</strong> 1.6 否定</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_07_classical_logic.html"><strong aria-hidden="true">2.7.</strong> 1.7 排中律</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_08_syntax.html"><strong aria-hidden="true">2.8.</strong> 1.8 命题语法与优先级</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_09_substitution.html"><strong aria-hidden="true">2.9.</strong> 1.9 等价替换定理</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_10_truth_tables.html" class="active"><strong aria-hidden="true">2.10.</strong> 1.10 真值表</a></li></ol></li><li class="chapter-item expanded "><a href="../../chapters/02_first_order_logic.html"><strong aria-hidden="true">3.</strong> 第2章 一阶逻辑——描述“关系”的语言 (待完成)</a></li><li class="chapter-item expanded "><a href="../../chapters/03_classical_logic.html"><strong aria-hidden="true">4.</strong> 第3章 传统逻辑——三段论的现代翻译 (待完成)</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">易懂的形式逻辑：基础教育中的逻辑推理提取指南</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="110-真值表逻辑的数值演算"><a class="header" href="#110-真值表逻辑的数值演算">1.10 真值表：逻辑的数值演算</a></h1>
+<p>在初中数学中，我们接触过许多“表”。比如在解直角三角形时，我们需要查 $\sin$ 表或 $\tan$ 表。当我们输入一个角度 $\alpha$，这张表会给我们一个确定的数值 $\sin \alpha$。</p>
+<p>在逻辑学中，我们也可以建立一套类似的“查表机制”。这套机制可以将抽象的命题转化为具体的数值计算，这就是<strong>真值表（Truth Tables）</strong>。</p>
+<hr />
+<h2 id="1-真值的定义"><a class="header" href="#1-真值的定义">1. 真值的定义</a></h2>
+<p>我们引入一个映射 $b(P)$，它负责将命题的状态映射为数值 $1$ 或 $0$，这就是真值。为了确立这套数值系统的合法性，我们首先要确认这种<strong>数值化的映射</strong>表现得像一个真正的“函数”。</p>
+<h3 id="定义"><a class="header" href="#定义">定义</a></h3>
+<p>我们将命题的“成立”与“不成立”直接映射为数值上的<strong>真值判定</strong>：</p>
+<ul>
+<li><strong>真值 1</strong>：如果 $P$ 成立，那么我们给 $b(P)$ 赋值为 1。即 $P \to (b(P) = 1)$。</li>
+<li><strong>真值 0</strong>：如果 $\neg P$ 成立，那么我们给 $b(P)$ 赋值为 0。即 $\neg P \to (b(P) = 0)$。</li>
+</ul>
+<p>这里的 $(b(P) = 1)$ 本身也是一个命题，它表达了关于 $P$ 的数值事实。</p>
+<h3 id="真值的唯一性与完备性"><a class="header" href="#真值的唯一性与完备性">真值的唯一性与完备性</a></h3>
+<p>为了让 $b(P)$ 成为一个合格的函数，它必须满足：对于任何命题，其<strong>真值</strong>既“必居其一”，又“不可兼得”。</p>
+<ul>
+<li><strong>完备性（必居其一）</strong>：利用 <strong>排中律 (LEM)</strong> $\vdash P \lor \neg P$ 以及上述定义，通过析取消去和引入规则我们可以得到：
+$$ \vdash (b(P) = 1) \lor (b(P) = 0) $$</li>
+<li><strong>唯一性（不可兼得）</strong>：由于在我们的数值系统中 $1 \neq 0$，因此真值判定 $(b(P) = 1)$ 与 $(b(P) = 0)$ 是不能同时成立的。由此我们可以得到：
+$$ \vdash \neg (b(P) = 1 \land b(P) = 0) $$</li>
+</ul>
+<p>这两条性质保证了任何一个命题都<strong>有且仅有</strong>一个确定的真值。</p>
+<h3 id="原命题与真值判定的等价关系"><a class="header" href="#原命题与真值判定的等价关系">原命题与真值判定的等价关系</a></h3>
+<p>有了上述性质，我们可以建立原命题与真值判定之间的等价关系：</p>
+<ol>
+<li>根据上述两条性质，真值不是 0 就是 1。即：$(b(P) = 1) \leftrightarrow \neg (b(P) = 0)$。（相关证明见习题 1.10.1 的讨论。）</li>
+<li>对定义 $\neg P \to (b(P) = 0)$ 取逆否命题，得 $\neg (b(P) = 0) \to \neg \neg P$。又在经典逻辑中 $\neg \neg P \leftrightarrow P$，故有 $\neg (b(P) = 0) \to P$。</li>
+<li>结合前两步，我们得到 $(b(P) = 1) \to P$。</li>
+<li>再加上定义中的正向推导 $P \to (b(P) = 1)$，我们证明了第一个核心等价式：
+$$ P \leftrightarrow (b(P) = 1) $$</li>
+<li>利用 1.9 节的<strong>等价替换定理</strong>，我们将已证的 $P \leftrightarrow (b(P) = 1)$ 代入 $\neg P$ 中，可以得到：
+$$ \neg P \leftrightarrow \neg (b(P) = 1) \leftrightarrow \neg \neg (b(P) = 0) \leftrightarrow (b(P) = 0) $$</li>
+</ol>
+<p>这套证明告诉我们：<strong>“命题成立”等同于“其真值为 1”</strong>；而**“否命题成立”等同于“其真值为 0”**。这种逻辑上的严丝合缝，是我们进行数值演算的合法性基础。</p>
+<hr />
+<h2 id="2-运算的桥梁从推导到演算"><a class="header" href="#2-运算的桥梁从推导到演算">2. 运算的桥梁：从推导到演算</a></h2>
+<p>当我们组合命题时，数值也会随之组合。我们规定，数值之间的运算符号（如 $\lor, \land, \neg$）必须与命题之间的逻辑算符保持同步。</p>
+<p>为了实现这种同步，数值运算应遵循以下对应法则：</p>
+<ul>
+<li>$b(P) \to b(Q) \equiv b(P \to Q)$</li>
+<li>$b(P) \land b(Q) \equiv b(P \land Q)$</li>
+<li>$b(P) \lor b(Q) \equiv b(P \lor Q)$</li>
+<li>$\neg b(P) \equiv b(\neg P)$</li>
+</ul>
+<p>这个定义的左边是<strong>数值的计算</strong>，右边是<strong>命题的复合</strong>。那么，数值层面的计算规则 can 根据命题的<strong>推理规则</strong>来获取。</p>
+<h3 id="利用推理规则计算真值"><a class="header" href="#利用推理规则计算真值">利用推理规则计算真值</a></h3>
+<p>数值演算的合法性在于它能被推理规则支撑。下面我们通过三个典型例子，展示如何利用逻辑规则“现场计算”数值。</p>
+<h4 id="示例-1计算-1-lor-0-的值"><a class="header" href="#示例-1计算-1-lor-0-的值">示例 1：计算 $1 \lor 0$ 的值</a></h4>
+<ol>
+<li><strong>给定前提</strong>：假设 $b(P) = 1$ 且 $b(Q) = 0$。</li>
+<li><strong>转换判定</strong>：这意味着 $P$ 成立，且 $\neg Q$ 成立。</li>
+<li><strong>证明路径</strong>：我们要确定 $P \lor Q$ 的状态。根据 <strong>析取引入</strong> 规则，只要 $P$ 成立，就有：
+$$ \frac{P}{P \lor Q} $$</li>
+<li><strong>得出数值</strong>：既然 $P \lor Q$ 成立，根据定义 $b(P \lor Q) = 1$。</li>
+<li><strong>结论</strong>：$1 \lor 0 = 1$。</li>
+</ol>
+<h4 id="示例-2计算-0-to-1-的值"><a class="header" href="#示例-2计算-0-to-1-的值">示例 2：计算 $0 \to 1$ 的值</a></h4>
+<ol>
+<li><strong>给定前提</strong>：假设 $b(P) = 0$ 且 $b(Q) = 1$。</li>
+<li><strong>转换判定</strong>：这意味着 $\neg P$ 成立，且 $Q$ 成立。</li>
+<li><strong>证明路径</strong>：我们要确定 $P \to Q$ 的状态。在包含 $\neg P$ 的上下文中，如果我们临时假设 $P$，则会触发 <strong>爆炸原理</strong>：
+$$ \frac{ \displaystyle \frac{P \quad \neg P}{\perp} (\perp\text{-Intro}) }{Q} (\perp\text{-Elim}) $$
+由于从矛盾可以推导任何结论，我们得到了 $Q$。再通过 <strong>蕴涵引入</strong> 撤销临时假设 $P$，得到 $P \to Q$：
+$$ \frac{P \vdash Q}{\vdash P \to Q} (\to\text{-Intro}) $$</li>
+<li><strong>得出数值</strong>：既然 $P \to Q$ 成立，根据定义 $b(P \to Q) = 1$。</li>
+<li><strong>结论</strong>：$0 \to 1 = 1$。</li>
+</ol>
+<h4 id="示例-3计算-0-land-0-的值"><a class="header" href="#示例-3计算-0-land-0-的值">示例 3：计算 $0 \land 0$ 的值</a></h4>
+<ol>
+<li><strong>给定前提</strong>：假设 $b(P) = 0$ 且 $b(Q) = 0$。</li>
+<li><strong>转换判定</strong>：这意味着 $\neg P$ 成立，且 $\neg Q$ 成立。</li>
+<li><strong>证明路径</strong>：我们要确定 $P \land Q$ 的状态。
+<ul>
+<li>首先，从 $\neg P$ 出发，利用 <strong>析取引入</strong> 得到 $\neg P \lor \neg Q$。</li>
+<li>接着，根据 <strong>德·摩根定律</strong>（1.6 节习题），我们知道：
+$$ \neg P \lor \neg Q \vdash \neg(P \land Q) $$</li>
+</ul>
+</li>
+<li><strong>得出数值</strong>：既然 $\neg(P \land Q)$ 成立，根据定义 $b(P \land Q) = 0$。</li>
+<li><strong>结论</strong>：$0 \land 0 = 0$。</li>
+</ol>
+<hr />
+<h2 id="3-算符的真值表演算"><a class="header" href="#3-算符的真值表演算">3. 算符的真值表演算</a></h2>
+<p>通过上述方法，我们可以对每个算符穷尽所有的输入组合，推导出完整的运算表，这种表也叫做真值表。</p>
+<h3 id="否定非"><a class="header" href="#否定非">否定（非）</a></h3>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">$b(P)$</th><th style="text-align: left">$b(\neg P)$</th><th style="text-align: left">推导依据</th></tr></thead><tbody>
+<tr><td style="text-align: left">1</td><td style="text-align: left"><strong>0</strong></td><td style="text-align: left">双重否定引入 (见习题 1.6.2)</td></tr>
+<tr><td style="text-align: left">0</td><td style="text-align: left"><strong>1</strong></td><td style="text-align: left">定义</td></tr>
+</tbody></table>
+</div>
+<h3 id="析取或"><a class="header" href="#析取或">析取（或）</a></h3>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">$b(P)$</th><th style="text-align: left">$b(Q)$</th><th style="text-align: left">$b(P \lor Q)$</th><th style="text-align: left">推导依据</th></tr></thead><tbody>
+<tr><td style="text-align: left">1</td><td style="text-align: left">1</td><td style="text-align: left"><strong>1</strong></td><td style="text-align: left">析取引入</td></tr>
+<tr><td style="text-align: left">1</td><td style="text-align: left">0</td><td style="text-align: left"><strong>1</strong></td><td style="text-align: left">析取引入</td></tr>
+<tr><td style="text-align: left">0</td><td style="text-align: left">1</td><td style="text-align: left"><strong>1</strong></td><td style="text-align: left">析取引入</td></tr>
+<tr><td style="text-align: left">0</td><td style="text-align: left">0</td><td style="text-align: left"><strong>0</strong></td><td style="text-align: left">合取引入与德·摩根定律</td></tr>
+</tbody></table>
+</div>
+<h3 id="合取且"><a class="header" href="#合取且">合取（且）</a></h3>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">$b(P)$</th><th style="text-align: left">$b(Q)$</th><th style="text-align: left">$b(P \land Q)$</th><th style="text-align: left">推导依据</th></tr></thead><tbody>
+<tr><td style="text-align: left">1</td><td style="text-align: left">1</td><td style="text-align: left"><strong>1</strong></td><td style="text-align: left">合取引入</td></tr>
+<tr><td style="text-align: left">1</td><td style="text-align: left">0</td><td style="text-align: left"><strong>0</strong></td><td style="text-align: left">析取引入与德·摩根定律</td></tr>
+<tr><td style="text-align: left">0</td><td style="text-align: left">1</td><td style="text-align: left"><strong>0</strong></td><td style="text-align: left">析取引入与德·摩根定律</td></tr>
+<tr><td style="text-align: left">0</td><td style="text-align: left">0</td><td style="text-align: left"><strong>0</strong></td><td style="text-align: left">析取引入与德·摩根定律</td></tr>
+</tbody></table>
+</div>
+<h3 id="蕴涵若则"><a class="header" href="#蕴涵若则">蕴涵（若...则...）</a></h3>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">$b(P)$</th><th style="text-align: left">$b(Q)$</th><th style="text-align: left">$b(P \to Q)$</th><th style="text-align: left">推导依据</th></tr></thead><tbody>
+<tr><td style="text-align: left">1</td><td style="text-align: left">1</td><td style="text-align: left"><strong>1</strong></td><td style="text-align: left">蕴涵引入</td></tr>
+<tr><td style="text-align: left">1</td><td style="text-align: left">0</td><td style="text-align: left"><strong>0</strong></td><td style="text-align: left">蕴涵消去与$\neg$ 定义</td></tr>
+<tr><td style="text-align: left">0</td><td style="text-align: left">1</td><td style="text-align: left"><strong>1</strong></td><td style="text-align: left">爆炸原理与蕴涵引入</td></tr>
+<tr><td style="text-align: left">0</td><td style="text-align: left">0</td><td style="text-align: left"><strong>1</strong></td><td style="text-align: left">爆炸原理与蕴涵引入</td></tr>
+</tbody></table>
+</div>
+<hr />
+<h2 id="习题"><a class="header" href="#习题">习题</a></h2>
+<p><strong>习题 1.10.1：互斥与等价</strong>
+在第 1 小节的证明过程中，在证明：$(b(P) = 1) \leftrightarrow \neg (b(P) = 0)$ 时我们略过了一个定理。请证明：如果 $P$ 和 $Q$ 满足“二者必居其一且不可兼得”，则它们是互为否定的。即：
+$$ P \lor Q, \neg (P \land Q) \vdash P \leftrightarrow \neg Q $$
+提示： 使用 $\neg (P \land Q)$ 证明向右的箭头， 使用 $P \lor Q$ 证明向左的箭头。</p>
+<p><strong>习题 1.10.2：异或（XOR）</strong>
+“二者必居其一且不可兼得”被我们称为“异或”或者“互斥性或”。我们定义<strong>异或</strong>算符 $\oplus$ 如下：
+$$ P \oplus Q \equiv (P \lor Q) \land \neg (P \land Q) $$
+请根据本节的方法，推导出 $\oplus$ 的真值表。</p>
+<p><strong>习题 1.10.3：等价与异或的关系</strong></p>
+<p>请推导出“等价”算符 $\leftrightarrow$ 的真值表，并将其与习题 1.10.2 中异或的真值表进行对比。你能发现它们在数值上的联系吗？</p>
+<p><strong>习题 1.10.4（挑战）</strong>：</p>
+<p>我们在给出各算符的真值表时，只列出了部分推导依据。请选取你感兴趣的几行（例如蕴涵表中 $b(P)=0$ 的情况），尝试写出完整的逻辑推理过程。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../chapters/01_propositional_logic/01_09_substitution.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../../chapters/02_first_order_logic.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../chapters/01_propositional_logic/01_09_substitution.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../../chapters/02_first_order_logic.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,386 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>1.9 等价替换定理 - 易懂的形式逻辑：基础教育中的逻辑推理提取指南</title>
+
+
+        <!-- Custom HTML head -->
+        <style>
+        /* 彻底隐藏侧边栏的数字序号 */
+        .sidebar-scrollbox li a strong {
+            display: none !important;
+        }
+        </style>
+        
+        <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            processEscapes: true
+          }
+        });
+        </script>
+        
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // 查找所有 mermaid 代码块
+                const mermaidBlocks = document.querySelectorAll('pre code.language-mermaid');
+                mermaidBlocks.forEach(function (block) {
+                    const pre = block.parentElement;
+                    const div = document.createElement('div');
+                    div.className = 'mermaid';
+                    div.textContent = block.textContent;
+                    pre.replaceWith(div);
+                });
+                
+                mermaid.initialize({
+                    startOnLoad: true,
+                    theme: 'default',
+                    flowchart: {
+                        curve: 'linear'
+                    }
+                });
+            });
+        </script>
+        
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../chapters/00_introduction.html"><strong aria-hidden="true">1.</strong> 引言</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic.html"><strong aria-hidden="true">2.</strong> 第1章 命题逻辑——几何判定的骨架</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_01_context.html"><strong aria-hidden="true">2.1.</strong> 1.1 命题与上下文</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_02_inference_line.html"><strong aria-hidden="true">2.2.</strong> 1.2 推理线</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_03_implication.html"><strong aria-hidden="true">2.3.</strong> 1.3 蕴涵</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_04_conjunction.html"><strong aria-hidden="true">2.4.</strong> 1.4 合取</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_05_disjunction.html"><strong aria-hidden="true">2.5.</strong> 1.5 析取</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_06_negation.html"><strong aria-hidden="true">2.6.</strong> 1.6 否定</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_07_classical_logic.html"><strong aria-hidden="true">2.7.</strong> 1.7 排中律</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_08_syntax.html"><strong aria-hidden="true">2.8.</strong> 1.8 命题语法与优先级</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_09_substitution.html" class="active"><strong aria-hidden="true">2.9.</strong> 1.9 等价替换定理</a></li><li class="chapter-item expanded "><a href="../../chapters/01_propositional_logic/01_10_truth_tables.html"><strong aria-hidden="true">2.10.</strong> 1.10 真值表</a></li></ol></li><li class="chapter-item expanded "><a href="../../chapters/02_first_order_logic.html"><strong aria-hidden="true">3.</strong> 第2章 一阶逻辑——描述“关系”的语言 (待完成)</a></li><li class="chapter-item expanded "><a href="../../chapters/03_classical_logic.html"><strong aria-hidden="true">4.</strong> 第3章 传统逻辑——三段论的现代翻译 (待完成)</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">易懂的形式逻辑：基础教育中的逻辑推理提取指南</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="19-等价替换定理逻辑的等量代换"><a class="header" href="#19-等价替换定理逻辑的等量代换">1.9 等价替换定理：逻辑的“等量代换”</a></h1>
+<p>在代数中，我们经常使用“等量代换”：如果 $a = b$，那么在任何涉及 $a$ 的式子中，我们都可以把 $a$ 换成 $b$。</p>
+<p>在逻辑学中，也有类似的规则。本节我们将证明，如果两个命题表达式 $P$ 和 $Q$ 是等价的（即 $P \leftrightarrow Q$），那么我们可以放心地在任何背景下进行替换而不改变整体判定的正确性。这将帮助我们之后绕过主算符的限制，像处理代数式一样方便的处理逻辑问题。</p>
+<hr />
+<h2 id="1-替换操作-sp-backslash-q"><a class="header" href="#1-替换操作-sp-backslash-q">1. 替换操作： $S[P \backslash Q]$</a></h2>
+<p>为了精确描述替换的过程，我们引入一个元符号操作：<strong>$S[P \backslash Q]$</strong>。</p>
+<ul>
+<li><strong>定义</strong>：它代表将表达式 $S$ 中所有的子表达式 $P$ 全部替换为 $Q$ 后得到的新表达式。</li>
+<li><strong>直观理解</strong>：这就像文档编辑器里的“全部替换”功能。$S$ 是文档全文，$P$ 是被匹配的旧内容，$Q$ 是换上的新内容。</li>
+</ul>
+<p><strong>例子</strong>：</p>
+<ol>
+<li>若 $S$ 为 $P \land R$，则 $S[P \backslash Q]$ 为 $Q \land R$。</li>
+<li>若 $S$ 为 $A \to (B \lor A)$，则 $S[A \backslash C]$ 为 $C \to (B \lor C)$。</li>
+</ol>
+<hr />
+<h2 id="2-工具准备等价的规则与性质"><a class="header" href="#2-工具准备等价的规则与性质">2. 工具准备：等价的规则与性质</a></h2>
+<p>在深入定理之前，我们需要明确等价算符 $\leftrightarrow$ 的操作规则及其表现出的代数性质。</p>
+<h3 id="21-等价消去律-leftrightarrow-e"><a class="header" href="#21-等价消去律-leftrightarrow-e">2.1 等价消去律 ($\leftrightarrow$-E)</a></h3>
+<p>根据定义 $P \leftrightarrow Q \equiv (P \to Q) \land (Q \to P)$，我们可以得到两条消去引理：</p>
+<ul>
+<li><strong>引理 1</strong>：$\displaystyle \frac{P \quad P \leftrightarrow Q}{Q}$</li>
+<li><strong>引理 2</strong>：$\displaystyle \frac{Q \quad P \leftrightarrow Q}{P}$</li>
+</ul>
+<p>这两条引理本质上是合取消去（$\land$-E）与蕴涵消去（$\to$-E）的组合调用。</p>
+<h3 id="22-等价关系的代数性质"><a class="header" href="#22-等价关系的代数性质">2.2 等价关系的代数性质</a></h3>
+<p>等价关系在命题集合上表现出类似于“等号”的性质。这些性质在后续的证明中将被调用：</p>
+<ol>
+<li><strong>自反性 (Reflexivity)</strong>：$\vdash P \leftrightarrow P$ （任何命题都与自身等价）</li>
+<li><strong>对称性 (Symmetry)</strong>：$P \leftrightarrow Q \vdash Q \leftrightarrow P$ （等价是双向的）</li>
+<li><strong>传递性 (Transitivity)</strong>：$P \leftrightarrow Q, Q \leftrightarrow R \vdash P \leftrightarrow R$ （等价可以传递）</li>
+</ol>
+<p>这些性质看起来理所应当，但在严密的逻辑系统中，它们都需要通过最基础的引入（$\leftrightarrow$-I）和消去（$\leftrightarrow$-E）规则来确证。我们将它们的严格证明留作本节的习题。</p>
+<h4 id="传递性与连等约定"><a class="header" href="#传递性与连等约定">传递性与连等约定</a></h4>
+<p>我们在第 1.8 节中提到的<strong>连等（等价链）<strong>写法 $P \leftrightarrow Q \leftrightarrow R$，其逻辑合法性正是建立在</strong>传递性</strong>之上的。因为传递性向我们保证了：只要链条中相邻的两项是等价的，那么链条中任意两项（即使不相邻）在逻辑上也是等价的。这使得我们可以像处理代数连等式一样，通过一系列中间步骤，最终宣告首尾两项的等价关系。</p>
+<hr />
+<h2 id="3-定理描述等价替换定理"><a class="header" href="#3-定理描述等价替换定理">3. 定理描述：等价替换定理</a></h2>
+<p><strong>等价替换定理（Substitution Theorem）</strong>：
+如果两个命题表达式 $P$ 和 $Q$ 满足等价关系，那么对于任何包含 $P$ 的命题表达式 $S$，$S$ 与替换后的 $S[P \backslash Q]$ 也是等价的。</p>
+<p>$$ \frac{\Gamma \vdash P \leftrightarrow Q}{\Gamma \vdash S \leftrightarrow S[P \backslash Q]}
+$$</p>
+<p>这意味着逻辑等价性具有某种“穿透力”，只要局部等价，就能确保整体等价。</p>
+<hr />
+<h2 id="4-证明结构归纳法"><a class="header" href="#4-证明结构归纳法">4. 证明：结构归纳法</a></h2>
+<p>我们要证明：只要 $P \leftrightarrow Q$ 成立，那么对于任意结构的 $S$，恒有 $S \leftrightarrow S[P \backslash Q]$。我们对 $S$ 的复杂度进行归纳。</p>
+<p>（在许多逻辑入门教材中，只给出此定理而不给出证明。觉得证明有难度的读者可以先行跳过本小节。）</p>
+<h3 id="1-基础情况"><a class="header" href="#1-基础情况">(1) 基础情况</a></h3>
+<ul>
+<li><strong>情况 A</strong>：$S$ 恰好就是 $P$。此时 $S[P \backslash Q]$ 是 $Q$。结论为 $P \leftrightarrow Q \vdash P \leftrightarrow Q$，显然成立。</li>
+<li><strong>情况 B</strong>：$S$ 是一个不含 $P$ 的原子命题 $R$。此时 $S[P \backslash Q]$ 依然是 $R$。由于 <strong>自反性</strong> $\vdash R \leftrightarrow R$ 成立，结论成立。</li>
+</ul>
+<h3 id="2-归纳步骤"><a class="header" href="#2-归纳步骤">(2) 归纳步骤</a></h3>
+<p>假设对于子表达式 $A, B$，定理已经成立（即归纳假设）：</p>
+<ul>
+<li>$A \leftrightarrow A'$ （其中 $A'$ 记作 $A[P \backslash Q]$）</li>
+<li>$B \leftrightarrow B'$ （其中 $B'$ 记作 $B[P \backslash Q]$）</li>
+</ul>
+<p>现在我们要观察整体命题 $S \leftrightarrow S'$ 是否成立。由于等价关系具有 <strong>对称性</strong>，证明从 $S$ 推导出 $S'$ 与从 $S'$ 推回 $S$ 的过程是一样的。为了书写简洁，我们主要展示“从左向右”的推导路径。</p>
+<h4 id="情况-1合取式-s--a-land-b"><a class="header" href="#情况-1合取式-s--a-land-b">情况 1：合取式 ($S = A \land B$)</a></h4>
+<p>我们要证明 $A \land B \leftrightarrow A' \land B'$。根据 $\land$-I 和 $\leftrightarrow$-E，我们可以得到如下路径：</p>
+<p>$$ \frac{\displaystyle \frac{A \land B}{A} \quad A \leftrightarrow A'}{A'} \qquad \frac{\displaystyle \frac{A \land B}{B} \quad B \leftrightarrow B'}{B'}
+$$</p>
+<p>将两条路径合并即可得到结论 $A' \land B'$。结合反向推导，合取项的替换保持等价。</p>
+<h4 id="情况-2析取式-s--a-lor-b"><a class="header" href="#情况-2析取式-s--a-lor-b">情况 2：析取式 ($S = A \lor B$)</a></h4>
+<p>我们要证明 $A \lor B \leftrightarrow A' \lor B'$。根据 1.5 节“分类讨论”的逻辑，我们需要展示无论从哪个分支出发，最终都能推导出相同的结论：</p>
+<ul>
+<li><strong>路径 1 ($A \to A' \lor B'$)</strong>：</li>
+</ul>
+<p>$$ \frac{A \quad A \leftrightarrow  A'}{ \displaystyle \frac{A'}{A' \lor B'} (\lor\text{-I}) } (\leftrightarrow \text{-E}_1) $$</p>
+<ul>
+<li><strong>路径 2 ($B \to A' \lor B'$)</strong>：同理。</li>
+</ul>
+<p>利用 $\lor$-Elim 规则（简写形式）：
+$$ \frac{A \lor B \quad A \to A' \lor B' \quad B \to A' \lor B'}{A' \lor B'} (\lor\text{-E})
+$$
+结论得证。</p>
+<h4 id="情况-3蕴涵式-s--a-to-b"><a class="header" href="#情况-3蕴涵式-s--a-to-b">情况 3：蕴涵式 ($S = A \to B$)</a></h4>
+<p>我们要证明 $(A \to B) \leftrightarrow (A' \to B')$。借助 <strong>传递性</strong>：
+$$ \frac{\displaystyle
+\frac{\displaystyle \frac{A \leftrightarrow A'}{A' \to A} \quad A \to B}{A' \to B} \text{(传递性)} \quad \frac{B \leftrightarrow B'}{B \to B'} }{A' \to B'} \text{(传递性)}
+$$
+蕴涵关系在替换下保持稳定。</p>
+<h4 id="情况-4否定式-s--neg-a"><a class="header" href="#情况-4否定式-s--neg-a">情况 4：否定式 ($S = \neg A$)</a></h4>
+<p>由于否定 $\neg A$ 定义为 $A \to \perp$，它是蕴涵式的特例。根据情况 3，替换依然保持等价。</p>
+<p>随着我们证明了所有算符情况，我们可以做出归纳结论：对于任意 $S$，只要基础部分等价，整体就等价。</p>
+<hr />
+<h2 id="5-为什么这很重要"><a class="header" href="#5-为什么这很重要">5. 为什么这很重要？</a></h2>
+<p>等价替换定理将逻辑从一种“论证的艺术”正式提升为了“演算的科学”。</p>
+<p>通过上面的证明，我们确认命题逻辑对于等价关系是<strong>定义良好</strong>（Well-defined）的。利用引理，我们可以直接推导出本节开头提到的替换规则：</p>
+<p><strong>推论：等价替换推导</strong>
+$$ \frac{\Gamma \vdash S \quad \Gamma \vdash P \leftrightarrow Q}{\Gamma \vdash S[P \backslash Q]}
+$$</p>
+<p>证明路径非常直观：由定理知 $\Gamma, P \leftrightarrow Q \vdash S \leftrightarrow S'$，再利用引理 1 即可从前提 $S$ 推出结论 $S'$。</p>
+<p>有了它，我们可以像做代数简便运算一样：识别局部、寻找等价物、实施替换。它是所有逻辑简化规则（如德·摩根定律、分配律）能够被实际应用到复杂式子中的合法性前提。</p>
+<p>我们之前几节证明的所有等价定律（如德·摩根定律、交换律、结合律等），原本只能用于处理整个命题。而现在，它们变成了 <strong>“全威力版”</strong> 的工具——我们可以将这些定律应用到任何复杂命题的<strong>任何局部</strong>。这种“局部手术”的能力，是逻辑系统处理大规模命题公式的保证。</p>
+<hr />
+<h2 id="习题"><a class="header" href="#习题">习题</a></h2>
+<p><strong>习题 1.9.1（核心性质证明）</strong>：
+请分别利用 $\leftrightarrow$-I 和 $\leftrightarrow$-E 规则，形式化地证明等价关系的：</p>
+<ol>
+<li>自反性</li>
+<li>对称性</li>
+<li>传递性</li>
+</ol>
+<p><strong>习题 1.9.2</strong>：
+利用传递性证明：如果 $A \leftrightarrow B$ 且 $B \leftrightarrow C$ 成立，那么 $\neg A \leftrightarrow \neg C$ 也成立。</p>
+<p><strong>习题 1.9.3</strong>：
+利用等价替换定理和德·摩根定律，通过逐步替换证明：
+$$ \vdash \neg(P \land (Q \lor R)) \leftrightarrow (\neg P \lor (\neg Q \land \neg R))
+$$</p>
+<p><strong>习题 1.9.4（思考题）</strong>：
+逻辑等价 $P \leftrightarrow Q$ 与代数中的等号 $a = b$ 有着类似的性质。这些性质是如何让我们在复杂的代数式或逻辑公式中，放心地进行“局部代换”的？这种能力对于简化复杂问题有什么意义？</p>
+<h2 id="总结"><a class="header" href="#总结">总结</a></h2>
+<ul>
+<li><strong>$S[P \backslash Q]$</strong> 是替换操作，将 $S$ 中的 $P$ 换成 $Q$。</li>
+<li><strong>等价关系</strong> 具备自反、对称、传递等代数性质。</li>
+<li><strong>等价替换定理</strong> 保证了局部等价可以向整体等价扩散，使逻辑推导可以像代数运算一样进行局部简化。</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../chapters/01_propositional_logic/01_08_syntax.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../../chapters/01_propositional_logic/01_10_truth_tables.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../chapters/01_propositional_logic/01_08_syntax.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../../chapters/01_propositional_logic/01_10_truth_tables.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
