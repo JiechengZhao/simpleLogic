@@ -4,15 +4,15 @@
 
 我们有两个命题 $P$ 和 $Q$，如果$P$ 可以推出$Q$，那么 $P \to Q$。这读作“$P$ 蕴涵 $Q$”，也会读作“如果$P$那么$Q$”、“若$P$则$Q$”、“由$P$可以推出$Q$”。它建立了一座从已知到未知的桥梁：只要前提 $P$ 成立，结论 $Q$ 就必然随之成立。
 
-在逻辑学中，我们通过两套动作来操作这种关系：**消去（Elimination）**与**引入（Introduction）**。
+在逻辑学中，我们通过两套动作来操作这种关系：**消去**与**引入**。
 
-## 1. 消费定理：蕴涵消去规则（$\to$-Elim）
+## 1. 消费定理：蕴涵消去规则（$\to$-消去）
 
-当我们说“使用定理”时，我们实际上是在进行**蕴涵消去**（在逻辑学中也叫肯定前件，Modus Ponens）。
+当我们说“使用定理”时，我们实际上是在进行**蕴涵消去**（在逻辑学中也叫肯定前件）。
 
 这条规则可以通俗地理解为：如果在上下文 $\Gamma$ 中，我们已经持有了一个命题 $P \to Q$，并且我们也已经有了它的前提条件 $P$，那么它的结果 $Q$就成立。其形式化表达如下：
 
-$$ \frac{\Gamma \vdash P \to Q \quad \Gamma \vdash P}{\Gamma \vdash Q} \text{ ($\to$-Elim)} 
+$$ \frac{\Gamma \vdash P \to Q \quad \Gamma \vdash P}{\Gamma \vdash Q} \text{ ($\to$-消去)} 
 $$
 
 ### 几何案例：对顶角相等
@@ -26,7 +26,7 @@ $$
 
 **直观解释**：这种条件关系就像一个打包好的“逻辑包裹”：它向我们承诺了一个结果 $Q$，但它是有锁的。只有当我们提供了匹配的前提 $P$ 作为钥匙，我们才能拆开包裹，取出里面的结论 $Q$。
 
-## 2. 产生规律：蕴涵引入规则（$\to$-Intro）
+## 2. 产生规律：蕴涵引入规则（$\to$-引入）
 
 除了“消费”现有的定理，逻辑推理中另一种重要工作是证明新的定理——这就是**蕴涵引入**。当我们把一段推导过程封装成一个定理时，我们就在使用这个规则。
 
@@ -37,7 +37,7 @@ $$
 2. **进行推导**：在这个扩充后的上下文中，利用补角性质（$\Gamma$ 中已有的定理或公理），我们可以推导出 $Q$（它们相等）。即：$\Gamma, P \vdash Q$。
 3. **封装撤离**：既然我们确认了“只要有 $P$ 就能得到 $Q$”，那么我们就可以撤销那个临时的假设 $P$，并将这个完整的推导链条“打包”回原背景 $\Gamma$ 中，形成一个通用的规律。
 
-$$ \frac{\Gamma, P \vdash Q}{\Gamma \vdash P \to Q} \text{ ($\to$-Intro)} $$
+$$ \frac{\Gamma, P \vdash Q}{\Gamma \vdash P \to Q} \text{ ($\to$-引入)} $$
 
 ### 最基础的定理：$Q \to Q$
 利用这个规则，我们可以证明逻辑学中最简单的一个命题：**如果 $Q$，那么 $Q$。**
@@ -45,7 +45,7 @@ $$ \frac{\Gamma, P \vdash Q}{\Gamma \vdash P \to Q} \text{ ($\to$-Intro)} $$
 1. 根据**假设规则**，我们知道：在包含 $Q$ 的上下文中，$Q$ 是成立的（$Q \vdash Q$）。
 2. 应用**蕴涵引入**，我们将这个自明的推导过程打包：
 
-$$ \frac{Q \vdash Q}{\vdash Q \to Q} \text{ ($\to$-Intro)} $$
+$$ \frac{Q \vdash Q}{\vdash Q \to Q} \text{ ($\to$-引入)} $$
 
 这意味着，“$Q \to Q$” 作为一个规律，不再依赖于任何特定的前提，它是永远成立的。
 
@@ -70,10 +70,10 @@ $$ \frac{P \quad P \to Q}{Q} $$
 3. **推理线（过程）**：$\displaystyle \frac{P}{Q}$ 。这在推导过程中最直观，表现了事实的流动。
 
 **从过程到命题：**
-$$ \frac{P \vdash Q}{\vdash P \to Q} \text{ ($\to$-Intro)} $$
+$$ \frac{P \vdash Q}{\vdash P \to Q} \text{ ($\to$-引入)} $$
 
 **从命题到过程：**
-$$ \frac{\displaystyle \frac{\vdash P \to Q}{P \vdash P \to Q} \text{(单调性)} \quad \displaystyle \frac{}{P \vdash P} \text{(假设规则)}}{P \vdash Q} \text{ ($\to$-Elim)}
+$$ \frac{\displaystyle \frac{\vdash P \to Q}{P \vdash P \to Q} \text{(单调性)} \quad \displaystyle \frac{}{P \vdash P} \text{(假设规则)}}{P \vdash Q} \text{ ($\to$-消去)}
 $$
 
 这种转换揭示了二者在功能上的等价性：如果我们拥有了定理 $P \to Q$，那么在任何包含 $P$ 的上下文中，我们都能得到 $Q$。
@@ -93,16 +93,16 @@ $$
 **证明思路：**
 1. 我们的背景上下文 $\Gamma$ 中包含了两个已知定理：$P \to Q$ 和 $Q \to R$。
 2. 我们先做一个临时假设 $P$，此时上下文变为 $\Gamma, P$。
-3. 利用 $\to$-Elim，由于我们在新上下文中拥有 $P$ 且能调用 $P \to Q$（单调性），我们得到 $Q$。
-4. 再次利用 $\to$-Elim，由于我们有了 $Q$ 且能调用 $Q \to R$，我们得到 $R$。
-5. 最后利用 $\to$-Intro，我们将这个过程打包，撤销临时假设 $P$，得到最终定理：$P \to R$。
+3. 利用 $\to$-消去，由于我们在新上下文中拥有 $P$ 且能调用 $P \to Q$（单调性），我们得到 $Q$。
+4. 再次利用 $\to$-消去，由于我们有了 $Q$ 且能调用 $Q \to R$，我们得到 $R$。
+5. 最后利用 $\to$-引入，我们将这个过程打包，撤销临时假设 $P$，得到最终定理：$P \to R$。
 
 **形式化证明：**
 
 为了清晰起见，我们在每一步上方标注了所使用的规则。
 
 $$
-\frac{ \displaystyle \frac{\Gamma \vdash Q \to R}{\Gamma, P \vdash Q \to R} \text{(单调性)} \quad \frac{ \displaystyle \frac{\Gamma \vdash P \to Q}{\Gamma, P \vdash P \to Q} \text{(单调性)} \quad \displaystyle \frac{}{\Gamma, P \vdash P} \text{(假设)} }{ \Gamma, P \vdash Q } \text{($\to$-E)} }{\displaystyle \frac{\Gamma, P \vdash R}{\Gamma \vdash P \to R} \text{($\to$-I)} } \text{($\to$-E)}
+\frac{ \displaystyle \frac{\Gamma \vdash Q \to R}{\Gamma, P \vdash Q \to R} \text{(单调性)} \quad \frac{ \displaystyle \frac{\Gamma \vdash P \to Q}{\Gamma, P \vdash P \to Q} \text{(单调性)} \quad \displaystyle \frac{}{\Gamma, P \vdash P} \text{(假设)} }{ \Gamma, P \vdash Q } \text{($\to$-消去)} }{\displaystyle \frac{\Gamma, P \vdash R}{\Gamma \vdash P \to R} \text{($\to$-引入)} } \text{($\to$-消去)}
 $$
 
 这就是为什么我们可以在几何证明中进行“连环推导”：因为逻辑规则允许我们将一个个小的蕴涵关系串联成更长的推理链。
@@ -115,7 +115,7 @@ $$
 
 根据我们之前讨论的**累积性** 和 **单调性**，这个打包好的定理会跟着 $\Gamma$ 进入任何新的上下文。 
 - 无论我们是以后在证明全等三角形，还是在证明平行线，只要我们的上下文包含欧氏几何公理（$\Gamma$），我们就永远拥有这些定理（$\Gamma \vdash P \to Q$）。
-- 我们不需要每次都重新推导一遍补角关系，只需要用一次“消去规则（$\to$-Elim）”，就能瞬间从一个条件得到一个结论。
+- 我们不需要每次都重新推导一遍补角关系，只需要用一次“消去规则（$\to$-消去）”，就能瞬间从一个条件得到一个结论。
 
 ## 习题
 
@@ -133,5 +133,5 @@ $$ \vdash P \to (Q \to P) $$
 
 ## 总结
 
-- **蕴涵引入（$\to$-Intro）**：是将一段**动态的推理过程**（从 $P$ 到 $Q$）封装成一个**静态的逻辑包裹**（$P \to Q$）。这对应了“证明一个定理”。
-- **蕴涵消去（$\to$-Elim）**：是将一个**静态的逻辑包裹**拆开，将其转化为**现实的知识**。这对应了“应用一个定理”。
+- **蕴涵引入（$\to$-引入）**：是将一段**动态的推理过程**（从 $P$ 到 $Q$）封装成一个**静态的逻辑包裹**（$P \to Q$）。这对应了“证明一个定理”。
+- **蕴涵消去（$\to$-消去）**：是将一个**静态的逻辑包裹**拆开，将其转化为**现实的知识**。这对应了“应用一个定理”。

@@ -23,7 +23,7 @@
 
 在深入定理之前，我们需要明确等价算符 $\leftrightarrow$ 的操作规则及其表现出的代数性质。
 
-### 2.1 等价消去律 ($\leftrightarrow$-E)
+### 2.1 等价消去律 ($\leftrightarrow$-消去)
 根据定义 $P \leftrightarrow Q \equiv (P \to Q) \land (Q \to P)$，我们可以得到两条消去引理：
 - **引理 1**：$\displaystyle \frac{P \quad P \leftrightarrow Q}{Q}$
 - **引理 2**：$\displaystyle \frac{Q \quad P \leftrightarrow Q}{P}$
@@ -74,7 +74,7 @@ $$
 现在我们要观察整体命题 $S \leftrightarrow S'$ 是否成立。由于等价关系具有 **对称性**，证明从 $S$ 推导出 $S'$ 与从 $S'$ 推回 $S$ 的过程是一样的。为了书写简洁，我们主要展示“从左向右”的推导路径。
 
 #### 情况 1：合取式 ($S = A \land B$)
-我们要证明 $A \land B \leftrightarrow A' \land B'$。根据 $\land$-I 和 $\leftrightarrow$-E，我们可以得到如下路径：
+我们要证明 $A \land B \leftrightarrow A' \land B'$。根据 $\land$-引入 和 $\leftrightarrow$-E，我们可以得到如下路径：
 
 $$ \frac{\displaystyle \frac{A \land B}{A} \quad A \leftrightarrow A'}{A'} \qquad \frac{\displaystyle \frac{A \land B}{B} \quad B \leftrightarrow B'}{B'} 
 $$ 
@@ -87,11 +87,11 @@ $$
 
 - **路径 1 ($A \to A' \lor B'$)**：
 
- $$ \frac{A \quad A \leftrightarrow  A'}{ \displaystyle \frac{A'}{A' \lor B'} (\lor\text{-I}) } (\leftrightarrow \text{-E}_1) $$
+ $$ \frac{A \quad A \leftrightarrow  A'}{ \displaystyle \frac{A'}{A' \lor B'} (\lor\text{-引入}) } (\leftrightarrow \text{-消去}_1) $$
 - **路径 2 ($B \to A' \lor B'$)**：同理。
 
-利用 $\lor$-Elim 规则（简写形式）：
-$$ \frac{A \lor B \quad A \to A' \lor B' \quad B \to A' \lor B'}{A' \lor B'} (\lor\text{-E}) 
+利用 $\lor$-消去 规则（简写形式）：
+$$ \frac{A \lor B \quad A \to A' \lor B' \quad B \to A' \lor B'}{A' \lor B'} (\lor\text{-消去}) 
 $$ 
 结论得证。
 
@@ -130,7 +130,7 @@ $$
 ## 习题
 
 **习题 1.9.1（核心性质证明）**：
-请分别利用 $\leftrightarrow$-I 和 $\leftrightarrow$-E 规则，形式化地证明等价关系的：
+请分别利用 $\leftrightarrow$-引入 和 $\leftrightarrow$-消去 规则，形式化地证明等价关系的：
 1. 自反性
 2. 对称性
 3. 传递性

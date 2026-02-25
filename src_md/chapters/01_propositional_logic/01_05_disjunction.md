@@ -2,16 +2,16 @@
 
 在几何学中，我们经常遇到不确定的情况，或者需要根据图形的不同形态进行讨论。在逻辑学中，这种“或”的关系被称为**析取（Disjunction）**，记作 $\lor$。
 
-## 1. 宣告可能性：析取引入规则（$\lor$-Intro）
+## 1. 宣告可能性：析取引入规则（$\lor$-引入）
 
 当我们要定义一个范畴时，只要满足其中一种可能性即可。其规则如下：
 
-$$ \frac{\Gamma \vdash P}{\Gamma \vdash P \lor Q} \text{ ($\lor$-Intro}_1\text{)} \quad \frac{\Gamma \vdash Q}{\Gamma \vdash P \lor Q} \text{ ($\lor$-Intro}_2\text{)} $$
+$$ \frac{\Gamma \vdash P}{\Gamma \vdash P \lor Q}\text{($\land$-引入$_1)} \quad \frac{\Gamma \vdash Q}{\Gamma \vdash P \lor Q} \text{($\land$-引入$_2$)} $$
 
 ### 案例：等腰三角形的属性
 一个三角形被判定为“等腰三角形”，意味着它至少有两边相等。
 假设我们证明了某两边相等：$AB = AC$。
-那么根据 $\lor$-Intro，我们可以宣告这个三角形满足以下析取命题：
+那么根据 $\lor$-引入，我们可以宣告这个三角形满足以下析取命题：
 - **$(AB = AC \lor BC = AC) \lor AB = BC$**
 
 （$\lor$ 是左结合算符，实际书写中括号会被省略。）
@@ -31,7 +31,7 @@ $$ \frac{\Gamma \vdash P}{\Gamma \vdash P \lor Q} \text{ ($\lor$-Intro}_1\text{)
 
 ---
 
-## 2. 处理不确定性：析取消去规则（$\lor$-Elim）
+## 2. 处理不确定性：析取消去规则（$\lor$-消去）
 
 析取最核心的威力在于**分类讨论（Proof by Cases）**。当我们知道几种可能性必居其一时，如果我们能证明每种可能性都能推导出同一个结论，那么这个结论就是确定的。
 
@@ -59,7 +59,7 @@ $$ \frac{P \lor Q \quad P \to R \quad Q \to R}{R} $$
 
 我们可以将其形式化为以下推导：
 
-$$ \frac{P_1 \lor P_2 \lor P_3 \quad P_1 \to S \quad P_2 \to S \quad P_3 \to S}{S} \text{ ($\lor$-Elim)} $$
+$$ \frac{P_1 \lor P_2 \lor P_3 \quad P_1 \to S \quad P_2 \to S \quad P_3 \to S}{S} \text{ ($\lor$-消去)} $$
 
 （注：标准的消去规则是二元的，处理三项析取时实际上是进行了一次嵌套讨论，先处理 $P_1 \lor P_2$，再处理其结果与 $P_3$ 的组合。我们稍后就会补充这个证明。）
 
@@ -89,11 +89,11 @@ $$ \vdash ((P \lor Q) \lor R) \leftrightarrow (P \lor (Q \lor R)) $$
 
 $$ \frac{P \lor Q \lor R \quad P \to S \quad Q \to S \quad R \to S}{S} $$
 
-为了让大家看清底层逻辑，我们通过**嵌套**两层标准 $\lor$-Elim 来证明这个规则。推理如下：
+为了让大家看清底层逻辑，我们通过**嵌套**两层标准 $\lor$-消去 来证明这个规则。推理如下：
 
-$$ \frac{\Gamma \vdash (P \lor Q) \lor R \quad \displaystyle \frac{\Gamma, P \lor Q \vdash P \lor Q \quad \Gamma, P \lor Q, P \vdash S \quad \Gamma, P \lor Q, Q \vdash S}{\Gamma, P \lor Q \vdash S} \text{ ($\lor$-E)} \quad \Gamma, R \vdash S}{\Gamma \vdash S} \text{ ($\lor$-E)} $$
+$$ \frac{\Gamma \vdash (P \lor Q) \lor R \quad \displaystyle \frac{\Gamma, P \lor Q \vdash P \lor Q \quad \Gamma, P \lor Q, P \vdash S \quad \Gamma, P \lor Q, Q \vdash S}{\Gamma, P \lor Q \vdash S} \text{ ($\lor$-消去)} \quad \Gamma, R \vdash S}{\Gamma \vdash S} \text{ ($\lor$-消去)} $$
 
-**这正是我们之前在面积证明中略过的逻辑。** 虽然标准的 $\lor$-Elim 只有两路，但通过这种嵌套，我们可以处理任意多个分支。请注意，这个证明中，上下文多次变动。如果用不带上下文的推理写法会很复杂，但是在我们当前的写法中清晰自然。实际上，像上下文和 $\vdash$ 这样的概念出现，正是由这种形式化需求所驱动的。
+**这正是我们之前在面积证明中略过的逻辑。** 虽然标准的 $\lor$-消去 只有两路，但通过这种嵌套，我们可以处理任意多个分支。请注意，这个证明中，上下文多次变动。如果用不带上下文的推理写法会很复杂，但是在我们当前的写法中清晰自然。实际上，像上下文和 $\vdash$ 这样的概念出现，正是由这种形式化需求所驱动的。
 
 
 #### 结合律的证明（方向 $\to$）
@@ -103,18 +103,18 @@ $$ \frac{\Gamma \vdash (P \lor Q) \lor R \quad \displaystyle \frac{\Gamma, P \lo
 我们可以直接套用上面的三路规则。令结论 $S$ 为 $P \lor (Q \lor R)$，我们只需要展示三条路径是如何通往 $S$ 的：
 
 **路径 1：从 $P$ 出发**
-$$ \frac{P}{P \lor (Q \lor R)} \text{ ($\lor$-I}_1\text{)} $$
+$$ \frac{P}{P \lor (Q \lor R)} \text{ ($\lor$-引入}_1\text{)} $$
 
 **路径 2：从 $Q$ 出发**
-$$ \frac{\displaystyle \frac{Q}{Q \lor R} \text{ ($\lor$-I}_1\text{)} }{P \lor (Q \lor R)} \text{ ($\lor$-I}_2\text{)} $$
+$$ \frac{\displaystyle \frac{Q}{Q \lor R} \text{ ($\lor$-引入}_1\text{)} }{P \lor (Q \lor R)} \text{ ($\lor$-引入}_2\text{)} $$
 
 **路径 3：从 $R$ 出发**
-$$ \frac{\displaystyle \frac{R}{Q \lor R} \text{ ($\lor$-I}_2\text{)} }{P \lor (Q \lor R)} \text{ ($\lor$-I}_2\text{)} $$
+$$ \frac{\displaystyle \frac{R}{Q \lor R} \text{ ($\lor$-引入}_2\text{)} }{P \lor (Q \lor R)} \text{ ($\lor$-引入}_2\text{)} $$
 
 **最终汇聚：**
 将上述三条路径，封装为蕴涵命题与前提结合，利用我们刚刚证明的“三路分类讨论”引理：
 
-$$ \frac{(P \lor Q) \lor R \quad P \to P \lor (Q \lor R) \quad Q \to P \lor (Q \lor R) \quad R \to P \lor (Q \lor R)}{P \lor (Q \lor R)} \text{ ($\lor$-Elim-3)} $$
+$$ \frac{(P \lor Q) \lor R \quad P \to P \lor (Q \lor R) \quad Q \to P \lor (Q \lor R) \quad R \to P \lor (Q \lor R)}{P \lor (Q \lor R)} \text{ ($\lor$-消去-3)} $$
 
 由此，结合律的一个方向得证。
 
@@ -134,7 +134,7 @@ $$ \vdash ((P \lor Q) \to R) \leftrightarrow ((P \to R) \land (Q \to R)) $$
 ## 习题
 
 **习题 1.5.1：**
-假设我们的天文学常识库 $\Gamma$ 中已经包含了一个确凿的判定，$P$：“天上只有一个太阳”。即使我们非常确定命题 $Q$：“太阳从西边升起”，在现实中是荒谬且错误的，请根据 $\lor$-Intro 规则，形式化并证明在逻辑上以下判定依然成立：天上只有一个太阳或太阳从西边升起。
+假设我们的天文学常识库 $\Gamma$ 中已经包含了一个确凿的判定，$P$：“天上只有一个太阳”。即使我们非常确定命题 $Q$：“太阳从西边升起”，在现实中是荒谬且错误的，请根据 $\lor$-引入 规则，形式化并证明在逻辑上以下判定依然成立：天上只有一个太阳或太阳从西边升起。
 
 **习题 1.5.2**：请证明析取的**交换律**：$P \lor Q \vdash Q \lor P$。
 

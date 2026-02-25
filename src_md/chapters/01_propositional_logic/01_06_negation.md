@@ -21,10 +21,10 @@ $$ \frac{P \lor Q \quad \neg P}{Q} \text{ (排除法/DS)} $$
 
 让我们用推理线演示这个过程：
 
-1. 从 $P$ 出发，利用 $\lor$-Intro 得到 $P \lor Q$。（其中 $Q$ 可以是任何命题，包括一些荒谬的命题，比如“三角形有四个角”）
+1. 从 $P$ 出发，利用 $\lor$-引入 得到 $P \lor Q$。（其中 $Q$ 可以是任何命题，包括一些荒谬的命题，比如“三角形有四个角”）
 2. 结合另一个已知条件 $\neg P$， 利用上述的**排除法**，我们强行得到了 $Q$。
 
-$$ \frac{\displaystyle \frac{P}{P \lor Q} \text{ ($\lor$-I)} \quad \neg P}{Q} \text{ (排除法)}
+$$ \frac{\displaystyle \frac{P}{P \lor Q} \text{ ($\lor$-引入)} \quad \neg P}{Q} \text{ (排除法)}
 $$
 
 这被称作**爆炸原理（Explosion Principle）**：**从一对矛盾出发，我们可以推导出世界上的任何命题。** 这在直觉上有时会让初学者不适，也是命题逻辑中最反直觉的部分，但这也的确是排除法的自然推论。这告诉我们如果上下文中有一对矛盾，那么逻辑推理将失去分辨真假的能力，也就没有用了。
@@ -38,8 +38,8 @@ $$
 这意味着，**所有的矛盾在逻辑上都是等价的**：一旦我们推出了其中一个，我们就推出了所有。因此，在逻辑学看来，它们都指向同一个终点，我们用一个统一的符号 **$\perp$（Contradiction/False）** 来代表这个状态。
 
 关于 $\perp$，有两条最重要的规则：
-- **消去规则 ($\perp$-Elim)**：如果我们推导出了 $\perp$，我们就有权宣告任何命题 $R$ 成立。
-$$ \frac{\Gamma \vdash \perp}{\Gamma \vdash R} \text{ ($\perp$-Elim)} $$
+- **消去规则 ($\perp$-消去)**：如果我们推导出了 $\perp$，我们就有权宣告任何命题 $R$ 成立。
+$$ \frac{\Gamma \vdash \perp}{\Gamma \vdash R} \text{ ($\perp$-消去)} $$
 这就是**爆炸原理**在逻辑系统中的正式定义。它描述了我们如何“使用”一个已经矛盾的状态。
 
 - **没有引入规则**：$\perp$ 不应该被允许凭空产生。（我们之后马上会学习排中律来打破这一点。）
@@ -58,13 +58,13 @@ $$ \frac{\Gamma \vdash \perp}{\Gamma \vdash R} \text{ ($\perp$-Elim)} $$
 ### 证明：否定的定义可以实现排除法功能
 如果我们采用 $\neg P \equiv P \to \perp$ 这个定义，它能像排除法那样“排除分支”吗？假设我们已知 $P \lor Q$ 和 $P \to \perp$：
 
-1. **分支一 ($P$)**：结合 $P \to \perp$ 得到 $\perp$，利用 $\perp$-Elim 得到 $Q$：
-$$ \frac{ \displaystyle \frac{P \quad P \to \perp}{\perp} \text{ ($\to$-E) } }{Q} \text{ ($\perp$-E)} 
+1. **分支一 ($P$)**：结合 $P \to \perp$ 得到 $\perp$，利用 $\perp$-消去 得到 $Q$：
+$$ \frac{ \displaystyle \frac{P \quad P \to \perp}{\perp} \text{ ($\to$-消去) } }{Q} \text{ ($\perp$-消去)} 
 $$ 
 2. **分支二 ($Q$)**：直接得到 $Q$。
 3. **合并**：无论哪个分支，最终都指向 $Q$（利用分类讨论 $\lor$-E）。
 
-$$ \frac{P \lor Q \quad P \to Q \quad Q \to Q}{Q} \text{ ($\lor$-E)} 
+$$ \frac{P \lor Q \quad P \to Q \quad Q \to Q}{Q} \text{ ($\lor$-消去)} 
 $$ 
 
 **结论**：这说明两种定义是可以互相推导出的，它们是等价的。从此以后，我们将 $\neg P$ 正式看作 **$P \to \perp$** 的另一种记法。这种定义和主流一致，而且非常好用。而我们最初的直觉——**排除法**，也将作为逻辑系统中的一条重要定理被保留下来。
@@ -83,12 +83,12 @@ $$
 #### 第一步：推导
 我们先假设已经同时持有了 $P$、$\neg Q$ 以及它们之间的桥梁 $P \to Q$，矛盾就会立刻发生：
 
-$$ \frac{\displaystyle \frac{P \quad P \to Q}{Q} \text{($\to$-E)} \quad \neg Q}{\perp} \text{($\to$-E)} $$
+$$ \frac{\displaystyle \frac{P \quad P \to Q}{Q} \text{($\to$-消去)} \quad \neg Q}{\perp} \text{($\to$-消去)} $$
 
 #### 第二步：三层封装
-现在，我们从最深处的上下文开始，连续使用三次 **$\to$-Intro**，将上述结果层层封装成定理：
+现在，我们从最深处的上下文开始，连续使用三次 **$\to$-引入**，将上述结果层层封装成定理：
 
-$$ \frac{\displaystyle \frac{\displaystyle \frac{P \to Q, \neg Q, P \vdash \perp}{P \to Q, \neg Q \vdash P \to \perp} \text{($\to$-I)}}{ P \to Q \vdash \neg Q \to \neg P} \text{($\to$-I)}}{ \vdash (P \to Q) \to (\neg Q \to \neg P)} \text{($\to$-I)} $$
+$$ \frac{\displaystyle \frac{\displaystyle \frac{P \to Q, \neg Q, P \vdash \perp}{P \to Q, \neg Q \vdash P \to \perp} \text{($\to$-引入)}}{ P \to Q \vdash \neg Q \to \neg P} \text{($\to$-引入)}}{ \vdash (P \to Q) \to (\neg Q \to \neg P)} \text{($\to$-引入)} $$
 
 这种“先深入、再封装”的过程，生动地展示了逻辑规则是如何将一段动态的推理流程，封装成一个稳固的、可随时调用的静态定理的。
 
@@ -117,8 +117,8 @@ $$ \frac{\displaystyle \frac{\displaystyle \frac{P \to Q, \neg Q, P \vdash \perp
 **推导过程**：
 
 1. **证明 $\neg P$**：
-   我们假设 $P$。利用 $\lor$-Intro，我们可以扩充为 $P \lor Q$。既然前提告诉我们 $\neg(P \lor Q)$（即 $(P \lor Q) \to \perp$），我们立刻撞出了矛盾 $\perp$。
-   $$ \frac{\displaystyle \frac{P}{P \lor Q} \text{($\lor$-I)} \quad \neg(P \lor Q) }{ \perp}  \text{($\to$-E)}$$
+   我们假设 $P$。利用 $\lor$-引入，我们可以扩充为 $P \lor Q$。既然前提告诉我们 $\neg(P \lor Q)$（即 $(P \lor Q) \to \perp$），我们立刻撞出了矛盾 $\perp$。
+   $$ \frac{\displaystyle \frac{P}{P \lor Q} \text{($\lor$-引入)} \quad \neg(P \lor Q) }{ \perp}  \text{($\to$-消去)}$$
 
 2. **证明 $\neg Q$**：
    同理，假设 $Q$，扩充为 $P \lor Q$，撞出矛盾。
@@ -126,7 +126,7 @@ $$ \frac{\displaystyle \frac{\displaystyle \frac{P \to Q, \neg Q, P \vdash \perp
 3. **最终汇聚**：
    我们将上述两个独立的推演过程合并，并封装为 $\land$：
 
-$$ \frac{\displaystyle \frac{\displaystyle { \neg(P \lor Q), P \vdash \perp}}{\neg(P \lor Q) \vdash \neg P} \text{($\to$-I)} \quad \frac{\displaystyle {\neg(P \lor Q), Q \vdash \perp}}{\neg(P \lor Q) \vdash \neg Q} \text{($\to$-I)}}{ \neg(P \lor Q) \vdash \neg P \land \neg Q} \text{($\land$-I)} $$
+$$ \frac{\displaystyle \frac{\displaystyle { \neg(P \lor Q), P \vdash \perp}}{\neg(P \lor Q) \vdash \neg P} \text{($\to$-引入)} \quad \frac{\displaystyle {\neg(P \lor Q), Q \vdash \perp}}{\neg(P \lor Q) \vdash \neg Q} \text{($\to$-引入)}}{ \neg(P \lor Q) \vdash \neg P \land \neg Q} \text{($\land$-引入)} $$
 
 
 
@@ -137,7 +137,7 @@ $$ \frac{\displaystyle \frac{\displaystyle { \neg(P \lor Q), P \vdash \perp}}{\n
 **习题 1.6.1：无矛盾律 (Law of Non-Contradiction)**
 请证明：$\vdash \neg (P \land \neg P)$。
 
-**习题 1.6.2：双重否定引入 (Double Negation Introduction)**
+**习题 1.6.2：双重否定引入**
 请证明：$\vdash P \to \neg \neg P$。
 （注：这说明肯定的事实必然是不可能被否定的。它构成了“双重否定等于肯定”这一等价关系的正向部分。至于反向部分 $\neg \neg P \vdash P$，我们将在下一节结合排中律进行讨论。）
 
@@ -152,7 +152,7 @@ $$ \frac{\displaystyle \frac{\displaystyle { \neg(P \lor Q), P \vdash \perp}}{\n
 
 **习题 1.6.5：德·摩根定律（方向三）**
 请证明：$\neg P \lor \neg Q \vdash \neg (P \land Q)$。
-（提示：对前提使用分类讨论 $\lor$-Elim。）
+（提示：对前提使用分类讨论 $\lor$-消去。）
 
 **习题 1.6.6：**
 在第 4 小节，使用新否定定义推出排除法公式时我们在一个地方省略了上下文 $\Gamma$ 的转换，找出它，并试着补全。

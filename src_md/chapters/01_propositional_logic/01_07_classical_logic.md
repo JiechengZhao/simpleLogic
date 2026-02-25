@@ -32,8 +32,8 @@ $$ \frac{\Gamma, \neg P \vdash \perp}{\Gamma \vdash P} \text{ (RAA)} $$
 为了让这个过程更清晰，我们可以将其拆解为两个直观的步骤：
 
 ### 第一步：从矛盾到双重否定
-如果我们在假设 $\neg P$ 的情况下推导出了 $\perp$，那么根据 **$\to$-Intro**，我们就证明了 $\neg P \to \perp$，也就是 $\neg \neg P$（$\neg$ 的定义）：
-$$ \frac{\Gamma, \neg P \vdash \perp}{\Gamma \vdash \neg \neg P} \text{ ($\to$-Intro)} 
+如果我们在假设 $\neg P$ 的情况下推导出了 $\perp$，那么根据 **$\to$-引入**，我们就证明了 $\neg P \to \perp$，也就是 $\neg \neg P$（$\neg$ 的定义）：
+$$ \frac{\Gamma, \neg P \vdash \perp}{\Gamma \vdash \neg \neg P} \text{ ($\to$-引入)} 
 $$
 ### 第二步：利用排中律“强行合流”
 现在，我们手里握着 $\neg \neg P$（反面的反面成立），同时根据**排中律**，我们又知道 $P \lor \neg P$ 必然成立。
@@ -48,7 +48,7 @@ $$ \frac{P \lor \neg P \quad \neg \neg P}{P} \text{ (排除法)} $$
 
 ## 3. 双重否定等于肯定
 
-上述证明过程第二步实际证明了**双重否定消去（Double Negation Elimination）**：
+上述证明过程第二步实际证明了**双重否定消去**：
 
 $$ \frac{\neg \neg P}{P} \text{ (DNE)} $$
 

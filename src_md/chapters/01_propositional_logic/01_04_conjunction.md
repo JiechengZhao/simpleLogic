@@ -1,14 +1,14 @@
 # 1.4 合取：事实的叠加与拆分
 
-在几何定义中，我们经常需要多个属性同时满足。在逻辑学中，这种“且”的关系被称为**合取（Conjunction）**，记作 $\land$。
+在几何定义中，我们经常需要多个属性同时满足。在逻辑学中，这种“且”的关系被称为**合取**，记作 $\land$。
 
 如果我们有两个命题 $P$ 和 $Q$，那么 $P \land Q$ 读作“$P$ 且 $Q$”。它代表了一个更强的复合事实：$P$ 和 $Q$ 同时成立。
 
-## 1. 制造复合事实：合取引入规则（$\land$-Intro）
+## 1. 制造复合事实：合取引入规则（$\land$-引入）
 
 当我们要证明一个物体具有多重属性时，我们需要分别证明每一个属性，然后将它们“缝合”在一起。
 
-$$ \frac{\Gamma \vdash P \quad \Gamma \vdash Q}{\Gamma \vdash P \land Q} \text{ ($\land$-Intro)} $$
+$$ \frac{\Gamma \vdash P \quad \Gamma \vdash Q}{\Gamma \vdash P \land Q} \text{ ($\land$-引入)} $$
 
 ### 几何案例：等腰直角三角形
 假设我们在上下文 $\Gamma$ 中研究一个三角形 $ABC$：
@@ -20,11 +20,11 @@ $$ \frac{\Gamma \vdash P \quad \Gamma \vdash Q}{\Gamma \vdash P \land Q} \text{ 
 
 ---
 
-## 2. 提取具体属性：合取消去规则（$\land$-Elim）
+## 2. 提取具体属性：合取消去规则（$\land$-消去）
 
 反过来，如果我们已经知道了一个复合事实，我们可以根据需要随时提取其中的任何一个部分。
 
-$$ \frac{\Gamma \vdash P \land Q}{\Gamma \vdash P} \text{ ($\land$-Elim}_1\text{)} \quad \frac{\Gamma \vdash P \land Q}{\Gamma \vdash Q} \text{ ($\land$-Elim}_2\text{)} $$
+$$ \frac{\Gamma \vdash P \land Q}{\Gamma \vdash P} \text{($\land$-消去$_1$)}\quad \frac{\Gamma \vdash P \land Q}{\Gamma \vdash Q} \text{($\land$-消去$_2$)} $$
 
 ### 几何案例：利用“定义”
 假设题目给出的已知条件是：“$\triangle ABC$ 是等腰直角三角形”。这意味着在我们的背景 $\Gamma$ 中，已经持有了复合命题：$\Gamma \vdash P \land Q$。
@@ -53,11 +53,11 @@ $$ \frac{\Gamma \vdash P \land Q}{\Gamma \vdash P} \text{ ($\land$-Elim}_1\text{
 
 **证明**：
 我们从已知条件 $P \land Q$ 出发：
-1. 利用 $\land$-Elim$_2$，我们从 $P \land Q$ 中提取出 $Q$。
-2. 利用 $\land$-Elim$_1$，我们从 $P \land Q$ 中提取出 $P$。
-3. 利用 $\land$-Intro，将 $Q$ 和 $P$ 重新组合，得到 $Q \land P$。
+1. 利用 $\land$-消去$_2$，我们从 $P \land Q$ 中提取出 $Q$。
+2. 利用 $\land$-消去$_1$，我们从 $P \land Q$ 中提取出 $P$。
+3. 利用 $\land$-引入，将 $Q$ 和 $P$ 重新组合，得到 $Q \land P$。
 
-$$ \frac{\displaystyle \frac{P \land Q}{Q} \text{($\land$-Elim$_2$)} \quad \displaystyle \frac{P \land Q}{P} \text{($\land$-Elim$_1$)}} {Q \land P} \text{($\land$-Intro)} $$
+$$ \frac{\displaystyle \frac{P \land Q}{Q} \text{($\land$-消去$_2$)} \quad \displaystyle \frac{P \land Q}{P} \text{($\land$-消去$_1$)}} {Q \land P} \text{($\land$-引入)} $$
 
 ### 定理 1.4.2：结合律（Associativity）
 **命题**：$\vdash ((P \land Q) \land R) \leftrightarrow (P \land (Q \land R))$
@@ -71,7 +71,7 @@ $$ \frac{\displaystyle \frac{P \land Q}{Q} \text{($\land$-Elim$_2$)} \quad \disp
 
 在第 1.3 节中，我们将蕴涵（$\to$）比作“打包”。当我们将合取加入进来时，会出现一些有趣的交互规则。
 
-### 定理 1.4.3：分配律（推导的拆分）
+### 定理 1.4.3：分配律
 **在任何上下文中合取的分配律都成立**：$\vdash (P \to (Q \land R)) \leftrightarrow ((P \to Q) \land (P \to R))$
 这说明：证明一个复合结论，等同于分别证明它的每一个部分。
 
@@ -80,11 +80,11 @@ $$ \frac{\displaystyle \frac{P \land Q}{Q} \text{($\land$-Elim$_2$)} \quad \disp
 2. 为了证明右侧的合取，我们需要分别得到 $P \to Q$ 和 $P \to R$。
 3. 证明 $P \to Q$：
    - 临时假设 $P$。
-   - 利用 $\to$-Elim，由于我们有 $P$ 和 $P \to (Q \land R)$，得到 $Q \land R$。
-   - 利用 $\land$-Elim$_1$，得到 $Q$。
+   - 利用 $\to$-消去，由于我们有 $P$ 和 $P \to (Q \land R)$，得到 $Q \land R$。
+   - 利用 $\land$-消去$_1$，得到 $Q$。
    - 撤销假设 $P$，得到 $P \to Q$。
-4. 证明 $P \to R$：过程同上，只需最后改用 $\land$-Elim$_2$。
-5. 最后，利用 $\land$-Intro 将两者合成为 $(P \to Q) \land (P \to R)$。
+4. 证明 $P \to R$：过程同上，只需最后改用 $\land$-消去$_2$。
+5. 最后，利用 $\land$-引入 将两者合成为 $(P \to Q) \land (P \to R)$。
 
 ---
 
@@ -104,8 +104,8 @@ $$ \vdash ((P \land Q) \to R) \leftrightarrow (P \to (Q \to R)) $$
 
 ## 总结
 
-- **合取引入（$\land$-Intro）**：将独立事实合并为复合事实。
-- **合取消去（$\land$-Elim）**：从复合事实中提取独立事实。
+- **合取引入（$\land$-引入）**：将独立事实合并为复合事实。
+- **合取消去（$\land$-消去）**：从复合事实中提取独立事实。
 - **等价定义（$\leftrightarrow$）**：通过合取将双向的蕴涵封装在一起。
 - **简写约定**：当上下文相同时，我们可以省略 $\Gamma \vdash$，直接专注于命题本身。
 - **工具价值**：合取不仅能描述多重属性，还能通过交换律、结合律和分配律来灵活重组推理的前提与结论。
