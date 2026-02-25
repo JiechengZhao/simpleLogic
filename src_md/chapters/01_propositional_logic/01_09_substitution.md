@@ -25,8 +25,8 @@
 
 ### 2.1 等价消去律 ($\leftrightarrow$-消去)
 根据定义 $P \leftrightarrow Q \equiv (P \to Q) \land (Q \to P)$，我们可以得到两条消去引理：
-- **引理 1**：$\displaystyle \frac{P \quad P \leftrightarrow Q}{Q}$
-- **引理 2**：$\displaystyle \frac{Q \quad P \leftrightarrow Q}{P}$
+- **引理 1**：$\displaystyle \frac{P \quad P \leftrightarrow Q}{Q} \text{($\leftrightarrow$-消去)}$
+- **引理 2**：$\displaystyle \frac{Q \quad P \leftrightarrow Q}{P} \text{($\leftrightarrow$-消去)}$
 
 这两条引理本质上是合取消去（$\land$-消去）与蕴涵消去（$\to$-消去）的组合调用。
 
@@ -49,8 +49,7 @@
 **等价替换定理（Substitution Theorem）**：
 如果两个命题表达式 $P$ 和 $Q$ 满足等价关系，那么对于任何包含 $P$ 的命题表达式 $S$，$S$ 与替换后的 $S[P \backslash Q]$ 也是等价的。
 
-$$ \frac{\Gamma \vdash P \leftrightarrow Q}{\Gamma \vdash S \leftrightarrow S[P \backslash Q]} 
-$$ 
+$ \frac{\Gamma \vdash P \leftrightarrow Q}{\Gamma \vdash S \leftrightarrow S[P \backslash Q]} \text{(替换定理)} $ 
 
 这意味着逻辑等价性具有某种“穿透力”，只要局部等价，就能确保整体等价。
 
@@ -76,7 +75,7 @@ $$
 #### 情况 1：合取式 ($S = A \land B$)
 我们要证明 $A \land B \leftrightarrow A' \land B'$。根据 $\land$-引入 和 $\leftrightarrow$-E，我们可以得到如下路径：
 
-$$ \frac{\displaystyle \frac{A \land B}{A} \quad A \leftrightarrow A'}{A'} \qquad \frac{\displaystyle \frac{A \land B}{B} \quad B \leftrightarrow B'}{B'} 
+$$ \frac{\displaystyle \frac{A \land B}{A} \text{($\land$-消去)} \quad A \leftrightarrow A'}{A'} \text{($\leftrightarrow$-消去)} \qquad \frac{\displaystyle \frac{A \land B}{B} \text{($\land$-消去)} \quad B \leftrightarrow B'}{B'} \text{($\leftrightarrow$-消去)} 
 $$ 
 
 将两条路径合并即可得到结论 $A' \land B'$。结合反向推导，合取项的替换保持等价。
@@ -116,8 +115,7 @@ $$
 通过上面的证明，我们确认命题逻辑对于等价关系是**定义良好**（Well-defined）的。利用引理，我们可以直接推导出本节开头提到的替换规则：
 
 **推论：等价替换推导**
-$$ \frac{\Gamma \vdash S \quad \Gamma \vdash P \leftrightarrow Q}{\Gamma \vdash S[P \backslash Q]} 
-$$ 
+$$ \frac{\Gamma \vdash S \quad \Gamma \vdash P \leftrightarrow Q}{\Gamma \vdash S[P \backslash Q]} \text{(替换规则)} $$ 
 
 证明路径非常直观：由定理知 $\Gamma, P \leftrightarrow Q \vdash S \leftrightarrow S'$，再利用引理 1 即可从前提 $S$ 推出结论 $S'$。
 

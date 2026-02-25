@@ -59,10 +59,10 @@ $$ \Gamma \vdash P $$
 **目标**：在上下文 $\Gamma$ 中（包含几何公理及已知条件 $AB=AC$），确认结论 $\angle B = \angle C$。
 
 1. **初始判定**：根据题设，直接做出判定：$\Gamma \vdash AB = AC$。
-2. **引入新判定**：作顶角平分线 $AD$。根据公理，确认新判定：$\Gamma \vdash \angle BAD = \angle CAD$。
-3. **确认共有属性**：观察图形得到判定：$\Gamma \vdash AD = AD$。
-4. **触发推理规则**：上述三个判定满足了 **SAS (边角边) 全等判定规则**。于是，我们得到了一个更强的判定：$\Gamma \vdash \triangle ABD \cong \triangle ACD$。
-5. **抵达最终目标**：根据全等三角形的性质，确认最终判定：$\Gamma \vdash \angle B = \angle C$。
+2. **引入新判定**：作顶角平分线 $AD$。根据公理，确认新判定：$\Gamma \vdash \angle BAD = \angle CAD$（作图规则）。
+3. **确认共有属性**：观察图形得到判定：$\Gamma \vdash AD = AD$（共有属性）。
+4. **触发推理规则**：上述三个判定满足了 **SAS (边角边) 全等判定规则**。于是，我们得到了一个更强的判定：$\Gamma \vdash \triangle ABD \cong \triangle ACD$（SAS）。
+5. **抵达最终目标**：根据全等三角形的性质，确认最终判定：$\Gamma \vdash \angle B = \angle C$（全等三角形性质）。
 
 
 ## 知识的累积性
