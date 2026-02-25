@@ -16,3 +16,5 @@
 
 - [第2章 一阶逻辑——描述“关系”的语言 (待完成)](chapters/02_first_order_logic.md)
 - [第3章 传统逻辑——三段论的现代翻译 (待完成)](chapters/03_classical_logic.md)
+
+- [附录：中英文术语对照表](APPENDIX.md)
