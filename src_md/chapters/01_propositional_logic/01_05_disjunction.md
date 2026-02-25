@@ -59,7 +59,7 @@ $$ \frac{P \lor Q \quad P \to R \quad Q \to R}{R} \text{($\lor$-消去)} $$
 
 我们可以将其形式化为以下推导：
 
-$$ \frac{P_1 \lor P_2 \lor P_3 \quad P_1 \to S \quad P_2 \to S \quad P_3 \to S}{S} \text{($\lor$-消去)} $$
+$$ \frac{P_1 \lor P_2 \lor P_3 \quad P_1 \to S \quad P_2 \to S \quad P_3 \to S}{S} \text{($\lor$-消去-3)} $$
 
 （注：标准的消去规则是二元的，处理三项析取时实际上是进行了一次嵌套讨论，先处理 $P_1 \lor P_2$，再处理其结果与 $P_3$ 的组合。我们稍后就会补充这个证明。）
 
