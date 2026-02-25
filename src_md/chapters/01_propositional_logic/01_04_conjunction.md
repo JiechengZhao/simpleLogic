@@ -47,7 +47,7 @@ $$ \frac{\Gamma \vdash P \land Q}{\Gamma \vdash P} \text{($\land$-消去$_1$)} \
 
 利用引入和消去规则，我们可以证明一些直观的逻辑性质。这些性质在复杂的几何证明中非常有用，能帮我们重新组织已知条件。
 
-### 定理 1.4.1：交换律（Commutativity）
+### 定理 1.4.1：交换律
 **命题**：如果 $P \land Q$ 成立，那么 $Q \land P$ 也成立。
 即：$P \land Q \vdash Q \land P$
 
@@ -59,7 +59,7 @@ $$ \frac{\Gamma \vdash P \land Q}{\Gamma \vdash P} \text{($\land$-消去$_1$)} \
 
 $$ \frac{\displaystyle \frac{P \land Q}{Q} \text{($\land$-消去$_2$)} \quad \displaystyle \frac{P \land Q}{P} \text{($\land$-消去$_1$)}} {Q \land P} \text{($\land$-引入)} $$
 
-### 定理 1.4.2：结合律（Associativity）
+### 定理 1.4.2：结合律
 **命题**：$\vdash ((P \land Q) \land R) \leftrightarrow (P \land (Q \land R))$
 
 结合律告诉我们，当多个命题通过合取连接时，括号的位置并不重要。无论我们是先将 $P$ 和 $Q$ 打包，还是先将 $Q$ 和 $R$ 打包，最终表达的都是这三个事实同时成立。在复杂的几何背景中，这意味着我们可以根据证明的需要，自由地重新组合已知条件的“分组方式”。（其形式化证明请见本节习题。）
@@ -92,7 +92,7 @@ $$ \frac{\displaystyle \frac{P \land Q}{Q} \text{($\land$-消去$_2$)} \quad \di
 
 请使用**推理线（长横线）** 的形式，完整地写出下列推导过程：
 
-**习题 1.4.1**：请模仿交换律的证明，证明**结合律（Associativity）**：
+**习题 1.4.1**：请模仿交换律的证明，证明**结合律**：
 $$ (P \land Q) \land R \vdash P \land (Q \land R) $$
 
 **习题 1.4.2**：请证明**分配律**的另一个方向（即定理 1.4.3 的 $\leftarrow$ 方向）：

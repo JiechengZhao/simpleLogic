@@ -33,9 +33,9 @@
 ### 2.2 等价关系的代数性质
 等价关系在命题集合上表现出类似于“等号”的性质。这些性质在后续的证明中将被调用：
 
-1.  **自反性 (Reflexivity)**：$\vdash P \leftrightarrow P$ （任何命题都与自身等价）
-2.  **对称性 (Symmetry)**：$P \leftrightarrow Q \vdash Q \leftrightarrow P$ （等价是双向的）
-3.  **传递性 (Transitivity)**：$P \leftrightarrow Q, Q \leftrightarrow R \vdash P \leftrightarrow R$ （等价可以传递）
+1.  **自反性**：$\vdash P \leftrightarrow P$ （任何命题都与自身等价）
+2.  **对称性**：$P \leftrightarrow Q \vdash Q \leftrightarrow P$ （等价是双向的）
+3.  **传递性**：$P \leftrightarrow Q, Q \leftrightarrow R \vdash P \leftrightarrow R$ （等价可以传递）
 
 这些性质看起来理所应当，但在严密的逻辑系统中，它们都需要通过最基础的引入（$\leftrightarrow$-引入）和消去（$\leftrightarrow$-消去）规则来确证。我们将它们的严格证明留作本节的习题。
 
