@@ -44,7 +44,7 @@ $$ \frac{}{\Gamma, P \vdash P} $$
 
 根据这条规则，我们将题设 $P$ 并入上下文后，就有权在“黑板”上宣告在该上下文中 $AB=AC$ 成立。其完整形式为：
 
-$$ \frac{}{\Gamma_{\text{欧氏}}, AB = AC \vdash AB = AC} $$
+$$ \frac{}{\Gamma_{\text{欧氏几何}}, AB = AC \vdash AB = AC} $$
 
 
 ---
