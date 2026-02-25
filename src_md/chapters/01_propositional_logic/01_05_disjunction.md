@@ -38,10 +38,10 @@ $$ \frac{\Gamma \vdash P}{\Gamma \vdash P \lor Q}\text{($\lor$-引入$_1$)} \qua
 为了更清晰地观察“前提”与“推导过程”的对应关系，我们提供两种等价的书写方式：
 
 **标准形式**：
-$$ \frac{\Gamma \vdash P \lor Q \quad \Gamma, P \vdash R \quad \Gamma, Q \vdash R}{\Gamma \vdash R} $$
+$$ \frac{\Gamma \vdash P \lor Q \quad \Gamma, P \vdash R \quad \Gamma, Q \vdash R}{\Gamma \vdash R} \text{($\lor$-消去)} $$
 
 **简写形式**（利用 1.3 节的结论，将过程封装为命题，并省略不变的 $\Gamma$）：
-$$ \frac{P \lor Q \quad P \to R \quad Q \to R}{R} $$
+$$ \frac{P \lor Q \quad P \to R \quad Q \to R}{R} \text{($\lor$-消去)} $$
 
 通过对比可以看到，简写写法更加直观：左边是我们的**前提状态**（一个析取命题），中间是我们的**处理能力**（两条通往结论的路径），下方是我们的**最终结论**。
 
@@ -59,7 +59,7 @@ $$ \frac{P \lor Q \quad P \to R \quad Q \to R}{R} $$
 
 我们可以将其形式化为以下推导：
 
-$$ \frac{P_1 \lor P_2 \lor P_3 \quad P_1 \to S \quad P_2 \to S \quad P_3 \to S}{S} \text{ ($\lor$-消去)} $$
+$$ \frac{P_1 \lor P_2 \lor P_3 \quad P_1 \to S \quad P_2 \to S \quad P_3 \to S}{S} \text{($\lor$-消去)} $$
 
 （注：标准的消去规则是二元的，处理三项析取时实际上是进行了一次嵌套讨论，先处理 $P_1 \lor P_2$，再处理其结果与 $P_3$ 的组合。我们稍后就会补充这个证明。）
 
@@ -87,11 +87,11 @@ $$ \vdash ((P \lor Q) \lor R) \leftrightarrow (P \lor (Q \lor R)) $$
 #### 引理：三路分支规则
 在证明三角形面积时，我们面对的是三种情况。逻辑上，只要我们能分别搞定每一个分支，结论就成立：
 
-$$ \frac{P \lor Q \lor R \quad P \to S \quad Q \to S \quad R \to S}{S} $$
+$$ \frac{P \lor Q \lor R \quad P \to S \quad Q \to S \quad R \to S}{S} \text{($\lor$-消去)} $$
 
 为了让大家看清底层逻辑，我们通过**嵌套**两层标准 $\lor$-消去 来证明这个规则。推理如下：
 
-$$ \frac{\Gamma \vdash (P \lor Q) \lor R \quad \displaystyle \frac{\Gamma, P \lor Q \vdash P \lor Q \quad \Gamma, P \lor Q, P \vdash S \quad \Gamma, P \lor Q, Q \vdash S}{\Gamma, P \lor Q \vdash S} \text{ ($\lor$-消去)} \quad \Gamma, R \vdash S}{\Gamma \vdash S} \text{ ($\lor$-消去)} $$
+$$ \frac{\Gamma \vdash (P \lor Q) \lor R \quad \displaystyle \frac{\Gamma, P \lor Q \vdash P \lor Q \quad \Gamma, P \lor Q, P \vdash S \quad \Gamma, P \lor Q, Q \vdash S}{\Gamma, P \lor Q \vdash S} \text{($\lor$-消去)} \quad \Gamma, R \vdash S}{\Gamma \vdash S} \text{($\lor$-消去)} $$
 
 **这正是我们之前在面积证明中略过的逻辑。** 虽然标准的 $\lor$-消去 只有两路，但通过这种嵌套，我们可以处理任意多个分支。请注意，这个证明中，上下文多次变动。如果用不带上下文的推理写法会很复杂，但是在我们当前的写法中清晰自然。实际上，像上下文和 $\vdash$ 这样的概念出现，正是由这种形式化需求所驱动的。
 
@@ -114,7 +114,7 @@ $$ \frac{\displaystyle \frac{R}{Q \lor R} \text{($\lor$-引入$_2$)} }{P \lor (Q
 **最终汇聚：**
 将上述三条路径，封装为蕴涵命题与前提结合，利用我们刚刚证明的“三路分类讨论”引理：
 
-$$ \frac{(P \lor Q) \lor R \quad P \to P \lor (Q \lor R) \quad Q \to P \lor (Q \lor R) \quad R \to P \lor (Q \lor R)}{P \lor (Q \lor R)} \text{ ($\lor$-消去-3)} $$
+$$ \frac{(P \lor Q) \lor R \quad P \to P \lor (Q \lor R) \quad Q \to P \lor (Q \lor R) \quad R \to P \lor (Q \lor R)}{P \lor (Q \lor R)} \text{($\lor$-消去-3)} $$
 
 由此，结合律的一个方向得证。
 
