@@ -24,7 +24,7 @@ $$ \frac{\Gamma \vdash P \quad \Gamma \vdash Q}{\Gamma \vdash P \land Q} \text{ 
 
 反过来，如果我们已经知道了一个复合事实，我们可以根据需要随时提取其中的任何一个部分。
 
-$$ \frac{\Gamma \vdash P \land Q}{\Gamma \vdash P} \text{($\land$-消去$_1$)}\quad \frac{\Gamma \vdash P \land Q}{\Gamma \vdash Q} \text{($\land$-消去$_2$)} $$
+$$ \frac{\Gamma \vdash P \land Q}{\Gamma \vdash P} \text{($\land$-消去$_1$)} \quad \frac{\Gamma \vdash P \land Q}{\Gamma \vdash Q} \text{($\land$-消去$_2$)} $$
 
 ### 几何案例：利用“定义”
 假设题目给出的已知条件是：“$\triangle ABC$ 是等腰直角三角形”。这意味着在我们的背景 $\Gamma$ 中，已经持有了复合命题：$\Gamma \vdash P \land Q$。

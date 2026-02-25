@@ -28,7 +28,7 @@
 - **引理 1**：$\displaystyle \frac{P \quad P \leftrightarrow Q}{Q}$
 - **引理 2**：$\displaystyle \frac{Q \quad P \leftrightarrow Q}{P}$
 
-这两条引理本质上是合取消去（$\land$-E）与蕴涵消去（$\to$-E）的组合调用。
+这两条引理本质上是合取消去（$\land$-消去）与蕴涵消去（$\to$-消去）的组合调用。
 
 ### 2.2 等价关系的代数性质
 等价关系在命题集合上表现出类似于“等号”的性质。这些性质在后续的证明中将被调用：
@@ -37,7 +37,7 @@
 2.  **对称性 (Symmetry)**：$P \leftrightarrow Q \vdash Q \leftrightarrow P$ （等价是双向的）
 3.  **传递性 (Transitivity)**：$P \leftrightarrow Q, Q \leftrightarrow R \vdash P \leftrightarrow R$ （等价可以传递）
 
-这些性质看起来理所应当，但在严密的逻辑系统中，它们都需要通过最基础的引入（$\leftrightarrow$-I）和消去（$\leftrightarrow$-E）规则来确证。我们将它们的严格证明留作本节的习题。
+这些性质看起来理所应当，但在严密的逻辑系统中，它们都需要通过最基础的引入（$\leftrightarrow$-引入）和消去（$\leftrightarrow$-消去）规则来确证。我们将它们的严格证明留作本节的习题。
 
 #### 传递性与连等约定
 我们在第 1.8 节中提到的**连等（等价链）**写法 $P \leftrightarrow Q \leftrightarrow R$，其逻辑合法性正是建立在**传递性**之上的。因为传递性向我们保证了：只要链条中相邻的两项是等价的，那么链条中任意两项（即使不相邻）在逻辑上也是等价的。这使得我们可以像处理代数连等式一样，通过一系列中间步骤，最终宣告首尾两项的等价关系。
@@ -87,7 +87,7 @@ $$
 
 - **路径 1 ($A \to A' \lor B'$)**：
 
- $$ \frac{A \quad A \leftrightarrow  A'}{ \displaystyle \frac{A'}{A' \lor B'} (\lor\text{-引入}) } (\leftrightarrow \text{-消去}_1) $$
+ $$ \frac{A \quad A \leftrightarrow  A'}{ \displaystyle \frac{A'}{A' \lor B'} (\lor\text{-引入}) } \text{($\leftrightarrow$-消去$_1$)} $$
 - **路径 2 ($B \to A' \lor B'$)**：同理。
 
 利用 $\lor$-消去 规则（简写形式）：

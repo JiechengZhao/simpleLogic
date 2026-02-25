@@ -70,9 +70,9 @@
 1. **给定前提**：假设 $b(P) = 0$ 且 $b(Q) = 1$。
 2. **转换判定**：这意味着 $\neg P$ 成立，且 $Q$ 成立。
 3. **证明路径**：我们要确定 $P \to Q$ 的状态。在包含 $\neg P$ 的上下文中，如果我们临时假设 $P$，则会触发 **爆炸原理**，
-   $$ \frac{ \displaystyle \frac{P \quad \neg P}{\perp} (\perp\text{-引入}) }{Q} (\perp\text{-消去}) $$
+   $$ \frac{ \displaystyle \frac{P \quad \neg P}{\perp} \text{($\perp$-引入)} }{Q} \text{($\perp$-消去)} $$
    由于从矛盾可以推导任何结论，我们得到了 $Q$。再通过 **蕴涵引入** 撤销临时假设 $P$，得到 $P \to Q$：
-   $$ \frac{P \vdash Q}{\vdash P \to Q} (\to\text{-引入}) $$
+   $$ \frac{P \vdash Q}{\vdash P \to Q} \text{($\to$-引入)} $$
 4. **得出数值**：既然 $P \to Q$ 成立，根据定义 $b(P \to Q) = 1$。
 5. **结论**：$0 \to 1 = 1$。
 

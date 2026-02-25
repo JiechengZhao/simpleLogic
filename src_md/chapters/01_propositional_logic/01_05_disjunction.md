@@ -6,7 +6,7 @@
 
 当我们要定义一个范畴时，只要满足其中一种可能性即可。其规则如下：
 
-$$ \frac{\Gamma \vdash P}{\Gamma \vdash P \lor Q}\text{($\land$-引入$_1)} \quad \frac{\Gamma \vdash Q}{\Gamma \vdash P \lor Q} \text{($\land$-引入$_2$)} $$
+$$ \frac{\Gamma \vdash P}{\Gamma \vdash P \lor Q}\text{($\lor$-引入$_1$)} \quad \frac{\Gamma \vdash Q}{\Gamma \vdash P \lor Q} \text{($\lor$-引入$_2$)} $$
 
 ### 案例：等腰三角形的属性
 一个三角形被判定为“等腰三角形”，意味着它至少有两边相等。
@@ -103,13 +103,13 @@ $$ \frac{\Gamma \vdash (P \lor Q) \lor R \quad \displaystyle \frac{\Gamma, P \lo
 我们可以直接套用上面的三路规则。令结论 $S$ 为 $P \lor (Q \lor R)$，我们只需要展示三条路径是如何通往 $S$ 的：
 
 **路径 1：从 $P$ 出发**
-$$ \frac{P}{P \lor (Q \lor R)} \text{ ($\lor$-引入}_1\text{)} $$
+$$ \frac{P}{P \lor (Q \lor R)} \text{($\lor$-引入$_1$)} $$
 
 **路径 2：从 $Q$ 出发**
-$$ \frac{\displaystyle \frac{Q}{Q \lor R} \text{ ($\lor$-引入}_1\text{)} }{P \lor (Q \lor R)} \text{ ($\lor$-引入}_2\text{)} $$
+$$ \frac{\displaystyle \frac{Q}{Q \lor R} \text{($\lor$-引入$_1$)} }{P \lor (Q \lor R)} \text{($\lor$-引入$_2$)} $$
 
 **路径 3：从 $R$ 出发**
-$$ \frac{\displaystyle \frac{R}{Q \lor R} \text{ ($\lor$-引入}_2\text{)} }{P \lor (Q \lor R)} \text{ ($\lor$-引入}_2\text{)} $$
+$$ \frac{\displaystyle \frac{R}{Q \lor R} \text{($\lor$-引入$_2$)} }{P \lor (Q \lor R)} \text{($\lor$-引入$_2$)} $$
 
 **最终汇聚：**
 将上述三条路径，封装为蕴涵命题与前提结合，利用我们刚刚证明的“三路分类讨论”引理：
