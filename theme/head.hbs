@@ -5,6 +5,15 @@
 }
 </style>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // 如果是首页，则强制设置标题为书名，避免出现“关于本书 - ...”的冗余
+        if (window.location.pathname.endsWith('/') || window.location.pathname.endsWith('index.html')) {
+            document.title = "易懂的形式逻辑：基础教育中的逻辑推理提取指南";
+        }
+    });
+</script>
+
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   tex2jax: {

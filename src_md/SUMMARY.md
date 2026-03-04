@@ -1,6 +1,6 @@
 # Summary
 
-- [引言](chapters/00_introduction.md)
+- [关于本书](chapters/00_introduction.md)
 
 - [第1章 命题逻辑——几何判定的骨架](chapters/01_propositional_logic.md)
     - [1.1 命题与上下文](chapters/01_propositional_logic/01_01_context.md)
